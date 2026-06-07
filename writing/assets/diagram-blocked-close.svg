@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="The blocked financial close: one request returns three blockers with evidence, a single human join resolves them, and the close completes behind one approval.">
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <text x="32" y="40" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">THE CLOSE THAT CAME BACK BLOCKED — ON PURPOSE</text>
+
+  <!-- request -->
+  <rect x="150" y="60" width="460" height="56" rx="12" fill="#161922" stroke="#2c3148"/>
+  <text x="380" y="84" text-anchor="middle" fill="#ece9e0" font-size="14.5">“Close the books for last month, and schedule a</text>
+  <text x="380" y="104" text-anchor="middle" fill="#ece9e0" font-size="14.5">close on the 1st of every month.”</text>
+
+  <line x1="380" y1="118" x2="380" y2="146" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- coordination layer -->
+  <rect x="250" y="148" width="260" height="40" rx="10" fill="#11131a" stroke="#ff5a3c" stroke-opacity="0.5"/>
+  <text x="380" y="173" text-anchor="middle" fill="#ff8a73" font-size="13" font-weight="600">coordination layer · pull + join + verify</text>
+
+  <line x1="380" y1="190" x2="380" y2="218" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- blocked banner -->
+  <rect x="250" y="220" width="260" height="40" rx="10" fill="#ff5a3c" fill-opacity="0.12" stroke="#ff5a3c"/>
+  <circle cx="290" cy="240" r="6" fill="#ff5a3c"/>
+  <text x="380" y="245" text-anchor="middle" fill="#ff5a3c" font-size="14" font-weight="700" letter-spacing="1">BLOCKED — 3 items, with evidence</text>
+
+  <!-- three evidence cards -->
+  <g font-size="12.5">
+    <rect x="32"  y="286" width="224" height="118" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="48" y="312" fill="#f0b264" font-size="12" font-weight="600">① OPEN CREDIT MEMO</text>
+    <text x="48" y="336" fill="#b9bcc6">Return refunded, memo</text>
+    <text x="48" y="354" fill="#b9bcc6">created, never applied.</text>
+    <text x="48" y="384" fill="#8b8f9d" font-style="italic">→ one approval to clear</text>
+
+    <rect x="268" y="286" width="224" height="118" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="284" y="312" fill="#f0b264" font-size="12" font-weight="600">② TWO OVERDUE A/R</text>
+    <text x="284" y="336" fill="#b9bcc6">Real invoices, overdue,</text>
+    <text x="284" y="354" fill="#b9bcc6">not errors.</text>
+    <text x="284" y="384" fill="#8b8f9d" font-style="italic">→ pursue / defer / write off</text>
+
+    <rect x="504" y="286" width="224" height="118" rx="10" fill="#161922" stroke="#ff5a3c" stroke-opacity="0.45"/>
+    <text x="520" y="312" fill="#ff8a73" font-size="12" font-weight="600">③ CANCELLED CONTRACTS</text>
+    <text x="520" y="336" fill="#b9bcc6">No join key between</text>
+    <text x="520" y="354" fill="#b9bcc6">Billing IDs and ERP.</text>
+    <text x="520" y="384" fill="#8b8f9d" font-style="italic">→ can't prove clean: refused</text>
+  </g>
+
+  <line x1="616" y1="408" x2="616" y2="436" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- human join -->
+  <rect x="396" y="438" width="332" height="44" rx="10" fill="#6ad6e6" fill-opacity="0.10" stroke="#6ad6e6" stroke-opacity="0.6"/>
+  <text x="562" y="459" text-anchor="middle" fill="#6ad6e6" font-size="13" font-weight="600">human hint: “account reference is the key</text>
+  <text x="562" y="476" text-anchor="middle" fill="#6ad6e6" font-size="13" font-weight="600">for Billing too” — entity resolution</text>
+
+  <line x1="396" y1="460" x2="252" y2="460" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- complete -->
+  <rect x="32" y="438" width="220" height="44" rx="10" fill="#161922" stroke="#2c3148"/>
+  <circle cx="60" cy="460" r="6" fill="#6ad6e6"/>
+  <text x="142" y="465" text-anchor="middle" fill="#ece9e0" font-size="14" font-weight="600">close completes</text>
+
+  <text x="380" y="520" text-anchor="middle" fill="#5d6271" font-size="12.5" font-style="italic">proven, not plausible — behind a single approval</text>
+</svg>

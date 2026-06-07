@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "generated": "2026-06-07T08:18:10.032518+00:00"
+  },
+  "posts": [
+    {
+      "slug": "system-of-action",
+      "title": "The System of Action: Why \"Close the Books\" Is Harder Than Any Model",
+      "subtitle": "An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.",
+      "date": "2026-06-07",
+      "type": "essay",
+      "tags": [
+        "coordination",
+        "enterprise-ai",
+        "agents",
+        "financial-close"
+      ],
+      "url": "/writing/system-of-action",
+      "canonical": "https://divyajot.substack.com/p/the-system-of-action-why-close-the"
+    }
+  ]
+}

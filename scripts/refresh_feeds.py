@@ -249,12 +249,25 @@ def pull_github(username, limit):
 
 
 def pull_substack(base_url, limit):
-    """Substack publishes /feed for every blog."""
+    """Substack publishes /feed for every blog.
+
+    Substack's Cloudflare blocks GitHub Actions runner IPs, so a direct fetch
+    returns nothing from CI (works fine locally). When the direct fetch yields
+    no items, retry through a public read-only proxy whose origin IP isn't
+    blocked. Returns [] if both fail — the caller preserves existing data.
+    """
     if not base_url:
         return []
     base_url = base_url.rstrip("/")
-    raw = fetch(f"{base_url}/feed")
-    items = parse_rss(raw, limit + 2)
+    feed_url = f"{base_url}/feed"
+
+    items = parse_rss(fetch(feed_url), limit + 2)
+    if not items:
+        from urllib.parse import quote
+        proxied = "https://api.allorigins.win/raw?url=" + quote(feed_url, safe="")
+        print(f"  substack: direct fetch empty, retrying via proxy", file=sys.stderr)
+        items = parse_rss(fetch(proxied, timeout=30), limit + 2)
+
     # Substack seeds new blogs with a "Coming soon" placeholder post — skip it.
     items = [i for i in items if i["title"].strip().lower() != "coming soon"]
     return items[:limit]

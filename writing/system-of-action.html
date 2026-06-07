@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The System of Action: Why &quot;Close the Books&quot; Is Harder Than Any Model — Divyajot Singh</title>
+<meta name="description" content="An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here&#x27;s the layer in between — and the demo where the right answer was to stop." />
+<meta property="og:title" content="The System of Action: Why &quot;Close the Books&quot; Is Harder Than Any Model" />
+<meta property="og:description" content="An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here&#x27;s the layer in between — and the demo where the right answer was to stop." />
+<meta property="og:type" content="article" />
+<link rel="canonical" href="https://divyajot.substack.com/p/the-system-of-action-why-close-the" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/post.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <nav>
+    <a href="/writing">Writing</a>
+    <a href="/#work">Work</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<article class="article">
+  <div class="eyebrow"><span class="type">ESSAY</span> · Jun 2026</div>
+  <h1>The System of Action: Why &quot;Close the Books&quot; Is Harder Than Any Model</h1>
+  <p class="subtitle">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here&#x27;s the layer in between — and the demo where the right answer was to stop.</p>
+  <div class="byline">
+    <div class="tags"><span class="tag">coordination</span><span class="tag">enterprise-ai</span><span class="tag">agents</span><span class="tag">financial-close</span></div>
+    <a class="canonical" href="https://divyajot.substack.com/p/the-system-of-action-why-close-the" target="_blank" rel="noopener">Originally on Substack ↗</a>
+  </div>
+  <div class="content">
+<p>Ask anyone who runs operations what they do all day and you'll hear verbs. Check the balance. Create the record. Update the pricing. Draft the response. Close the books.</p>
+<p>You will not hear "authenticate against the CRM's REST API, run a SQL pull from Snowflake, page through the Billing system's invoice events, then map them onto ERP records." Yet that second sentence is the actual labour hiding behind the first. The business runs on verbs; the systems run on APIs; and the distance between the two is where operators lose their evenings and finance teams lose their quarter-ends.</p>
+<p>Most "enterprise AI" lives on the wrong side of that gap. It can summarise your business beautifully and act on it not at all. The interesting engineering was never the model — every serious team is renting the same two or three frontier labs. It's the layer that turns a verb into a safe, correct action across systems of record that were never designed to agree with each other. Call it a System of Action &amp; Coordination.</p>
+<p>That's the layer in the first diagram, read left to right.</p>
+<figure><img src="assets/diagram-coordination.svg" alt="Diagram 1" loading="lazy"></figure>
+<p><strong>Business verbs come in.</strong> Check the balance, update the pricing, close the books — stated the way a human states them, with none of the system detail filled in.</p>
+<p><strong>The tool surface does the unglamorous middle.</strong> It <em>understands the context</em> of the request, <em>chooses the right tool</em> from a genuinely hostile surface — REST here, SOAP there, raw SQL, OAuth and SAML scopes, mismatched schemas, rate limits — and then <em>applies policy and approval</em> before a single write happens. The funnel in the diagram is the point: many possible tool calls go in, one prepared, policy-checked action comes out.</p>
+<p><strong>Enterprise connections sit underneath.</strong> Snowflake, the CRM, Billing, Core systems, the ERP, the iPaaS fabric. Same business intent. Different systems of record. One coordination layer.</p>
+<p>Stated as a diagram it sounds tidy. The second diagram is where it earns its keep, because the right answer there was to <em>not</em> finish the job.</p>
+<figure><img src="assets/diagram-blocked-close.svg" alt="Diagram 2" loading="lazy"></figure>
+<p><strong>The request:</strong> "Close the books for last month, and also schedule a close on the 1st of each month."</p>
+<p><strong>The response:</strong> blocked. Deliberately.</p>
+<p>A weaker system returns "Done ✅" and a clean summary. This one returned evidence and three open questions:</p>
+<ol><li><strong>An open credit memo</strong> — a customer's return was processed, the refund went through, the credit memo was created, and it was never applied. Still open against the month.</li><li><strong>Two overdue receivables</strong> — both legitimate enterprise invoices, not errors, but overdue and needing a human decision before the month locks: pursue, defer, or write off.</li><li><strong>Cancelled contracts — indeterminate.</strong> A batch cancelled in the period. Every cancelled contract's Billing record showed a paid or zero balance, but <em>without a direct join key between the Billing account IDs and the ERP's own record numbers, the system could not confirm 1:1 that none still carried open revenue.</em> So it refused to declare them clean.</li></ol>
+<p>It also caught a rounding mismatch on a separate credit memo — the kind of thing that's immaterial right up until an auditor finds it first.</p>
+<p>That third item is the whole thesis in miniature. The easy move is to assume the cancellations reconcile and move on. The honest move is to admit you can't prove it yet and say so. The resolution arrived as a single human hint: <em>"The account reference is the key for Billing too, like the CRM."</em> That's cross-system entity resolution — the join that lets you match a cancelled contract to the exact ERP record and <em>prove</em> the books are clean rather than assume it.</p>
+<p>Notice the shape of the work in the run itself: skill up on the financial-close task, list the cases, drop into code to pull and join the real records, read the result, code again to verify, and only then let the system commit. Each step is inspectable. Nothing irreversible happens without an approval.</p>
+<p>This is the part I keep coming back to. The value isn't a system that closes your books. It's a system that knows when it <em>can't</em> — that stops, shows its working, and asks for one decision instead of manufacturing a confident, wrong one. Across systems, the failure mode is never "the model wrote a bad sentence." It's "the model assumed two records matched when nothing guaranteed they did." Verifiable joins and approval gates are what stand between a demo and a system you'd actually let touch the general ledger.</p>
+<p>What it unlocks is small to say and hard to build: one business command, many systems coordinated, safe execution with approvals.</p>
+<p>The model was never the hard part. The coordination layer is.</p>
+  </div>
+</article>
+
+<footer>
+  <div>Divyajot Singh · Singapore · 2026</div>
+  <div><a href="/writing">← All writing</a></div>
+</footer>
+</body>
+</html>

@@ -759,6 +759,15 @@
     text-align: right;
   }
   @media (max-width: 768px) { .writing-item .platform { text-align: left; } }
+  .writing-more { margin-top: 36px; }
+  .writing-more a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--coral);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .writing-more a:hover { border-color: var(--coral); }
 
   /* ================= STATS BAND ================= */
   .stats-band {
@@ -1284,33 +1293,20 @@
       <h2>Notes from the <em>field</em>.</h2>
     </div>
 
-    <div class="writing-list">
+    <div class="writing-list" id="writing-list">
+      <!-- Populated from posts.json by the script below. Fallback shown if it fails to load. -->
       <div class="writing-item reveal">
-        <div class="date">2025</div>
+        <div class="date">Jun 2026</div>
         <div>
-          <h4><a href="#" target="_blank" rel="noopener">A 14-Day Build Playbook for RLVR on Regulated Workflows</a></h4>
-          <div class="summary">Why we replaced human preference labels with verifiable check functions on insurance workflows, and the architecture that took accuracy from 78 to 94 percent.</div>
+          <h4><a href="/writing/system-of-action">The System of Action: Why "Close the Books" Is Harder Than Any Model</a></h4>
+          <div class="summary">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.</div>
         </div>
-        <div class="platform">Substack</div>
+        <div class="platform">Essay</div>
       </div>
+    </div>
 
-      <div class="writing-item reveal">
-        <div class="date">2025</div>
-        <div>
-          <h4><a href="#" target="_blank" rel="noopener">Orchestration vs. Coordination: What an Agentic Platform Actually Sells</a></h4>
-          <div class="summary">The case for treating agentic platforms as systems of coordination — declarative design-time, emergent runtime — rather than another flavour of BPMN.</div>
-        </div>
-        <div class="platform">LinkedIn</div>
-      </div>
-
-      <div class="writing-item reveal">
-        <div class="date">2025</div>
-        <div>
-          <h4><a href="#" target="_blank" rel="noopener">Harness Engineering: Why Verifiable Handoffs Beat Prompt Chains</a></h4>
-          <div class="summary">On the difference between stringing prompts together and building a verifier-layer harness that gives you auditable, recoverable multi-agent systems.</div>
-        </div>
-        <div class="platform">LinkedIn</div>
-      </div>
+    <div class="writing-more">
+      <a href="/writing">All writing →</a>
     </div>
   </div>
 </section>
@@ -1535,6 +1531,42 @@
       const section = document.querySelector('.latest');
       if (section) section.style.display = 'none';
       console.warn("Latest activity failed to load:", err);
+    }
+  })();
+
+  // Populate the Writing section from posts.json (on-site essays/whitepapers).
+  // Leaves the hardcoded fallback in place if the index can't be loaded.
+  (async function () {
+    function esc(s) {
+      return String(s || "").replace(/[&<>"']/g, function (c) {
+        return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+      });
+    }
+    function fmtDate(v) {
+      if (!v) return "";
+      const d = new Date(v);
+      return isNaN(d) ? esc(v) : d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    }
+    try {
+      const res = await fetch("posts.json", { cache: "no-cache" });
+      if (!res.ok) throw new Error("posts.json not ok");
+      const data = await res.json();
+      const posts = (data.posts || []).slice(0, 6);
+      if (!posts.length) return;
+      const list = document.getElementById("writing-list");
+      if (!list) return;
+      list.innerHTML = posts.map((p) => `
+        <div class="writing-item reveal">
+          <div class="date">${fmtDate(p.date)}</div>
+          <div>
+            <h4><a href="${esc(p.url)}">${esc(p.title)}</a></h4>
+            <div class="summary">${esc(p.subtitle || "")}</div>
+          </div>
+          <div class="platform">${esc((p.type || "essay").charAt(0).toUpperCase() + (p.type || "essay").slice(1))}</div>
+        </div>`).join("");
+    } catch (err) {
+      // Keep the static fallback already in the markup.
+      console.warn("Writing list failed to load:", err);
     }
   })();
 </script>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="From business verbs to real systems: a coordination layer between business verbs and enterprise systems of record.">
+  <defs>
+    <linearGradient id="funnel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#6ad6e6" stop-opacity="0.10"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="32" y="40" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">FROM BUSINESS VERBS TO REAL SYSTEMS</text>
+
+  <!-- business verbs -->
+  <g font-size="15" fill="#ece9e0">
+    <rect x="40"  y="62" width="206" height="40" rx="20" fill="#161922" stroke="#2c3148"/>
+    <text x="143" y="87" text-anchor="middle">Check the balance</text>
+    <rect x="277" y="62" width="206" height="40" rx="20" fill="#161922" stroke="#2c3148"/>
+    <text x="380" y="87" text-anchor="middle">Update the pricing</text>
+    <rect x="514" y="62" width="206" height="40" rx="20" fill="#161922" stroke="#2c3148"/>
+    <text x="617" y="87" text-anchor="middle">Close the books</text>
+  </g>
+  <text x="380" y="128" text-anchor="middle" fill="#5d6271" font-size="12.5" font-style="italic">business verbs — stated the way a human states them</text>
+
+  <line x1="380" y1="138" x2="380" y2="162" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- coordination funnel -->
+  <path d="M150 172 L610 172 L470 360 L290 360 Z" fill="url(#funnel)" stroke="#2c3148"/>
+  <text x="380" y="166" text-anchor="middle" fill="#ff8a73" font-size="12.5" letter-spacing="1.5" font-weight="600">SYSTEM OF ACTION &amp; COORDINATION</text>
+
+  <g font-size="14.5" fill="#ece9e0" text-anchor="middle">
+    <text x="380" y="214" font-weight="500">Understand the context</text>
+    <line x1="250" y1="230" x2="510" y2="230" stroke="#1f2333"/>
+    <text x="380" y="262" font-weight="500">Choose the right tool</text>
+    <text x="380" y="284" fill="#8b8f9d" font-size="11.5">REST · SOAP · SQL · OAuth · SAML · schemas · rate limits</text>
+    <line x1="290" y1="300" x2="470" y2="300" stroke="#1f2333"/>
+    <text x="380" y="332" font-weight="500" fill="#f0b264">Apply policy + approval</text>
+  </g>
+
+  <line x1="380" y1="362" x2="380" y2="392" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380" y="384" text-anchor="middle" fill="#5d6271" font-size="12.5" font-style="italic">one prepared, policy-checked action</text>
+
+  <!-- enterprise systems -->
+  <g font-size="13.5" fill="#6ad6e6" text-anchor="middle">
+    <rect x="40"  y="406" width="108" height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="94"  y="430" fill="#ece9e0">Snowflake</text>
+    <rect x="160" y="406" width="108" height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="214" y="430" fill="#ece9e0">CRM</text>
+    <rect x="280" y="406" width="108" height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="334" y="430" fill="#ece9e0">Billing</text>
+    <rect x="400" y="406" width="108" height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="454" y="430" fill="#ece9e0">Core systems</text>
+    <rect x="520" y="406" width="108" height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="574" y="430" fill="#ece9e0">ERP</text>
+    <rect x="640" y="406" width="80"  height="38" rx="8" fill="#11131a" stroke="#2c3148"/><text x="680" y="430" fill="#ece9e0">iPaaS</text>
+  </g>
+  <text x="380" y="476" text-anchor="middle" fill="#5d6271" font-size="12.5" font-style="italic">enterprise systems of record — each a different source of truth</text>
+</svg>
