@@ -1,11 +1,11 @@
 {
   "_meta": {
-    "last_updated": "2026-06-07T00:00:00Z",
+    "last_updated": "2026-06-07T07:13:38.376719+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
     "x": "https://x.com/divyajot",
-    "github": "https://github.com/divyajot",
+    "github": "https://github.com/divyajotsingh093",
     "linkedin": "https://linkedin.com/in/divyajot-singh-06b78559",
     "substack": "https://divyajot.substack.com"
   },
@@ -13,76 +13,82 @@
     "github_commits": [
       {
         "type": "commit",
-        "repo": "divyajot/agent-harness",
-        "title": "feat: add deterministic verifier layer to claim memo flow",
-        "url": "https://github.com/divyajot/agent-harness/commit/abc1234",
-        "date": "2026-06-05T14:22:00Z",
-        "sha": "abc1234"
-      },
-      {
-        "type": "pr",
-        "repo": "divyajot/rlvr-playbook",
-        "title": "PR opened: refactor reward function to support multi-stage checks",
-        "url": "https://github.com/divyajot/rlvr-playbook/pull/12",
-        "date": "2026-06-03T09:14:00Z"
+        "repo": "divyajotsingh093/divyajot-website",
+        "title": "Update README.md",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/8ac468e12b61607be957221a6daa3c40ff960b9a",
+        "date": "2026-06-07T05:58:58Z",
+        "sha": "8ac468e"
       },
       {
         "type": "commit",
-        "repo": "divyajot/idp-multilingual",
-        "title": "fix: Buddhist-Era date parser edge case for partial years",
-        "url": "https://github.com/divyajot/idp-multilingual/commit/def5678",
-        "date": "2026-06-02T19:48:00Z",
-        "sha": "def5678"
+        "repo": "divyajotsingh093/divyajot-website",
+        "title": "initial commit",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/3097d4e8fd1b9b1dd452955af1c12640b986ad05",
+        "date": "2026-06-07T05:54:52Z",
+        "sha": "3097d4e"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/AgentForgeNew",
+        "title": "Adjust authentication flow and loading states for application access",
+        "url": "https://github.com/divyajotsingh093/AgentForgeNew/commit/ae92bd65003af6e0e5d370823ab6cf4c56086cf8",
+        "date": "2025-10-06T04:21:29Z",
+        "sha": "ae92bd6"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/AgentForgeNew",
+        "title": "Fix sign-in and get started links redirecting to a 404 page",
+        "url": "https://github.com/divyajotsingh093/AgentForgeNew/commit/3cd6b9d431c072a4404847ba86947cb7c560d182",
+        "date": "2025-10-06T04:18:18Z",
+        "sha": "3cd6b9d"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/AgentStudioOps",
+        "title": "Add option to mark tasks as fully finished within the timeline view",
+        "url": "https://github.com/divyajotsingh093/AgentStudioOps/commit/2496bd203b2f0479cfdf78a812a7199d05ce177f",
+        "date": "2025-05-18T08:36:42Z",
+        "sha": "2496bd2"
       }
     ],
     "substack_posts": [
       {
-        "title": "What harness engineering actually looks like in production",
-        "url": "https://divyajot.substack.com/p/harness-engineering-production",
-        "date": "Mon, 02 Jun 2026 09:00:00 GMT",
-        "summary": "Lessons from 14 months running a verifier-layer harness on a regulated claims workflow"
+        "title": "Stop Tuning Prompts. Build the Feedback Loop.",
+        "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
+        "date": "Mon, 16 Feb 2026 19:39:53 GMT",
+        "summary": "How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run."
       },
       {
-        "title": "RLVR vs. RLHF: when verifiable rewards actually beat preference labels",
-        "url": "https://divyajot.substack.com/p/rlvr-vs-rlhf",
-        "date": "Sun, 25 May 2026 09:00:00 GMT",
-        "summary": "The narrow band where verifiable check functions outperform human feedback in regulated insurance workflows"
+        "title": "Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.",
+        "url": "https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think",
+        "date": "Sat, 14 Feb 2026 10:38:09 GMT",
+        "summary": "The architecture nobody talks about behind LLMs that actually work in production"
       }
     ],
     "linkedin_posts": [
       {
-        "title": "Most agent platforms confuse orchestration with coordination. Here's the distinction that matters when you're shipping to a regulated buyer...",
-        "url": "https://linkedin.com/posts/divyajot-singh-06b78559_orchestration",
-        "date": "Thu, 05 Jun 2026 11:30:00 GMT"
+        "title": "The models have converged. Intelligence is becoming a utility — defensibility has moved one layer down, to coordination.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7469295227850149888/",
+        "date": "2026-06-07T07:52:35Z"
       },
       {
-        "title": "Quietly impressed by how Qwen2.5-VL is changing the IDP economics for mid-tier carriers. Three deployments in, here's what we found...",
-        "url": "https://linkedin.com/posts/divyajot-singh-06b78559_qwen-vl",
-        "date": "Tue, 03 Jun 2026 08:15:00 GMT"
+        "title": "\"AI agent\" is the most overused word in enterprise tech right now — and the most misunderstood. The real control surface is the harness.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7451479616646516737/",
+        "date": "2026-04-19T03:59:42Z"
+      },
+      {
+        "title": "Stop tuning prompts. Build the feedback loop. We fixed the architecture instead of the model — 78% became 94%.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7429374186558603264/",
+        "date": "2026-02-17T04:00:37Z"
       }
     ],
-    "x_posts": [
-      {
-        "title": "The single most underrated skill in pre-sales for AI platforms is being able to say 'this won't work on your data, here's why' on the first call.",
-        "url": "https://x.com/divyajot/status/1234567890",
-        "date": "Fri, 06 Jun 2026 03:00:00 GMT"
-      },
-      {
-        "title": "Watching the on-prem inference debate, none of these threads talk about the actual binding constraint: data residency clauses in tier-one carrier contracts.",
-        "url": "https://x.com/divyajot/status/1234567880",
-        "date": "Wed, 04 Jun 2026 11:00:00 GMT"
-      },
-      {
-        "title": "Three weeks deploying an IDP pipeline across Thailand, Indonesia, and Vietnam. The Buddhist-Era date handling alone was a research project.",
-        "url": "https://x.com/divyajot/status/1234567870",
-        "date": "Mon, 02 Jun 2026 16:00:00 GMT"
-      }
-    ]
+    "x_posts": []
   },
   "pinned_work": [
     {
-      "title": "RLVR build playbook",
-      "url": "https://divyajot.substack.com/p/rlvr-build-playbook",
+      "title": "Stop Tuning Prompts. Build the Feedback Loop.",
+      "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
       "platform": "Substack",
       "date": "2026"
     }

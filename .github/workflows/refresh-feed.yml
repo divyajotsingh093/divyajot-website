@@ -30,6 +30,7 @@ jobs:
           SUBSTACK_URL: ${{ vars.SITE_SUBSTACK_URL }}
           LINKEDIN_RSS_URL: ${{ vars.SITE_LINKEDIN_RSS_URL }}
           X_RSS_URL: ${{ vars.SITE_X_RSS_URL }}
+          GITHUB_EXCLUDE_REPOS: ${{ vars.SITE_GITHUB_EXCLUDE_REPOS }}
         run: python scripts/refresh_feeds.py
 
       - name: Commit data.json if changed

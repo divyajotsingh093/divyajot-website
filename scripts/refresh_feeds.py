@@ -91,21 +91,95 @@ def clean_html(s, max_len=200):
     return s
 
 
-def pull_github(username, limit):
-    """GitHub events API. Public commits, PRs, issues from public repos."""
+GH_HEADERS = {
+    "User-Agent": "divyajot-site-refresh/1.0",
+    "Accept": "application/vnd.github+json",
+}
+
+
+def pull_github_repo_commits(username, limit):
+    """Fallback: recent commits from the user's most recently pushed public repos.
+
+    The public events API only surfaces activity in public repos and is often
+    empty for users whose work lives in private repos. This pulls real commits
+    directly from the public repos so the GitHub column isn't blank.
+    """
     if not username:
         return []
-    url = f"https://api.github.com/users/{username}/events/public"
-    raw = fetch(url, headers={
-        "User-Agent": "divyajot-site-refresh/1.0",
-        "Accept": "application/vnd.github+json",
-    })
+    raw = fetch(
+        f"https://api.github.com/users/{username}/repos?type=owner&sort=pushed&per_page=10",
+        headers=GH_HEADERS,
+    )
     if not raw:
         return []
     try:
-        events = json.loads(raw)
+        repos = json.loads(raw)
     except json.JSONDecodeError:
         return []
+
+    exclude = {
+        r.strip().lower()
+        for r in os.environ.get("GITHUB_EXCLUDE_REPOS", "").split(",")
+        if r.strip()
+    }
+
+    out = []
+    for repo in repos:
+        if len(out) >= limit:
+            break
+        if repo.get("fork"):
+            continue
+        full = repo.get("full_name", "")
+        if not full:
+            continue
+        if repo.get("name", "").lower() in exclude or full.lower() in exclude:
+            continue
+        craw = fetch(
+            f"https://api.github.com/repos/{full}/commits?per_page=3",
+            headers=GH_HEADERS,
+        )
+        if not craw:
+            continue
+        try:
+            commits = json.loads(craw)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(commits, list):
+            continue
+        for c in commits[:2]:
+            if len(out) >= limit:
+                break
+            commit = c.get("commit") or {}
+            msg = (commit.get("message") or "").split("\n")[0]
+            sha = c.get("sha", "")
+            out.append({
+                "type": "commit",
+                "repo": full,
+                "title": msg,
+                "url": c.get("html_url", ""),
+                "date": (commit.get("author") or {}).get("date", ""),
+                "sha": sha[:7],
+            })
+    return out
+
+
+def pull_github(username, limit):
+    """GitHub events API. Public commits, PRs, issues from public repos.
+
+    Falls back to recent public-repo commits when the events feed is empty.
+    """
+    if not username:
+        return []
+    url = f"https://api.github.com/users/{username}/events/public"
+    raw = fetch(url, headers=GH_HEADERS)
+    if not raw:
+        return pull_github_repo_commits(username, limit)
+    try:
+        events = json.loads(raw)
+    except json.JSONDecodeError:
+        return pull_github_repo_commits(username, limit)
+    if not isinstance(events, list):
+        return pull_github_repo_commits(username, limit)
 
     out = []
     for ev in events:
@@ -158,6 +232,10 @@ def pull_github(username, limit):
                 "url": rel.get("html_url", ""),
                 "date": created,
             })
+    # Events feed had no usable activity (common when work is in private repos) —
+    # fall back to recent commits from the user's public repos.
+    if not out:
+        return pull_github_repo_commits(username, limit)
     return out
 
 
@@ -167,7 +245,10 @@ def pull_substack(base_url, limit):
         return []
     base_url = base_url.rstrip("/")
     raw = fetch(f"{base_url}/feed")
-    return parse_rss(raw, limit)
+    items = parse_rss(raw, limit + 2)
+    # Substack seeds new blogs with a "Coming soon" placeholder post — skip it.
+    items = [i for i in items if i["title"].strip().lower() != "coming soon"]
+    return items[:limit]
 
 
 def pull_rss(url, limit):
@@ -203,17 +284,22 @@ def main():
     print(f"  linkedin:    {'(rss configured)' if li_rss else '(unset)'}")
     print(f"  x/twitter:   {'(rss configured)' if x_rss else '(unset)'}")
 
-    gh = pull_github(gh_user, gh_limit) if gh_user else []
-    su = pull_substack(substack, su_limit) if substack else []
-    li = pull_rss(li_rss, li_limit) if li_rss else []
-    xs = pull_rss(x_rss, x_limit) if x_rss else []
+    # Only overwrite a feed when its source is configured. If a source is unset,
+    # the existing array in data.json is preserved — this avoids wiping manually
+    # curated entries (e.g. X/LinkedIn posts) when no RSS feed is wired up yet.
+    if gh_user:
+        data["feeds"]["github_commits"] = pull_github(gh_user, gh_limit)
+    if substack:
+        data["feeds"]["substack_posts"] = pull_substack(substack, su_limit)
+    if li_rss:
+        data["feeds"]["linkedin_posts"] = pull_rss(li_rss, li_limit)
+    if x_rss:
+        data["feeds"]["x_posts"] = pull_rss(x_rss, x_limit)
 
-    print(f"  pulled: gh={len(gh)} substack={len(su)} linkedin={len(li)} x={len(xs)}")
+    f = data["feeds"]
+    print(f"  feeds now: gh={len(f['github_commits'])} substack={len(f['substack_posts'])} "
+          f"linkedin={len(f['linkedin_posts'])} x={len(f['x_posts'])}")
 
-    data["feeds"]["github_commits"] = gh
-    data["feeds"]["substack_posts"] = su
-    data["feeds"]["linkedin_posts"] = li
-    data["feeds"]["x_posts"] = xs
     data["_meta"]["last_updated"] = datetime.now(timezone.utc).isoformat()
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:
