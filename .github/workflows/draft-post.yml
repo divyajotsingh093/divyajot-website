@@ -1,0 +1,43 @@
+name: Draft post
+
+# Runs AFTER refresh-feed every Sunday at 00:30 SGT (Saturday 16:30 UTC)
+# so the draft sees the just-refreshed feeds.
+on:
+  schedule:
+    - cron: "30 16 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate draft
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+        run: python scripts/generate_draft.py
+
+      - name: Commit drafts if any new file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain drafts/)" ]]; then
+            git add drafts/
+            git commit -m "chore(drafts): weekly candidate $(date -u +%Y-%m-%d)"
+            git push
+            echo "Committed new draft."
+          else
+            echo "No new draft to commit."
+          fi

@@ -1,0 +1,46 @@
+name: Refresh feeds
+
+# Weekly: Sunday at 00:00 Singapore time (Saturday 16:00 UTC).
+# Plus a manual trigger so you can refresh on demand.
+on:
+  schedule:
+    - cron: "0 16 * * 6"
+  workflow_dispatch:
+
+# Required so the workflow can commit data.json back to the repo.
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Refresh feeds
+        env:
+          GITHUB_USERNAME: ${{ vars.SITE_GITHUB_USERNAME }}
+          SUBSTACK_URL: ${{ vars.SITE_SUBSTACK_URL }}
+          LINKEDIN_RSS_URL: ${{ vars.SITE_LINKEDIN_RSS_URL }}
+          X_RSS_URL: ${{ vars.SITE_X_RSS_URL }}
+        run: python scripts/refresh_feeds.py
+
+      - name: Commit data.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain data.json)" ]]; then
+            git add data.json
+            git commit -m "chore(feeds): weekly refresh $(date -u +%Y-%m-%d)"
+            git push
+            echo "Committed feed refresh."
+          else
+            echo "No changes to data.json — skipping commit."
+          fi

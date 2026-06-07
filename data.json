@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "last_updated": "2026-06-07T00:00:00Z",
+    "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
+  },
+  "social": {
+    "x": "https://x.com/divyajot",
+    "github": "https://github.com/divyajot",
+    "linkedin": "https://linkedin.com/in/divyajot-singh-06b78559",
+    "substack": "https://divyajot.substack.com"
+  },
+  "feeds": {
+    "github_commits": [
+      {
+        "type": "commit",
+        "repo": "divyajot/agent-harness",
+        "title": "feat: add deterministic verifier layer to claim memo flow",
+        "url": "https://github.com/divyajot/agent-harness/commit/abc1234",
+        "date": "2026-06-05T14:22:00Z",
+        "sha": "abc1234"
+      },
+      {
+        "type": "pr",
+        "repo": "divyajot/rlvr-playbook",
+        "title": "PR opened: refactor reward function to support multi-stage checks",
+        "url": "https://github.com/divyajot/rlvr-playbook/pull/12",
+        "date": "2026-06-03T09:14:00Z"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajot/idp-multilingual",
+        "title": "fix: Buddhist-Era date parser edge case for partial years",
+        "url": "https://github.com/divyajot/idp-multilingual/commit/def5678",
+        "date": "2026-06-02T19:48:00Z",
+        "sha": "def5678"
+      }
+    ],
+    "substack_posts": [
+      {
+        "title": "What harness engineering actually looks like in production",
+        "url": "https://divyajot.substack.com/p/harness-engineering-production",
+        "date": "Mon, 02 Jun 2026 09:00:00 GMT",
+        "summary": "Lessons from 14 months running a verifier-layer harness on a regulated claims workflow"
+      },
+      {
+        "title": "RLVR vs. RLHF: when verifiable rewards actually beat preference labels",
+        "url": "https://divyajot.substack.com/p/rlvr-vs-rlhf",
+        "date": "Sun, 25 May 2026 09:00:00 GMT",
+        "summary": "The narrow band where verifiable check functions outperform human feedback in regulated insurance workflows"
+      }
+    ],
+    "linkedin_posts": [
+      {
+        "title": "Most agent platforms confuse orchestration with coordination. Here's the distinction that matters when you're shipping to a regulated buyer...",
+        "url": "https://linkedin.com/posts/divyajot-singh-06b78559_orchestration",
+        "date": "Thu, 05 Jun 2026 11:30:00 GMT"
+      },
+      {
+        "title": "Quietly impressed by how Qwen2.5-VL is changing the IDP economics for mid-tier carriers. Three deployments in, here's what we found...",
+        "url": "https://linkedin.com/posts/divyajot-singh-06b78559_qwen-vl",
+        "date": "Tue, 03 Jun 2026 08:15:00 GMT"
+      }
+    ],
+    "x_posts": [
+      {
+        "title": "The single most underrated skill in pre-sales for AI platforms is being able to say 'this won't work on your data, here's why' on the first call.",
+        "url": "https://x.com/divyajot/status/1234567890",
+        "date": "Fri, 06 Jun 2026 03:00:00 GMT"
+      },
+      {
+        "title": "Watching the on-prem inference debate, none of these threads talk about the actual binding constraint: data residency clauses in tier-one carrier contracts.",
+        "url": "https://x.com/divyajot/status/1234567880",
+        "date": "Wed, 04 Jun 2026 11:00:00 GMT"
+      },
+      {
+        "title": "Three weeks deploying an IDP pipeline across Thailand, Indonesia, and Vietnam. The Buddhist-Era date handling alone was a research project.",
+        "url": "https://x.com/divyajot/status/1234567870",
+        "date": "Mon, 02 Jun 2026 16:00:00 GMT"
+      }
+    ]
+  },
+  "pinned_work": [
+    {
+      "title": "RLVR build playbook",
+      "url": "https://divyajot.substack.com/p/rlvr-build-playbook",
+      "platform": "Substack",
+      "date": "2026"
+    }
+  ]
+}
