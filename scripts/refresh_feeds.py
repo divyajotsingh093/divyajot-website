@@ -34,9 +34,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = os.path.join(ROOT, "data.json")
 
 
+UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 divyajot-site-refresh/1.0")
+
+
 def fetch(url, headers=None, timeout=20):
     """Fetch a URL, return bytes. Returns None on failure (logged)."""
-    req = Request(url, headers=headers or {"User-Agent": "divyajot-site-refresh/1.0"})
+    req = Request(url, headers=headers or {"User-Agent": UA})
     try:
         with urlopen(req, timeout=timeout) as r:
             return r.read()
@@ -151,6 +155,11 @@ def pull_github_repo_commits(username, limit):
                 break
             commit = c.get("commit") or {}
             msg = (commit.get("message") or "").split("\n")[0]
+            # Skip the workflow's own auto-refresh commits so the feed doesn't
+            # fill up with self-referential automation noise over time.
+            author_login = (c.get("author") or {}).get("login", "")
+            if author_login == "github-actions[bot]" or msg.startswith("chore(feeds)"):
+                continue
             sha = c.get("sha", "")
             out.append({
                 "type": "commit",
@@ -284,19 +293,27 @@ def main():
     print(f"  linkedin:    {'(rss configured)' if li_rss else '(unset)'}")
     print(f"  x/twitter:   {'(rss configured)' if x_rss else '(unset)'}")
 
-    # Only overwrite a feed when its source is configured. If a source is unset,
-    # the existing array in data.json is preserved — this avoids wiping manually
-    # curated entries (e.g. X/LinkedIn posts) when no RSS feed is wired up yet.
-    if gh_user:
-        data["feeds"]["github_commits"] = pull_github(gh_user, gh_limit)
-    if substack:
-        data["feeds"]["substack_posts"] = pull_substack(substack, su_limit)
-    if li_rss:
-        data["feeds"]["linkedin_posts"] = pull_rss(li_rss, li_limit)
-    if x_rss:
-        data["feeds"]["x_posts"] = pull_rss(x_rss, x_limit)
+    # Only overwrite a feed when the pull actually returned results. An empty
+    # result means either the source is unset OR the fetch failed/was blocked
+    # (e.g. Substack's Cloudflare blocks GitHub Actions runner IPs). In both
+    # cases we preserve the existing array rather than wipe real, curated data.
+    gh = pull_github(gh_user, gh_limit) if gh_user else []
+    su = pull_substack(substack, su_limit) if substack else []
+    li = pull_rss(li_rss, li_limit) if li_rss else []
+    xs = pull_rss(x_rss, x_limit) if x_rss else []
+
+    if gh:
+        data["feeds"]["github_commits"] = gh
+    if su:
+        data["feeds"]["substack_posts"] = su
+    if li:
+        data["feeds"]["linkedin_posts"] = li
+    if xs:
+        data["feeds"]["x_posts"] = xs
 
     f = data["feeds"]
+    print(f"  pulled: gh={len(gh)} substack={len(su)} linkedin={len(li)} x={len(xs)} "
+          f"(empty pulls preserve existing data)")
     print(f"  feeds now: gh={len(f['github_commits'])} substack={len(f['substack_posts'])} "
           f"linkedin={len(f['linkedin_posts'])} x={len(f['x_posts'])}")
 

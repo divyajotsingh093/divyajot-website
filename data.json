@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-06-07T07:58:11.136293+00:00",
+    "last_updated": "2026-06-07T08:01:06.265526+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -18,14 +18,6 @@
         "url": "https://github.com/divyajotsingh093/divyajot-website/commit/6ca2b8d6629983913b4c4ae379ff4690dc66555d",
         "date": "2026-06-07T07:57:20Z",
         "sha": "6ca2b8d"
-      },
-      {
-        "type": "commit",
-        "repo": "divyajotsingh093/divyajot-website",
-        "title": "Update README.md",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/8ac468e12b61607be957221a6daa3c40ff960b9a",
-        "date": "2026-06-07T05:58:58Z",
-        "sha": "8ac468e"
       },
       {
         "type": "commit",
@@ -50,9 +42,36 @@
         "url": "https://github.com/divyajotsingh093/AgentStudioOps/commit/2496bd203b2f0479cfdf78a812a7199d05ce177f",
         "date": "2025-05-18T08:36:42Z",
         "sha": "2496bd2"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/AgentStudioOps",
+        "title": "Show completed tasks on the timeline and allow them to be rerun",
+        "url": "https://github.com/divyajotsingh093/AgentStudioOps/commit/a1baa951cc1976d9dd2a993e68e1b61684a122ff",
+        "date": "2025-05-18T08:36:16Z",
+        "sha": "a1baa95"
       }
     ],
-    "substack_posts": [],
+    "substack_posts": [
+      {
+        "title": "The System of Action: Why \"Close the Books\" Is Harder Than Any Model",
+        "url": "https://divyajot.substack.com/p/the-system-of-action-why-close-the",
+        "date": "Sun, 07 Jun 2026 07:16:51 GMT",
+        "summary": "An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between &#8212; and the demo where the right answer was to stop."
+      },
+      {
+        "title": "Stop Tuning Prompts. Build the Feedback Loop.",
+        "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
+        "date": "Mon, 16 Feb 2026 19:39:53 GMT",
+        "summary": "How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run."
+      },
+      {
+        "title": "Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.",
+        "url": "https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think",
+        "date": "Sat, 14 Feb 2026 10:38:09 GMT",
+        "summary": "The architecture nobody talks about behind LLMs that actually work in production"
+      }
+    ],
     "linkedin_posts": [
       {
         "title": "The models have converged. Intelligence is becoming a utility — defensibility has moved one layer down, to coordination.",
