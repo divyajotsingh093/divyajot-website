@@ -1,4 +1,4 @@
-# divyajot.singh — personal site
+# Divyajot Singh
 
 Static site with weekly auto-refreshed activity feeds + LLM-generated draft posts. Built for Vercel + GitHub Actions.
 
