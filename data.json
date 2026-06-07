@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-06-07T07:13:38.376719+00:00",
+    "last_updated": "2026-06-07T07:58:11.136293+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -14,18 +14,18 @@
       {
         "type": "commit",
         "repo": "divyajotsingh093/divyajot-website",
-        "title": "Update README.md",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/8ac468e12b61607be957221a6daa3c40ff960b9a",
-        "date": "2026-06-07T05:58:58Z",
-        "sha": "8ac468e"
+        "title": "feeds: pull real GitHub/Substack/LinkedIn activity into data.json",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/6ca2b8d6629983913b4c4ae379ff4690dc66555d",
+        "date": "2026-06-07T07:57:20Z",
+        "sha": "6ca2b8d"
       },
       {
         "type": "commit",
         "repo": "divyajotsingh093/divyajot-website",
-        "title": "initial commit",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/3097d4e8fd1b9b1dd452955af1c12640b986ad05",
-        "date": "2026-06-07T05:54:52Z",
-        "sha": "3097d4e"
+        "title": "Update README.md",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/8ac468e12b61607be957221a6daa3c40ff960b9a",
+        "date": "2026-06-07T05:58:58Z",
+        "sha": "8ac468e"
       },
       {
         "type": "commit",
@@ -52,20 +52,7 @@
         "sha": "2496bd2"
       }
     ],
-    "substack_posts": [
-      {
-        "title": "Stop Tuning Prompts. Build the Feedback Loop.",
-        "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
-        "date": "Mon, 16 Feb 2026 19:39:53 GMT",
-        "summary": "How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run."
-      },
-      {
-        "title": "Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.",
-        "url": "https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think",
-        "date": "Sat, 14 Feb 2026 10:38:09 GMT",
-        "summary": "The architecture nobody talks about behind LLMs that actually work in production"
-      }
-    ],
+    "substack_posts": [],
     "linkedin_posts": [
       {
         "title": "The models have converged. Intelligence is becoming a utility — defensibility has moved one layer down, to coordination.",
