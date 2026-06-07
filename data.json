@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-06-07T08:01:06.265526+00:00",
+    "last_updated": "2026-06-07T08:01:50.937359+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -14,10 +14,10 @@
       {
         "type": "commit",
         "repo": "divyajotsingh093/divyajot-website",
-        "title": "feeds: pull real GitHub/Substack/LinkedIn activity into data.json",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/6ca2b8d6629983913b4c4ae379ff4690dc66555d",
-        "date": "2026-06-07T07:57:20Z",
-        "sha": "6ca2b8d"
+        "title": "feeds: preserve existing data on empty/blocked pulls; filter noise",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/d3ce1331b13fd645cdb270e29048cec3f56797f4",
+        "date": "2026-06-07T08:01:25Z",
+        "sha": "d3ce133"
       },
       {
         "type": "commit",
