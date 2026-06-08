@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Deterministic Verifier Layer: Making Multi-Agent Systems Auditable — Divyajot Singh</title>
+<meta name="description" content="What it takes to build a multi-agent system you&#x27;d actually let touch a claims payout — handoff contracts, verifiable checkpoints, and checks no model can talk its way past." />
+<meta property="og:title" content="The Deterministic Verifier Layer: Making Multi-Agent Systems Auditable" />
+<meta property="og:description" content="What it takes to build a multi-agent system you&#x27;d actually let touch a claims payout — handoff contracts, verifiable checkpoints, and checks no model can talk its way past." />
+<meta property="og:type" content="article" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/post.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <nav>
+    <a href="/writing">Writing</a>
+    <a href="/#work">Work</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<article class="article">
+  <div class="eyebrow"><span class="type">WHITEPAPER</span> · Apr 2026</div>
+  <h1>The Deterministic Verifier Layer: Making Multi-Agent Systems Auditable</h1>
+  <p class="subtitle">What it takes to build a multi-agent system you&#x27;d actually let touch a claims payout — handoff contracts, verifiable checkpoints, and checks no model can talk its way past.</p>
+  <div class="byline">
+    <div class="tags"><span class="tag">verification</span><span class="tag">multi-agent</span><span class="tag">audit</span><span class="tag">claims</span><span class="tag">regulated-ai</span></div>
+    
+  </div>
+  <div class="content">
+<p>Ask whether you'd let a multi-agent system approve a claims payout and the honest answer, for almost every system being demoed today, is no. Not because the models are weak — they are remarkable — but because "remarkable" is not a property a regulator accepts. A claims decision has to be <em>defensible</em>: you have to be able to point at the decision after the fact and show, line by line, what was decided, on what evidence, under which rule, and where a human signed. A probabilistic system that produces a fluent recommendation gives you none of that. It gives you a good sentence and a shrug.</p>
+<p>This is a whitepaper about the layer that closes that gap — not the agents, the layer <em>between</em> them. I'll call it the deterministic verifier layer, and I'll argue it decides whether a multi-agent system is a research demo or a production system you can put near money. The model is probabilistic by design; that is its gift and its disqualification. The verifier layer is deterministic by design, and that is what makes the whole assembly auditable. Ground this in two systems I've built it into: the seven-agent Agentic Claims Intelligence Suite, and the harness underneath Vortic.</p>
+<h2>The architecture in one breath</h2>
+<p>The Agentic Claims Intelligence Suite is seven specialist agents — intake, triage, fraud-signal detection, medical-evidence reasoning, settlement recommendation, audit, and routing. Each is good at one thing. Left to pass free-text messages to each other, they would reproduce the failure mode of every prompt chain: confident outputs, lost provenance, errors laundered downstream until one of them lands on a payout.</p>
+<p>What makes the assembly trustworthy is not the agents. It is three things wrapped around them: <strong>inter-agent handoff contracts</strong>, <strong>verifiable checkpoints</strong>, and a <strong>deterministic check set</strong> no LLM can game. Together they produce the fourth thing the regulator actually wants: an audit trail that is a byproduct of how the system runs, not a report someone writes afterward.</p>
+<h2>Handoff contracts: the seam where errors die</h2>
+<p>Between every pair of agents is a contract. Triage does not hand the fraud agent a paragraph; it hands a typed object with required fields — claim type, severity band, the specific documents reviewed, and the provenance of each fact. The contract is enforced. If triage tries to pass a severity assessment without the evidence it rests on, the handoff fails <em>at the seam</em>, not three agents later when the settlement agent has already priced it.</p>
+<p>This is the structural decision that makes everything downstream possible. A free-text handoff is unauditable by construction — you cannot later prove what the fraud agent actually received. A contract makes the boundary inspectable: this agent asserted these facts, with this evidence, and the next agent accepted them only because they satisfied the contract. The audit trail writes itself because every edge in the graph is already a checkable, logged event.</p>
+<h2>The deterministic checks: pass or fail, nothing to charm</h2>
+<p>At each verifiable checkpoint the verifier runs hard checks. Not "does this look right" — the model already thinks everything looks right; that is the problem. Deterministic, binary checks with no prose surface for a model to talk past:</p>
+<ol><li><strong>Schema validity.</strong> Is the handoff object well-formed and complete? Missing the required field, wrong type, out of range — fail. No partial credit.</li><li><strong>Grounding.</strong> Every fact an agent asserts must trace to a source in the claim file. The medical-evidence agent claims a pre-existing condition? Point to the document, the section, the line. If the assertion can't be grounded, it does not pass — no matter how confident the agent is, no matter how plausible the prose.</li><li><strong>Business rules.</strong> Does the settlement recommendation satisfy policy limits, sub-limits, deductibles, exclusions, and jurisdictional constraints? These are deterministic facts about the policy, not judgment calls. The rule is satisfied or it isn't.</li></ol>
+<p>The defining property of all three: an LLM cannot game them. You can prompt-inject a model, lead it toward a flattering conclusion, get it to produce a beautifully reasoned wrong answer. You cannot make an ungrounded fact trace to a source that doesn't contain it, and you cannot make a settlement that breaches a sub-limit satisfy a schema that encodes the sub-limit. The check has no opinion to influence. That is the entire point of pushing it <em>out</em> of the model and into a deterministic layer. A check the model can reason with is a check the model can defeat.</p>
+<h2>Why this is the line for regulated work</h2>
+<p>The distinction I keep drawing is between a <em>harness</em> and a <em>prompt chain</em>, and the verifier layer is exactly where that distinction lives. A prompt chain trusts each model's output and forwards it. A harness verifies each output against checks the model can't influence before letting it propagate. In the claims suite, the fraud agent's signal does not reach the settlement agent as gospel — it reaches it as an asserted, grounded, schema-valid finding that cleared a checkpoint. If it can't clear the checkpoint, the run does not quietly proceed on a guess. It stops, flags the checkpoint that failed, and routes to a human with the exact reason attached.</p>
+<p>That stopping behaviour is not a degraded mode. It is the feature. The expensive failure in claims is never a clumsy sentence; it is a confident, ungrounded assertion that survives all the way to a payout because nothing along the path was empowered to say <em>no, this isn't proven.</em> The verifier layer is that empowerment, made deterministic so it can't be charmed out of it.</p>
+<p>So, what does it take to build a multi-agent system you'd let touch a claims payout or a general ledger? Four things, and the models are the cheapest of them.</p>
+<h2>What it takes, concretely</h2>
+<ul><li><strong>Typed handoff contracts</strong> at every agent boundary, enforced, with provenance required — so the audit trail is a byproduct.</li><li><strong>Verifiable checkpoints</strong> between steps, where the run can be stopped before an unproven fact propagates.</li><li><strong>A deterministic check set</strong> — schema, grounding, business rules — living <em>outside</em> the models, binary pass/fail, immune to prompting.</li><li><strong>A human escalation path</strong> that fires automatically on a failed check, with the failing check and its evidence attached.</li></ul>
+<p>The agents are interchangeable; swap the model next quarter and the architecture holds. The verifier layer is what you keep — and the only part a regulator will ever care about, because it is the only part that can prove what happened.</p>
+<p>A model can tell you it approved the claim. Only the verifier layer can prove it should have.</p>
+  </div>
+</article>
+
+<footer>
+  <div>Divyajot Singh · Singapore · 2026</div>
+  <div><a href="/writing">← All writing</a></div>
+</footer>
+</body>
+</html>

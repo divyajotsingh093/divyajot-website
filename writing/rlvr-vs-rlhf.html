@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RLVR vs. RLHF: When Verifiable Rewards Beat Preference Labels — Divyajot Singh</title>
+<meta name="description" content="Human preference labels taught the world&#x27;s best chatbots to be agreeable. In regulated insurance, agreeable is worthless — what you need is a reward function that cannot be charmed." />
+<meta property="og:title" content="RLVR vs. RLHF: When Verifiable Rewards Beat Preference Labels" />
+<meta property="og:description" content="Human preference labels taught the world&#x27;s best chatbots to be agreeable. In regulated insurance, agreeable is worthless — what you need is a reward function that cannot be charmed." />
+<meta property="og:type" content="article" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/post.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <nav>
+    <a href="/writing">Writing</a>
+    <a href="/#work">Work</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<article class="article">
+  <div class="eyebrow"><span class="type">ESSAY</span> · Feb 2026</div>
+  <h1>RLVR vs. RLHF: When Verifiable Rewards Beat Preference Labels</h1>
+  <p class="subtitle">Human preference labels taught the world&#x27;s best chatbots to be agreeable. In regulated insurance, agreeable is worthless — what you need is a reward function that cannot be charmed.</p>
+  <div class="byline">
+    <div class="tags"><span class="tag">rlvr</span><span class="tag">rlhf</span><span class="tag">alignment</span><span class="tag">insurance-ai</span><span class="tag">reward-design</span></div>
+    
+  </div>
+  <div class="content">
+<p>RLHF — Reinforcement Learning from Human Feedback — built the assistants everyone now uses. A model generates two answers, a human picks the one they prefer, and you train a reward model on millions of those preferences until the model learns to produce outputs people like. It works beautifully for an enormous class of problems. It is also the wrong tool for the workflow I spend my days on, and understanding <em>why</em> is the most useful distinction in applied AI right now.</p>
+<p>The alternative is RLVR — Reinforcement Learning with Verifiable Rewards. Same reinforcement-learning skeleton, completely different reward source. Instead of a human's preference, the reward comes from a verifier: a piece of code that checks whether the output is <em>correct</em> against a definition of correctness that exists outside the model. The narrow, valuable claim of this essay is that wherever correctness is objectively definable, a verifier beats a preference label — and in regulated insurance, correctness is defined by policy, schema, and business rules, not by what a reviewer happens to like.</p>
+<h2>The failure mode RLHF can't escape</h2>
+<p>Human preference is a measure of <em>plausibility</em>, not <em>truth</em>. Ask a person to rate two insurance eligibility determinations and they will reliably prefer the one that reads better — more confident, better structured, more fluent. That preference is exactly the thing you do not want to optimize, because fluent and wrong is the single most dangerous output a regulated system can produce. A model that learned from human raters learns to be <em>persuasive</em>. In a domain where being persuasive and being correct are different axes, optimizing the first while ignoring the second is how you ship confident hallucinations into a compliance-bound process.</p>
+<p>I have watched an LLM judge — a sophisticated one — get fooled by a well-formatted output that asserted a coverage limit nowhere in the source document. It read like a correct answer. A human rater would have preferred it. A schema validator and a fact-grounding check did not, because the asserted value simply was not in the document and no amount of fluency could put it there. That asymmetry is the entire argument. Preference labels reward the surface. Verifiers reward the substance, and they cannot be charmed.</p>
+<h2>Why insurance is the ideal home for verifiable rewards</h2>
+<p>Most of the world is not like this. "Write me a warmer email" has no verifier — correctness genuinely is preference, and RLHF is the right tool. But regulated insurance sits in a rare band where "correct" is pinned down by external authorities:</p>
+<ul><li><strong>Policy</strong> defines what coverage applies, what's excluded, what conditions trigger eligibility. It is written down. It is checkable.</li><li><strong>Schema</strong> defines the exact shape every output must take for the downstream system of record. A field is valid or it is not.</li><li><strong>Business rules</strong> define the logic a compliance officer would apply by hand — limits, thresholds, mandatory disclosures.</li></ul>
+<p>None of these are matters of taste. Each one can be encoded as a deterministic check that returns true or false with no model in the loop. When you can do that, you don't <em>need</em> a human to express a preference — you have something stronger than preference. You have proof. On one regulated workflow, replacing the implicit "does this look good" loop with explicit verification moved accuracy from 78 to 94 percent on the same foundation model. I didn't change the model. I changed what the model was rewarded for being.</p>
+<h2>Be fair: RLHF is still the right tool, often</h2>
+<p>I am not arguing RLVR is universally superior, and anyone who tells you that is selling something. RLVR only works where you can write the verifier. The moment correctness becomes genuinely subjective — tone, helpfulness, the thousand soft judgments of a general assistant — there is no check function to write, and human preference is the <em>only</em> signal that means anything. RLHF earns its place across the entire surface of open-ended language.</p>
+<p>The honest framing is a spectrum, not a winner. On one end: tasks where correctness is objective and externally defined — math, code that must compile, schema-bound extraction, regulated determinations. RLVR dominates there because the reward is incorruptible. On the other end: tasks where correctness is preference — creative writing, conversation, style. RLHF owns that end because there is nothing to verify. Most real systems live somewhere in the middle and need both: verifiers for the parts that have a right answer, preference for the parts that don't.</p>
+<p>The mistake is reaching for the preference-trained reflex in a domain that has a right answer. If your workflow is bound by policy and schema, and you are still tuning it on "which output looks better," you are leaving the strongest signal you have on the table — and worse, you are training your system to optimize the exact quality that hides its errors.</p>
+<hr>
+<p>The reason verifiable rewards work in insurance is the same reason they're useless for poetry: insurance has a referee and poetry doesn't. Find the referee. If there's a definition of correct that lives outside your model — a policy clause, a schema, a rule a regulator wrote down — build the check, not the preference. A schema validator never gets impressed by a confident sentence. That's not a limitation. In a regulated workflow, it's the whole point.</p>
+  </div>
+</article>
+
+<footer>
+  <div>Divyajot Singh · Singapore · 2026</div>
+  <div><a href="/writing">← All writing</a></div>
+</footer>
+</body>
+</html>

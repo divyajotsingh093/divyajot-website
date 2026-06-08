@@ -1,0 +1,46 @@
+---
+title: "Selling AI to Tier-One Insurers: Displacement, Trust, and the First Call"
+subtitle: The most underrated skill in pre-sales for AI platforms is saying "this won't work on your data, here's why" on the first call — and meaning it.
+date: 2026-05-22
+type: essay
+tags: [pre-sales, enterprise-ai, insurance, gtm, trust]
+---
+
+The single most underrated skill in pre-sales for AI platforms is being able to say "this won't work on your data, here's why" on the first call. Not the third, after the POC has burned six weeks. The first. Most vendors treat the opening conversation as a place to project unlimited capability. With a tier-one carrier, that instinct is exactly backwards — it's the fastest way to be quietly filed under "the AI people who don't understand insurance."
+
+I've sat across the table from CIOs and CTOs at Sun Life, Manulife, Prudential, Generali, Al Rajhi Takaful. The pattern is consistent: these buyers have been pitched more AI in the last two years than in the prior twenty, almost all of it demo-grade, and they have developed a finely tuned instrument for detecting people who have never seen their data. The way you earn a second meeting is to fail their test on the first call — by being the one vendor who names the place your own product breaks.
+
+## Displacement is a trust problem wearing a technical costume
+
+When you sell into a carrier, you're rarely selling into a vacuum. You're displacing — or sitting beside — Guidewire, Duck Creek, Pega, Appian, Mendix. Those are not bad products. They are *installed* products, with a decade of configuration, integrations, and institutional muscle memory wrapped around them. The incumbent's strongest asset isn't features. It's that it already survived the carrier's procurement, security, and audit processes, and the new thing hasn't.
+
+That reframes the whole motion. You are not winning a feature bake-off. You are asking a regulated institution to take on the risk of something unproven in exchange for a capability the incumbent can't deliver. The honest pitch is narrow: here is the specific workflow where a rules-and-forms platform hits a wall and an agentic system doesn't — submission triage, decision memos, claims handoffs that need reasoning, not just routing. Not "we replace Guidewire." That's a fantasy and they know it. "Here's the seam where we do something it structurally can't, and here's how we coexist with the rest of your stack."
+
+A CRO hears that as a deal that can actually close. A CTO hears it as someone who understands that ripping out a policy admin system is a five-year board-level decision, not a Tuesday.
+
+## Proof over demos, because demos are free
+
+Every AI vendor has a demo that works. That's the problem — the demo proving nothing is now the baseline assumption in the room. A carrier's data is messier than your demo data in ways that matter: loss runs as scanned PDFs, schedules that don't match year to year, broker narratives full of domain shorthand, join keys that don't line up across systems. The gap between "works on our synthetic submission" and "works on your actual book" is where most AI deals die, usually in month two, expensively.
+
+So the proof has to live on their data, early, with their failure modes visible. The move that builds trust fastest is volunteering the constraint before they find it:
+
+- *"On submissions where the SOV has no consistent identifier, our extraction degrades — here's exactly how, and here's how we flag it rather than guess."*
+- *"For this line of business we don't have enough signal to be confident; we'd scope the pilot to where we can prove value and tell you plainly where we can't."*
+
+Saying this costs you the illusion of omnipotence. It buys you the only thing that matters with this buyer: the belief that when your system says it's confident, it actually is. That asymmetry — a vendor who tells you where they break — is worth more than any benchmark, because the carrier has been burned by the other kind.
+
+## Data residency and the regulated buying process are not friction. They are the deal.
+
+Engineers treat data residency, model governance, and audit requirements as compliance overhead bolted on at the end. Inside a tier-one carrier, they *are* the buying criteria. Where does the data sit. Who can see it. Can you prove, to a regulator, why the system made a given decision. Is every action inspectable and reversible. If you can't answer these in the first two meetings, you are not a serious vendor regardless of how good the model is.
+
+This is why I keep returning to auditability as a *product* property, not a checkbox. An agentic system that produces a decision but can't show its evidence chain is a non-starter in a regulated line — not because it's wrong, but because "trust me" is not a thing a CTO can take to their risk committee. Build the proof of *why* into the output and the regulated buying process stops being an obstacle. It becomes the reason you win, because the incumbent's black box can't do it either.
+
+## C-level engagement: speak two languages in one sentence
+
+The room usually has both economic and technical authority in it, and they're listening for different things. The CRO wants to know this is a deal that closes this fiscal year and doesn't blow up in production. The CTO wants to know it won't become an unsupportable liability bolted onto a stack they already lose sleep over.
+
+The mistake is picking one. The skill is the sentence that lands for both: "We scope the pilot to one workflow where we can prove value on your data in weeks, every decision is auditable so your risk team signs off, and we coexist with your policy admin system instead of asking you to bet the core on us." The CRO hears a fast, low-risk path to revenue impact. The CTO hears containment, reversibility, and someone who respects the existing architecture. Same sentence. Both audiences. That's the actual craft of selling AI into this market — not the demo.
+
+---
+
+The vendors who win in this market aren't the ones with the most confident pitch. They're the ones a CTO trusts to tell them the truth, because they already did it once — on the first call, when it cost something.

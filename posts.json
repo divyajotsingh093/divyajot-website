@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-06-07T08:18:10.032518+00:00"
+    "generated": "2026-06-08T02:00:22.185936+00:00"
   },
   "posts": [
     {
@@ -17,6 +17,197 @@
       ],
       "url": "/writing/system-of-action",
       "canonical": "https://divyajot.substack.com/p/the-system-of-action-why-close-the"
+    },
+    {
+      "slug": "selling-ai-to-insurers",
+      "title": "Selling AI to Tier-One Insurers: Displacement, Trust, and the First Call",
+      "subtitle": "The most underrated skill in pre-sales for AI platforms is saying \"this won't work on your data, here's why\" on the first call — and meaning it.",
+      "date": "2026-05-22",
+      "type": "essay",
+      "tags": [
+        "pre-sales",
+        "enterprise-ai",
+        "insurance",
+        "gtm",
+        "trust"
+      ],
+      "url": "/writing/selling-ai-to-insurers",
+      "canonical": ""
+    },
+    {
+      "slug": "nine-agents-one-memo",
+      "title": "Nine Agents, One Memo: Architecting Audit-Ready Underwriting",
+      "subtitle": "Nine specialist agents read a submission in parallel and hand you a decision memo in under thirty seconds — and every line of it is something you can defend to a regulator.",
+      "date": "2026-05-09",
+      "type": "architecture",
+      "tags": [
+        "underwriting",
+        "agents",
+        "insurance",
+        "verifiable-ai",
+        "vortic"
+      ],
+      "url": "/writing/nine-agents-one-memo",
+      "canonical": ""
+    },
+    {
+      "slug": "deterministic-verifier-layer",
+      "title": "The Deterministic Verifier Layer: Making Multi-Agent Systems Auditable",
+      "subtitle": "What it takes to build a multi-agent system you'd actually let touch a claims payout — handoff contracts, verifiable checkpoints, and checks no model can talk its way past.",
+      "date": "2026-04-21",
+      "type": "whitepaper",
+      "tags": [
+        "verification",
+        "multi-agent",
+        "audit",
+        "claims",
+        "regulated-ai"
+      ],
+      "url": "/writing/deterministic-verifier-layer",
+      "canonical": ""
+    },
+    {
+      "slug": "swarm-assembly",
+      "title": "Swarm Assembly: Goal-Decomposer Meta-Agents and Prompt-Driven Coordination",
+      "subtitle": "A research note on agents that build their own swarm from a prompt — where that helps, where a fixed graph still wins, and what's genuinely unsolved.",
+      "date": "2026-04-07",
+      "type": "research-note",
+      "tags": [
+        "research",
+        "multi-agent",
+        "swarm",
+        "meta-agents",
+        "neuswarm"
+      ],
+      "url": "/writing/swarm-assembly",
+      "canonical": ""
+    },
+    {
+      "slug": "evals-are-the-product",
+      "title": "Evals Are the Product: Eval-Driven Development for LLM Systems",
+      "subtitle": "Your LLM pipeline is exactly as good today as the day you deployed it — unless the eval harness is the thing you build first, treat as production code, and never stop running.",
+      "date": "2026-03-30",
+      "type": "essay",
+      "tags": [
+        "evals",
+        "llm-systems",
+        "eval-driven-development",
+        "regressions",
+        "applied-ai"
+      ],
+      "url": "/writing/evals-are-the-product",
+      "canonical": ""
+    },
+    {
+      "slug": "orchestration-vs-coordination",
+      "title": "Orchestration vs. Coordination: What an Agentic Platform Actually Sells",
+      "subtitle": "An orchestrator calls a model and waits for a human to do the real work. A coordination layer makes a business intent true across systems — and tells you when it can't.",
+      "date": "2026-03-18",
+      "type": "essay",
+      "tags": [
+        "coordination",
+        "orchestration",
+        "enterprise-ai",
+        "agents",
+        "bpmn"
+      ],
+      "url": "/writing/orchestration-vs-coordination",
+      "canonical": ""
+    },
+    {
+      "slug": "semantic-router",
+      "title": "The Semantic Router: Tiered Model Selection Across Cost, Latency, and Capability",
+      "subtitle": "Once intelligence is rented and everyone has the same frontier labs, the model you pick for each sub-task stops being a default and becomes the product decision.",
+      "date": "2026-02-24",
+      "type": "essay",
+      "tags": [
+        "routing",
+        "model-selection",
+        "inference-economics",
+        "llm-systems"
+      ],
+      "url": "/writing/semantic-router",
+      "canonical": ""
+    },
+    {
+      "slug": "rlvr-vs-rlhf",
+      "title": "RLVR vs. RLHF: When Verifiable Rewards Beat Preference Labels",
+      "subtitle": "Human preference labels taught the world's best chatbots to be agreeable. In regulated insurance, agreeable is worthless — what you need is a reward function that cannot be charmed.",
+      "date": "2026-02-10",
+      "type": "essay",
+      "tags": [
+        "rlvr",
+        "rlhf",
+        "alignment",
+        "insurance-ai",
+        "reward-design"
+      ],
+      "url": "/writing/rlvr-vs-rlhf",
+      "canonical": ""
+    },
+    {
+      "slug": "harness-engineering",
+      "title": "Harness Engineering: Why Verifiable Handoffs Beat Prompt Chains",
+      "subtitle": "The model picks the words. The harness decides which model to call, carries the state, writes to the system of record, and knows when to stop. That second thing is the product.",
+      "date": "2026-02-03",
+      "type": "essay",
+      "tags": [
+        "harness",
+        "enterprise-ai",
+        "agents",
+        "verification",
+        "insurance"
+      ],
+      "url": "/writing/harness-engineering",
+      "canonical": ""
+    },
+    {
+      "slug": "on-prem-inference-stack",
+      "title": "On-Prem Inference for Regulated Buyers: QwQ-32B on Bare-Metal A100",
+      "subtitle": "When a data-residency clause in a tier-one carrier contract is the binding constraint, the cloud is off the table — and the architecture gets a lot more interesting.",
+      "date": "2026-01-27",
+      "type": "architecture",
+      "tags": [
+        "on-prem",
+        "inference",
+        "regulated-industries",
+        "model-serving",
+        "edge"
+      ],
+      "url": "/writing/on-prem-inference-stack",
+      "canonical": ""
+    },
+    {
+      "slug": "rlvr-build-playbook",
+      "title": "A 14-Day Build Playbook for RLVR on Regulated Workflows",
+      "subtitle": "How to stand up a Reinforcement Learning with Verifiable Rewards loop on an insurance workflow — instrument scoring, add hard verification, capture what passes, and watch accuracy climb from 78 to 94 percent without touching the model.",
+      "date": "2026-01-12",
+      "type": "whitepaper",
+      "tags": [
+        "rlvr",
+        "insurance-ai",
+        "evals",
+        "llm-systems",
+        "applied-ai"
+      ],
+      "url": "/writing/rlvr-build-playbook",
+      "canonical": ""
+    },
+    {
+      "slug": "ocr-free-idp-thai",
+      "title": "OCR-Free Document Intelligence in Mixed Thai-English",
+      "subtitle": "A production pipeline for Attending Physician Statements that had to read clean hospital printouts and a doctor's handwriting in the same breath — and got to 94 percent on real documents.",
+      "date": "2025-12-15",
+      "type": "case-study",
+      "tags": [
+        "document-intelligence",
+        "vision-models",
+        "ocr-free",
+        "healthcare",
+        "production"
+      ],
+      "url": "/writing/ocr-free-idp-thai",
+      "canonical": ""
     }
   ]
 }

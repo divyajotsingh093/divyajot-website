@@ -28,6 +28,13 @@ POSTS_JSON = os.path.join(ROOT, "posts.json")
 
 # ----------------------------- frontmatter -----------------------------
 
+def strip_quotes(s):
+    """Strip a single pair of matching surrounding quotes from a frontmatter value."""
+    if len(s) >= 2 and s[0] == s[-1] and s[0] in ("\"", "'"):
+        return s[1:-1].strip()
+    return s
+
+
 def parse_front_matter(text):
     """Return (meta dict, body str). Frontmatter is a leading --- ... --- block."""
     if not text.startswith("---"):
@@ -44,10 +51,10 @@ def parse_front_matter(text):
         key, val = line.split(":", 1)
         key, val = key.strip(), val.strip()
         if val.startswith("[") and val.endswith("]"):
-            items = [v.strip() for v in val[1:-1].split(",") if v.strip()]
+            items = [strip_quotes(v.strip()) for v in val[1:-1].split(",") if v.strip()]
             meta[key] = items
         else:
-            meta[key] = val
+            meta[key] = strip_quotes(val)
     return meta, body
 
 

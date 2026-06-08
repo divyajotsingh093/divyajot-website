@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>A 14-Day Build Playbook for RLVR on Regulated Workflows — Divyajot Singh</title>
+<meta name="description" content="How to stand up a Reinforcement Learning with Verifiable Rewards loop on an insurance workflow — instrument scoring, add hard verification, capture what passes, and watch accuracy climb from 78 to 94 percent without touching the model." />
+<meta property="og:title" content="A 14-Day Build Playbook for RLVR on Regulated Workflows" />
+<meta property="og:description" content="How to stand up a Reinforcement Learning with Verifiable Rewards loop on an insurance workflow — instrument scoring, add hard verification, capture what passes, and watch accuracy climb from 78 to 94 percent without touching the model." />
+<meta property="og:type" content="article" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/post.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <nav>
+    <a href="/writing">Writing</a>
+    <a href="/#work">Work</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<article class="article">
+  <div class="eyebrow"><span class="type">WHITEPAPER</span> · Jan 2026</div>
+  <h1>A 14-Day Build Playbook for RLVR on Regulated Workflows</h1>
+  <p class="subtitle">How to stand up a Reinforcement Learning with Verifiable Rewards loop on an insurance workflow — instrument scoring, add hard verification, capture what passes, and watch accuracy climb from 78 to 94 percent without touching the model.</p>
+  <div class="byline">
+    <div class="tags"><span class="tag">rlvr</span><span class="tag">insurance-ai</span><span class="tag">evals</span><span class="tag">llm-systems</span><span class="tag">applied-ai</span></div>
+    
+  </div>
+  <div class="content">
+<p>I shipped an LLM pipeline into a regulated insurance workflow and it landed at 78 percent accuracy. Two weeks later it was at 94 percent. Same foundation model. Same prompts, mostly. What changed was the architecture around the model — a Reinforcement Learning with Verifiable Rewards loop that scores every output, hard-checks the ones that matter, and feeds the survivors back into the system as training signal. This is the playbook for building that loop, staged across fourteen days, with the things that actually moved the number called out and the things that didn't left on the floor.</p>
+<p>The premise is uncomfortable for anyone who thinks the model is the product: in a regulated workflow, "correct" is not a matter of taste. It is defined by policy, by schema, by business rules. That means you can <em>verify</em> correctness with code instead of guessing at it with vibes — and once you can verify it, you can manufacture training data from your own production traffic. The model was the easy part. The verification layer is the product.</p>
+<h2>Days 1-3: Instrument scoring before you change anything</h2>
+<p>You cannot improve what you cannot see, and most teams deploy an LLM pipeline with zero visibility into per-output quality. So the first move is not a model change. It is an LLM judge sitting behind every response, scoring it across five dimensions: <strong>accuracy, reasoning, format, hallucination, and completeness.</strong> Each output gets a structured rubric score on all five, and every score is logged to a database with the input that produced it.</p>
+<p>Two things matter here. First, the rubric is explicit — the judge isn't asked "is this good," it's asked "does this output contain a claim not grounded in the source document," one dimension at a time. Second, you log <em>everything</em>, passing and failing alike, because the log is the asset. By day three you are not better yet. You can just finally see where you stand, which for us was a blunt 78 percent.</p>
+<h2>Days 4-6: Add deterministic verifiers the model cannot game</h2>
+<p>An LLM judge is a soft gate. It is fluent, it is fast, and it can be fooled by confident nonsense — the same failure mode it is supposed to catch. So the second gate is deterministic code. No model in the loop. Just hard checks:</p>
+<ul><li><strong>Schema valid?</strong> Does the output parse against the contract the downstream system expects — every required field, every type, every enum?</li><li><strong>Facts grounded in source?</strong> Does each asserted value actually appear in the source document, or did the model invent it?</li><li><strong>Business rules satisfied?</strong> Does the output obey the policy logic — coverage limits, eligibility conditions, the rules a compliance officer would check by hand?</li></ul>
+<p>These verifiers do not have opinions. A schema validator cannot be sweet-talked. An output now has to clear <em>both</em> gates — the judge's rubric and the deterministic checks — to count as good. This is the line between a demo and something you would let touch a regulated claim.</p>
+<h2>Days 7-9: Capture the verified outputs as training data</h2>
+<p>Here is where the loop closes. Every output that passes both gates becomes a tuple: <code>(input, output, reward)</code>. The input that came in, the output the model produced, and the reward signal that says this one was verifiably correct. You are now mining your own production traffic for gold-standard examples, automatically, with no human labeling the data — the verifiers did the labeling.</p>
+<p>This dataset is the substrate for everything downstream. Do not skip the discipline of storing it cleanly with the full input context, because the next phase lives or dies on retrieval quality.</p>
+<h2>Days 10-12: Build the few-shot bank — the highest ROI in the whole build</h2>
+<p>Take your verified <code>(input, output)</code> pairs and index them in a vector database. At inference, for each new request, run a similarity search and pull the closest verified examples into the prompt as few-shot demonstrations. That's it. No fine-tuning, no training run, no GPU bill.</p>
+<p>This single step gave us a <strong>6 to 8 point lift</strong> with zero infrastructure beyond a vector DB. It is the cheapest, fastest, most defensible win in the entire playbook, and it is the part most teams skip because it isn't glamorous. The model now answers each query with its own past <em>verified</em> answers to similar queries sitting in front of it. You are bootstrapping competence from your own correct outputs.</p>
+<p>If you do nothing else from this document, do this.</p>
+<h2>Days 13-14: Stand up the flywheel</h2>
+<p>Now wire the verified dataset into three consumers, in increasing order of cost:</p>
+<ol><li><strong>The few-shot bank</strong> — already live, continuously growing as more outputs pass the gates.</li><li><strong>Prompt optimization</strong> — use the verified set to systematically test and tighten prompts against measured reward, not intuition.</li><li><strong>Fine-tuning</strong> — eventually, when the verified dataset is large enough, fine-tune the model on it. This is last, not first, because it is the most expensive and the least necessary.</li></ol>
+<p>That ordering is the whole point. Every consumer feeds on the same verified data, and every new day of traffic enlarges it. The loop compounds. Accuracy that started at 78 walked to 94, and it keeps the gains because the verification never stops running.</p>
+<h2>Two things you bolt on, not optional</h2>
+<p>Two additions earned their place in production and belong in any serious build.</p>
+<p><strong>Challenger/champion models.</strong> Run the production model and an experimental one side by side — both answer every query, only the champion's answer ships. Score them both on the same rubric and verifiers. When the challenger wins consistently, auto-promote it. You get continuous, evidence-based model improvement with no risky big-bang swap.</p>
+<p><strong>Output guardrails.</strong> PII redaction, injection detection, toxicity, schema enforcement on the way out. We added these after a user pasted a credit-card number into a prompt and a model cheerfully echoed it back. In a regulated context that is not a quirk — it is an incident. The guardrails are the difference between a system you demo and a system you defend.</p>
+<hr>
+<p>Fourteen days is not a long time, and none of it required a better model. It required treating the model as a fixed input and building the loop that learns around it. The accuracy gain was real, it was measured, and it was architectural. Your pipeline is exactly as good today as the day you deployed it — unless you build the thing that makes it better tomorrow.</p>
+  </div>
+</article>
+
+<footer>
+  <div>Divyajot Singh · Singapore · 2026</div>
+  <div><a href="/writing">← All writing</a></div>
+</footer>
+</body>
+</html>
