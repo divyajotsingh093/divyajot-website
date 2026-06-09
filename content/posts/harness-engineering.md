@@ -4,11 +4,14 @@ subtitle: The model picks the words. The harness decides which model to call, ca
 date: 2026-02-03
 type: essay
 tags: [harness, enterprise-ai, agents, verification, insurance]
+diagrams: [diagram-harness-vs-chain.svg]
 ---
 
 There is a demo every AI vendor gives this year. A submission goes in, a model reads it, three more models do something to it, and a clean recommendation comes out the other side. It looks like a system. It is usually a prompt chain — one model's output stuffed into the next model's input, repeated until someone calls it an agent.
 
 I have built both. The difference is not subtle, and it is not academic. A prompt chain is brittle and amnesiac: every step is a fresh roll of the dice, nothing carries reliable state, and when step seven needs a fact that step two established, it re-derives it, guesses it, or quietly drops it. A harness is the opposite. It is the control surface that decides *which* model to call for *which* sub-task, holds state across many steps so step seven remembers what step two figured out, calls tools, writes to the system of record, and — the part nobody demos — knows when to stop, escalate, or commit. The model was always the easy part. Every serious team is renting the same two or three frontier labs. The harness is what you actually own.
+
+[[diagram:1]]
 
 ## What a prompt chain forgets
 

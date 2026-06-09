@@ -4,11 +4,14 @@ subtitle: Nine specialist agents read a submission in parallel and hand you a de
 date: 2026-05-09
 type: architecture
 tags: [underwriting, agents, insurance, verifiable-ai, vortic]
+diagrams: [diagram-nine-agents.svg]
 ---
 
 An underwriter at a Lloyd's syndicate opens a submission and starts reading. A broker email, a loss run as a scanned PDF, a schedule of values in a spreadsheet that doesn't match last year's format, a SOV with a tab nobody named. Somewhere in that pile is the answer to one question: do we want this risk, and at what price? The reading takes an hour on a good day. The thinking takes longer. And at the end, if a regulator or a reinsurer asks *why* you priced it that way, you'd better be able to point at something more durable than a gut call.
 
 Vortic turns that hour into under thirty seconds and ends it with a decision memo you can hand to an auditor. The trick is not a bigger model. It's the shape of the system around it: nine specialist agents working in parallel, handing off through a layer that *verifies* rather than trusts, with a conversational copilot sitting on top so the underwriter can interrogate the result instead of taking it on faith. The model was the easy part. The coordination layer is the product.
+
+[[diagram:1]]
 
 ## Why a swarm and not a megaprompt
 

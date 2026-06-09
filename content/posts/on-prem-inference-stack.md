@@ -4,11 +4,14 @@ subtitle: When a data-residency clause in a tier-one carrier contract is the bin
 date: 2026-01-27
 type: architecture
 tags: [on-prem, inference, regulated-industries, model-serving, edge]
+diagrams: [diagram-onprem-topology.svg]
 ---
 
 The hardest constraint I work under isn't a latency budget or a token bill. It's a sentence in a contract. Tier-one insurers in Asia and the Gulf sign data-residency and data-handling clauses that say, in effect, *this data does not leave our perimeter*. Not "encrypt it in transit." Not "use a region in-country." It does not go over the wire to a model you don't control. Once you've read that clause, every clean architecture diagram that ends in an API call to a frontier lab is dead on arrival.
 
 This is the part people building AI demos never hit. The model is rentable, identical for everyone, and improving on its own schedule. The thing that actually decides whether a regulated buyer can deploy you is whether the *inference happens inside their walls* — and that is an infrastructure problem, not a model problem. So I went and built the infrastructure. What follows is the on-prem inference stack I run for privacy-sensitive workloads, and the trade-offs you make when the cloud is genuinely not an option.
+
+[[diagram:1]]
 
 ## Why residency is the real constraint, not the tech
 

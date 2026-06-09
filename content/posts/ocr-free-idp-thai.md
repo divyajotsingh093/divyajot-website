@@ -4,11 +4,14 @@ subtitle: A production pipeline for Attending Physician Statements that had to r
 date: 2025-12-15
 type: case-study
 tags: [document-intelligence, vision-models, ocr-free, healthcare, production]
+diagrams: [diagram-idp-pipeline.svg]
 ---
 
 The document that broke my faith in OCR was an Attending Physician Statement from a private clinic in Thailand. Half of it was printed Thai, half was handwritten English shorthand from a doctor who was clearly not writing for a stranger to read, the date was in the Buddhist Era, and a stamp sat diagonally across the patient name. A traditional OCR-plus-rules pipeline looks at that page and produces confident garbage: a string of characters that is locally plausible and globally meaningless, which your downstream rules then dutifully parse into the wrong record. This is the Generali Thailand IDP pipeline — and it's the project that convinced me OCR-free vision models aren't a research curiosity, they're the right tool for messy multilingual documents.
 
 The job: production document intelligence over APS forms for an insurer, in mixed Thai-English, at extraction accuracy a carrier will actually sign off on. We got to 94 percent on *real* documents — not a curated benchmark, the actual noisy intake — and the customer signed. Here's the war story, because the number at the end is the least interesting part of how we got there.
+
+[[diagram:1]]
 
 ## Two document classes that share almost nothing
 

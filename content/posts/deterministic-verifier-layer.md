@@ -4,11 +4,14 @@ subtitle: What it takes to build a multi-agent system you'd actually let touch a
 date: 2026-04-21
 type: whitepaper
 tags: [verification, multi-agent, audit, claims, regulated-ai]
+diagrams: [diagram-verifier-checkpoint.svg]
 ---
 
 Ask whether you'd let a multi-agent system approve a claims payout and the honest answer, for almost every system being demoed today, is no. Not because the models are weak — they are remarkable — but because "remarkable" is not a property a regulator accepts. A claims decision has to be *defensible*: you have to be able to point at the decision after the fact and show, line by line, what was decided, on what evidence, under which rule, and where a human signed. A probabilistic system that produces a fluent recommendation gives you none of that. It gives you a good sentence and a shrug.
 
 This is a whitepaper about the layer that closes that gap — not the agents, the layer *between* them. I'll call it the deterministic verifier layer, and I'll argue it decides whether a multi-agent system is a research demo or a production system you can put near money. The model is probabilistic by design; that is its gift and its disqualification. The verifier layer is deterministic by design, and that is what makes the whole assembly auditable. Ground this in two systems I've built it into: the seven-agent Agentic Claims Intelligence Suite, and the harness underneath Vortic.
+
+[[diagram:1]]
 
 ## The architecture in one breath
 

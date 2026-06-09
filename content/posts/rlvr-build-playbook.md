@@ -4,11 +4,14 @@ subtitle: How to stand up a Reinforcement Learning with Verifiable Rewards loop 
 date: 2026-01-12
 type: whitepaper
 tags: [rlvr, insurance-ai, evals, llm-systems, applied-ai]
+diagrams: [diagram-rlvr-flywheel.svg]
 ---
 
 I shipped an LLM pipeline into a regulated insurance workflow and it landed at 78 percent accuracy. Two weeks later it was at 94 percent. Same foundation model. Same prompts, mostly. What changed was the architecture around the model — a Reinforcement Learning with Verifiable Rewards loop that scores every output, hard-checks the ones that matter, and feeds the survivors back into the system as training signal. This is the playbook for building that loop, staged across fourteen days, with the things that actually moved the number called out and the things that didn't left on the floor.
 
 The premise is uncomfortable for anyone who thinks the model is the product: in a regulated workflow, "correct" is not a matter of taste. It is defined by policy, by schema, by business rules. That means you can *verify* correctness with code instead of guessing at it with vibes — and once you can verify it, you can manufacture training data from your own production traffic. The model was the easy part. The verification layer is the product.
+
+[[diagram:1]]
 
 ## Days 1-3: Instrument scoring before you change anything
 

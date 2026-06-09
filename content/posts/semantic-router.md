@@ -4,11 +4,14 @@ subtitle: Once intelligence is rented and everyone has the same frontier labs, t
 date: 2026-02-24
 type: essay
 tags: [routing, model-selection, inference-economics, llm-systems]
+diagrams: [diagram-semantic-router.svg]
 ---
 
 Here is a question that sounds trivial and isn't: which model should answer this request? Most teams never ask it. They wire up one model — usually the biggest one they can afford — and send everything to it, from "classify this into one of four buckets" to "reason across these twelve documents and tell me what's wrong." That works in a demo. It falls apart the moment you're paying for it at volume or waiting for it under a latency budget, because you are using a freight plane to deliver postcards and chartering a second one when the first is busy.
 
 The opposite instinct — pick one small, cheap model and use it for everything — is worse. It's not frugal, it's reckless. The small model will confidently get the hard cases wrong, and in the domains I work in a confidently wrong answer is the expensive kind. So neither default survives contact with real traffic. The real answer is that *there is no single right model*. There's a right model per sub-task, and the job is to figure out which one, fast and cheaply, before you commit the expensive resource. That's the semantic router. I'd argue it's the most underrated component in any serious LLM system.
+
+[[diagram:1]]
 
 ## Why "biggest model for everything" is an economic mistake
 

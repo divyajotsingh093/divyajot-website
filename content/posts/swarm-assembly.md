@@ -4,11 +4,14 @@ subtitle: A research note on agents that build their own swarm from a prompt —
 date: 2026-04-07
 type: research-note
 tags: [research, multi-agent, swarm, meta-agents, neuswarm]
+diagrams: [diagram-swarm-assembly.svg]
 ---
 
 Most production agent systems are hand-drawn. A human looks at a problem, decides on seven or nine specialists, wires the handoffs, and ships a fixed graph. That's the right call when the problem is stable — I'd defend it for underwriting all day, because the shape of a submission doesn't change week to week. But it raises an obvious question: if the agents are capable enough to do the work, why isn't one of them capable enough to *design the team*? This note is about that question. It's a research direction, neuswarm-research — a hackathon paper and a set of reference primitives — not a production system, and I want to be precise about the line.
 
 The premise of swarm assembly is to move the decomposition itself inside the system. You give a meta-agent a goal in natural language. It decomposes the goal into subtasks, decides what specialists the subtasks need, assembles a swarm of sub-agents to match, and coordinates them to a result. The agent graph stops being a thing a human draws ahead of time and becomes a thing the system *constructs* per problem. That's the bet. Most of this note is about when the bet pays and when it's a worse version of just drawing the graph yourself.
+
+[[diagram:1]]
 
 ## The two halves: decomposition and assembly
 

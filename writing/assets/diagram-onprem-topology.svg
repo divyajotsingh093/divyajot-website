@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="On-prem inference topology: inside a data-residency boundary, a semantic router sends heavy reasoning to QwQ-32B on a bare-metal A100 and light tasks to a three-node K3s and Ollama edge cluster. No data leaves the perimeter.">
+  <defs>
+    <marker id="aro" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <text x="32" y="34" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">ON-PREM INFERENCE — DATA-RESIDENCY BOUNDARY</text>
+
+  <!-- egress note (outside) -->
+  <text x="728" y="34" text-anchor="end" fill="#ff5a3c" font-size="12" font-weight="600">✗ no egress to cloud</text>
+
+  <!-- residency boundary -->
+  <rect x="40" y="54" width="680" height="328" rx="16" fill="#6ad6e6" fill-opacity="0.03" stroke="#6ad6e6" stroke-opacity="0.45" stroke-dasharray="7 6"/>
+  <text x="56" y="78" fill="#6ad6e6" font-size="11.5" font-style="italic">tier-one carrier perimeter — nothing leaves the wire</text>
+
+  <!-- request -->
+  <rect x="300" y="96" width="160" height="40" rx="9" fill="#161922" stroke="#2c3148"/>
+  <text x="380" y="121" text-anchor="middle" fill="#ece9e0" font-size="13">Request</text>
+  <line x1="380" y1="136" x2="380" y2="160" stroke="#5d6271" stroke-width="1.5" marker-end="url(#aro)"/>
+
+  <!-- router -->
+  <rect x="250" y="162" width="260" height="48" rx="10" fill="#11131a" stroke="#f0b264" stroke-opacity="0.55"/>
+  <text x="380" y="184" text-anchor="middle" fill="#f0b264" font-size="13.5" font-weight="600">Sentence-transformer router</text>
+  <text x="380" y="201" text-anchor="middle" fill="#8b8f9d" font-size="11">tiered by cost · latency · capability</text>
+
+  <!-- branches -->
+  <line x1="320" y1="210" x2="220" y2="250" stroke="#5d6271" stroke-width="1.5" marker-end="url(#aro)"/>
+  <line x1="440" y1="210" x2="540" y2="250" stroke="#5d6271" stroke-width="1.5" marker-end="url(#aro)"/>
+
+  <!-- heavy tier -->
+  <rect x="66" y="252" width="296" height="108" rx="12" fill="#161922" stroke="#2c3148"/>
+  <text x="84" y="278" fill="#ff8a73" font-size="12.5" font-weight="600">Bare-metal A100 80GB</text>
+  <text x="84" y="302" fill="#ece9e0" font-size="13">QwQ-32B</text>
+  <text x="84" y="322" fill="#8b8f9d" font-size="11.5">heavy reasoning · privacy-sensitive</text>
+  <text x="84" y="344" fill="#8b8f9d" font-size="11.5">workloads that can't go to the cloud</text>
+
+  <!-- light tier -->
+  <rect x="398" y="252" width="296" height="108" rx="12" fill="#161922" stroke="#2c3148"/>
+  <text x="416" y="278" fill="#6ad6e6" font-size="12.5" font-weight="600">3-node K3s + Ollama edge</text>
+  <text x="416" y="302" fill="#ece9e0" font-size="13">phi-3-mini · Qwen2.5-VL-3B</text>
+  <text x="416" y="322" fill="#8b8f9d" font-size="11.5">light tasks · classification · extraction</text>
+  <text x="416" y="344" fill="#8b8f9d" font-size="11.5">cheap, fast, always-on</text>
+</svg>

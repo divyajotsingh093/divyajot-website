@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="The RLVR flywheel: every output is scored by an LLM judge and checked by deterministic verifiers; outputs that pass both gates become verified training data feeding a few-shot bank and fine-tuning, lifting accuracy from 78 to 94 percent.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <text x="32" y="36" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">THE RLVR FLYWHEEL</text>
+
+  <!-- vertical stack -->
+  <g text-anchor="middle">
+    <rect x="90" y="54" width="300" height="46" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="240" y="82" fill="#ece9e0" font-size="14">Every production output</text>
+
+    <rect x="90" y="128" width="300" height="46" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="240" y="149" fill="#f0b264" font-size="13.5" font-weight="600">LLM judge — 5 dimensions</text>
+    <text x="240" y="166" fill="#8b8f9d" font-size="11">accuracy · reasoning · format · hallucination · completeness</text>
+
+    <rect x="90" y="202" width="300" height="50" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="240" y="223" fill="#ff8a73" font-size="13.5" font-weight="600">Deterministic verifiers</text>
+    <text x="240" y="241" fill="#8b8f9d" font-size="11">schema valid? grounded? business rules? — can't be gamed</text>
+
+    <rect x="90" y="280" width="300" height="46" rx="10" fill="#6ad6e6" fill-opacity="0.08" stroke="#6ad6e6" stroke-opacity="0.5"/>
+    <text x="240" y="308" fill="#6ad6e6" font-size="13.5" font-weight="600">Verified → (input, output, reward)</text>
+
+    <rect x="90" y="354" width="300" height="46" rx="10" fill="#161922" stroke="#2c3148"/>
+    <text x="240" y="376" fill="#ece9e0" font-size="13.5">Few-shot bank · prompt opt · fine-tune</text>
+    <text x="240" y="392" fill="#8b8f9d" font-size="11">verified work becomes the model's training data</text>
+  </g>
+
+  <!-- down arrows -->
+  <g stroke="#5d6271" stroke-width="1.5">
+    <line x1="240" y1="100" x2="240" y2="126" marker-end="url(#ar)"/>
+    <line x1="240" y1="174" x2="240" y2="200" marker-end="url(#ar)"/>
+    <line x1="240" y1="252" x2="240" y2="278" marker-end="url(#ar)"/>
+    <line x1="240" y1="326" x2="240" y2="352" marker-end="url(#ar)"/>
+  </g>
+  <text x="250" y="270" fill="#8b8f9d" font-size="10.5" text-anchor="start">pass BOTH gates</text>
+
+  <!-- return loop -->
+  <path d="M390 377 H470 Q500 377 500 347 V107 Q500 77 470 77 H390" fill="none" stroke="#ff5a3c" stroke-width="1.6" stroke-opacity="0.7" marker-end="url(#ar)"/>
+  <text x="512" y="220" fill="#ff8a73" font-size="13" font-weight="600">the flywheel</text>
+  <text x="512" y="250" fill="#ece9e0" font-size="22" font-family="'Instrument Serif', serif">78% → 94%</text>
+  <text x="512" y="272" fill="#5d6271" font-size="11">same model, better system</text>
+
+  <text x="240" y="432" text-anchor="middle" fill="#5d6271" font-size="12" font-style="italic">a few-shot bank alone gave a 6–8 point lift — before any fine-tuning</text>
+</svg>

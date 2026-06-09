@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="Nine specialist agents process an underwriting submission in parallel, then a verifier harness assembles an audit-ready decision memo in under thirty seconds.">
+  <defs>
+    <marker id="arn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <text x="32" y="34" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">NINE AGENTS, ONE MEMO</text>
+
+  <!-- submission -->
+  <rect x="20" y="150" width="104" height="64" rx="10" fill="#161922" stroke="#2c3148"/>
+  <text x="72" y="180" text-anchor="middle" fill="#ece9e0" font-size="13">Submission</text>
+  <text x="72" y="197" text-anchor="middle" fill="#8b8f9d" font-size="10">email · PDF · SOV</text>
+  <line x1="124" y1="182" x2="158" y2="182" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arn)"/>
+
+  <!-- 3x3 grid of specialists -->
+  <g font-size="11.5" text-anchor="middle">
+    <!-- row 1 -->
+    <rect x="160" y="58"  width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="233" y="84" fill="#ece9e0">Intake &amp; triage</text>
+    <rect x="316" y="58"  width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="389" y="84" fill="#ece9e0">Exposure extraction</text>
+    <rect x="472" y="58"  width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="545" y="84" fill="#ece9e0">Appetite / eligibility</text>
+    <!-- row 2 -->
+    <rect x="160" y="161" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="233" y="187" fill="#ece9e0">Loss-history</text>
+    <rect x="316" y="161" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="389" y="187" fill="#ece9e0">Pricing signal</text>
+    <rect x="472" y="161" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="545" y="187" fill="#ece9e0">Risk-evidence RAG</text>
+    <!-- row 3 -->
+    <rect x="160" y="264" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="233" y="290" fill="#ece9e0">Compliance</text>
+    <rect x="316" y="264" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="389" y="290" fill="#ece9e0">Sanctions / KYC</text>
+    <rect x="472" y="264" width="146" height="42" rx="8" fill="#161922" stroke="#2c3148"/><text x="545" y="290" fill="#ece9e0">Memo synthesis</text>
+  </g>
+  <text x="389" y="332" text-anchor="middle" fill="#8b8f9d" font-size="11" font-style="italic">nine specialists, in parallel — verifiable handoffs between every step</text>
+
+  <!-- converge to harness -->
+  <line x1="618" y1="79"  x2="650" y2="150" stroke="#5d6271" stroke-width="1.3" marker-end="url(#arn)"/>
+  <line x1="618" y1="182" x2="652" y2="182" stroke="#5d6271" stroke-width="1.3" marker-end="url(#arn)"/>
+  <line x1="618" y1="285" x2="650" y2="214" stroke="#5d6271" stroke-width="1.3" marker-end="url(#arn)"/>
+
+  <!-- verifier harness -->
+  <rect x="656" y="150" width="92" height="64" rx="10" fill="#11131a" stroke="#ff5a3c" stroke-opacity="0.5"/>
+  <text x="702" y="178" text-anchor="middle" fill="#ff8a73" font-size="11.5" font-weight="600">Verifier</text>
+  <text x="702" y="194" text-anchor="middle" fill="#ff8a73" font-size="11.5" font-weight="600">harness</text>
+
+  <!-- memo -->
+  <rect x="636" y="244" width="112" height="56" rx="10" fill="#6ad6e6" fill-opacity="0.10" stroke="#6ad6e6" stroke-opacity="0.6"/>
+  <text x="692" y="268" text-anchor="middle" fill="#6ad6e6" font-size="12" font-weight="600">Audit-ready memo</text>
+  <text x="692" y="285" text-anchor="middle" fill="#6ad6e6" font-size="11">in under 30s</text>
+  <line x1="702" y1="214" x2="700" y2="242" stroke="#5d6271" stroke-width="1.5" marker-end="url(#arn)"/>
+</svg>

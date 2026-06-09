@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="'Geist', system-ui, sans-serif" role="img" aria-label="A prompt chain is a brittle, amnesiac line of model calls. A verifier harness carries state, routes models per sub-task, verifies before every write, and knows when to stop — making it auditable and recoverable.">
+  <defs>
+    <marker id="arh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#5d6271"/>
+    </marker>
+  </defs>
+
+  <!-- prompt chain -->
+  <text x="32" y="38" fill="#8b8f9d" font-size="13" letter-spacing="2" font-weight="600">PROMPT CHAIN</text>
+  <g text-anchor="middle" font-size="12.5">
+    <rect x="40"  y="58" width="120" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="100" y="85" fill="#ece9e0">prompt → LLM</text>
+    <rect x="220" y="58" width="120" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="280" y="85" fill="#ece9e0">prompt → LLM</text>
+    <rect x="400" y="58" width="120" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="460" y="85" fill="#ece9e0">prompt → LLM</text>
+    <rect x="580" y="58" width="120" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="640" y="85" fill="#ece9e0">output</text>
+  </g>
+  <g stroke="#5d6271" stroke-width="1.5">
+    <line x1="160" y1="80" x2="216" y2="80" marker-end="url(#arh)"/>
+    <line x1="340" y1="80" x2="396" y2="80" marker-end="url(#arh)"/>
+    <line x1="520" y1="80" x2="576" y2="80" marker-end="url(#arh)"/>
+  </g>
+  <text x="40" y="128" fill="#5d6271" font-size="11.5" font-style="italic">amnesiac · no state · one bad step poisons the rest · nothing to recover to</text>
+
+  <line x1="40" y1="150" x2="720" y2="150" stroke="#1f2333"/>
+
+  <!-- harness -->
+  <text x="32" y="184" fill="#ff8a73" font-size="13" letter-spacing="2" font-weight="600">VERIFIER HARNESS</text>
+  <rect x="40" y="200" width="680" height="112" rx="13" fill="#11131a" stroke="#ff5a3c" stroke-opacity="0.45"/>
+
+  <!-- state rail -->
+  <rect x="58" y="216" width="644" height="26" rx="7" fill="#6ad6e6" fill-opacity="0.07" stroke="#6ad6e6" stroke-opacity="0.4"/>
+  <text x="380" y="234" text-anchor="middle" fill="#6ad6e6" font-size="11.5">shared state — step 7 remembers what step 2 figured out</text>
+
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="58"  y="254" width="150" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="133" y="274" fill="#ece9e0">route model</text><text x="133" y="290" fill="#8b8f9d" font-size="10">per sub-task</text>
+    <rect x="222" y="254" width="150" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="297" y="274" fill="#ece9e0">call tools</text><text x="297" y="290" fill="#8b8f9d" font-size="10">write to systems</text>
+    <rect x="386" y="254" width="150" height="44" rx="9" fill="#161922" stroke="#f0b264" stroke-opacity="0.5"/><text x="461" y="274" fill="#f0b264">verify before write</text><text x="461" y="290" fill="#8b8f9d" font-size="10">deterministic gate</text>
+    <rect x="550" y="254" width="152" height="44" rx="9" fill="#161922" stroke="#2c3148"/><text x="626" y="274" fill="#ece9e0">stop · escalate</text><text x="626" y="290" fill="#8b8f9d" font-size="10">· commit</text>
+  </g>
+  <g stroke="#5d6271" stroke-width="1.4">
+    <line x1="208" y1="276" x2="220" y2="276" marker-end="url(#arh)"/>
+    <line x1="372" y1="276" x2="384" y2="276" marker-end="url(#arh)"/>
+    <line x1="536" y1="276" x2="548" y2="276" marker-end="url(#arh)"/>
+  </g>
+  <text x="40" y="338" fill="#5d6271" font-size="11.5" font-style="italic">auditable · recoverable — the model gets replaced next quarter; the harness gets sharper every run</text>
+</svg>

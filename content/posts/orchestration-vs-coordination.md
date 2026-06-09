@@ -4,11 +4,14 @@ subtitle: An orchestrator calls a model and waits for a human to do the real wor
 date: 2026-03-18
 type: essay
 tags: [coordination, orchestration, enterprise-ai, agents, bpmn]
+diagrams: [diagram-orchestration-vs-coordination.svg]
 ---
 
 Most things sold as "agents" right now are orchestration. A script fires, it calls a model, the model generates something, a dashboard renders it, and then a human opens the actual system of record and does the actual work. The agent summarised; the person executed. We have automated the narration and left the labour exactly where it was. That is automation with better grammar, and there is a lot of it being sold at enterprise prices.
 
 Coordination is a different thing, and the gap is not a matter of degree. Orchestration sequences calls. Coordination makes a *business intent* true across systems that were never designed to agree with each other — and, just as importantly, refuses to declare it true when it can't prove it. The first is a flowchart that happens to call an LLM in one of its boxes. The second is the layer that turns "update the pricing" or "endorse this policy" into a safe, correct write across a CRM, a billing engine, and a policy admin system that each believe slightly different things about the same customer. One is a tool. The other is the product.
+
+[[diagram:1]]
 
 ## The price-update that isn't one update
 
