@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-06-07T08:18:10.000162+00:00",
+    "last_updated": "2026-06-13T17:16:04.350294+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -14,10 +14,10 @@
       {
         "type": "commit",
         "repo": "divyajotsingh093/divyajot-website",
-        "title": "feeds: preserve existing data on empty/blocked pulls; filter noise",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/d3ce1331b13fd645cdb270e29048cec3f56797f4",
-        "date": "2026-06-07T08:01:25Z",
-        "sha": "d3ce133"
+        "title": "Merge branch 'main' of https://github.com/divyajotsingh093/divyajot-website",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/9540045d9c9957df6982e41c73c0c268a7f70573",
+        "date": "2026-06-09T03:39:49Z",
+        "sha": "9540045"
       },
       {
         "type": "commit",
