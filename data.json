@@ -4,7 +4,7 @@
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
-    "x": "https://x.com/divyajot",
+    "x": "https://x.com/divyjotsingh",
     "github": "https://github.com/divyajotsingh093",
     "linkedin": "https://linkedin.com/in/divyajot-singh-06b78559",
     "substack": "https://divyajot.substack.com"
@@ -89,7 +89,23 @@
         "date": "2026-04-19T03:59:42Z"
       }
     ],
-    "x_posts": []
+    "x_posts": [
+      {
+        "title": "Operators don't think in APIs. They think in verbs. Check the balance. Update the pricing. Close the books.",
+        "url": "https://x.com/divyjotsingh/status/2063511643351597462",
+        "date": "2026-06-07T06:41:28Z"
+      },
+      {
+        "title": "One business command goes in. Underneath, the coordination layer understands context, chooses the right tool, and applies policy + approval before it writes.",
+        "url": "https://x.com/divyjotsingh/status/2063520746870345883",
+        "date": "2026-06-07T07:17:39Z"
+      },
+      {
+        "title": "The demo that makes the point: \"Close the books for last month, and schedule a close on the 1st.\" It came back blocked. On purpose.",
+        "url": "https://x.com/divyjotsingh/status/2063520825287012394",
+        "date": "2026-06-07T07:17:57Z"
+      }
+    ]
   },
   "pinned_work": [
     {
