@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Loop Engineering: The Control Structure Under Every Agent — Divyajot Singh</title>
+<meta name="description" content="Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time." />
+<meta property="og:title" content="Loop Engineering: The Control Structure Under Every Agent" />
+<meta property="og:description" content="Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time." />
+<meta property="og:type" content="article" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/post.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <nav>
+    <a href="/writing">Writing</a>
+    <a href="/#work">Work</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<article class="article">
+  <div class="eyebrow"><span class="type">ESSAY</span> · Jun 2026</div>
+  <h1>Loop Engineering: The Control Structure Under Every Agent</h1>
+  <p class="subtitle">Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time.</p>
+  <div class="byline">
+    <div class="tags"><span class="tag">agents</span><span class="tag">loop-engineering</span><span class="tag">reliability</span><span class="tag">harness</span><span class="tag">coordination</span></div>
+    
+  </div>
+  <div class="content">
+<p>In the last few pieces I kept circling the layers <em>around</em> the model — coordination, the harness, the verifier. This one goes inward, to the thing those layers are actually wrapped around: the loop. Because the more I build, the more I'm convinced that the agent loop is the real control structure under every agentic system, and almost nobody is engineering it on purpose.</p>
+<p>Look at how we actually build agents today. First it was markdown. Then prompts. Then <em>structured</em> prompts. If a slightly experienced team gets hold of it, you open the repo and find an ocean of config files — called, ordered, and placed in some definite structure that made sense to whoever wrote it. And that structure quietly becomes the next bottleneck: inter-link calls between all those pieces, each one a place the chain can fray, each one capping what the model could have done if it had just been allowed to <em>run the loop</em>.</p>
+<figure><img src="assets/diagram-agent-loop.svg" alt="Diagram 1" loading="lazy"></figure>
+<h2>Why the loop is where production lives</h2>
+<p>Here is the uncomfortable arithmetic, and it's the whole reason loop engineering matters.</p>
+<p>Reliability compounds — in the wrong direction. If each step in a task succeeds 95% of the time, that sounds fine until you chain it. A 20-step task finishes correctly only about <strong>36%</strong> of the time. Not because any single step is bad, but because <code>0.95^20</code> is brutal. Every point of per-step reliability you claw back lives in the loop — in how you carry state, when you check, what you retry, when you stop.</p>
+<p>That gap is the difference between two things that look identical in a demo:</p>
+<ul><li>A system that <em>wows once</em>, on the happy path, in front of an audience.</li><li>A system that people <strong>trust in production</strong>, on the path where step seven contradicts step two.</li></ul>
+<p>It's also the difference between a token bill that scales linearly and one that quietly explodes — because an unmanaged loop re-does work, re-reads context it already had, and spirals when it should have stopped.</p>
+<h2>What the loop actually is</h2>
+<p>Strip away the framework names and every agent is running the same control structure:</p>
+<blockquote>context → infer → act → observe → update state → check done → repeat</blockquote>
+<p>That's it. That's the loop. <em>Loop engineering</em> is treating each arrow in that cycle as something you design, not something the framework does for you by accident.</p>
+<ul><li><strong>context</strong> — what you put in front of the model this turn, and just as importantly, what you leave out. Context is a budget, not a dumping ground.</li><li><strong>infer</strong> — the model call. The part everyone obsesses over and the part that's least under your control, because you're renting it.</li><li><strong>act</strong> — the tool call, the write to the system of record. The only step with consequences.</li><li><strong>observe</strong> — reading the result honestly, including the failure.</li><li><strong>update state</strong> — so step seven remembers what step two figured out, instead of starting amnesiac.</li><li><strong>check done</strong> — the most underrated arrow. Knowing when to stop, escalate, or commit is a decision, and an unmanaged loop never makes it well.</li></ul>
+<p>Prompts get you the first 60% — the model is genuinely good, and a sharp prompt gets a convincing first pass. Managing the loop gets you the part that ships: the retries that don't thrash, the state that survives a multi-step task, the stop condition that fires before the token bill does.</p>
+<h2>This is where the harness earns its name</h2>
+<p>Everything I've written about the harness and the verifier layer lives <em>here</em>, in the loop. The harness is what carries state across iterations. The verifier is the <code>check done</code> arrow with teeth — a deterministic gate that decides whether this turn is allowed to commit or has to go around again. Coordination is what happens when the loop has to act across systems that don't agree. None of those layers mean anything if the loop underneath them is a pile of config files calling each other and hoping.</p>
+<p>So engineer the loop. Decide what goes in the context each turn. Decide what counts as <em>done</em>. Decide when a failed observation triggers a retry versus an escalation. Measure per-step reliability and chase the points, because they compound.</p>
+<p>There's a slightly funny thing here, and I'll say it out loud: we've come full circle with engineering. Control flow, state management, retries, idempotency, knowing when to stop — <em>wasn't this supposed to be solved?</em> It was, for deterministic systems. We just have to learn it again for systems where the most important step in the loop is a model we don't fully control. The loop is old. Engineering it around something stochastic is the new part — and it's the part that ships.</p>
+  </div>
+</article>
+
+<footer>
+  <div>Divyajot Singh · Singapore · 2026</div>
+  <div><a href="/writing">← All writing</a></div>
+</footer>
+</body>
+</html>

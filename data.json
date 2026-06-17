@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-06-13T17:16:04.350294+00:00",
+    "last_updated": "2026-06-17T08:07:05.121155+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -13,11 +13,11 @@
     "github_commits": [
       {
         "type": "commit",
-        "repo": "divyajotsingh093/divyajot-website",
-        "title": "Merge branch 'main' of https://github.com/divyajotsingh093/divyajot-website",
-        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/9540045d9c9957df6982e41c73c0c268a7f70573",
-        "date": "2026-06-09T03:39:49Z",
-        "sha": "9540045"
+        "repo": "divyajotsingh093/event-driven-architecture-starter",
+        "title": "Initial commit",
+        "url": "https://github.com/divyajotsingh093/event-driven-architecture-starter/commit/4fcb157ffb97ffbb6deec96b4497b4fb5a7d6764",
+        "date": "2026-06-17T01:46:48Z",
+        "sha": "4fcb157"
       },
       {
         "type": "commit",
@@ -74,6 +74,11 @@
     ],
     "linkedin_posts": [
       {
+        "title": "Loop engineering: at 95% success per step, a 20-step task finishes correctly only ~36% of the time. Every point you claw back lives in the loop.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7472137920653578242/",
+        "date": "2026-06-15T04:08:25Z"
+      },
+      {
         "title": "The models have converged. Intelligence is becoming a utility — defensibility has moved one layer down, to coordination.",
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7469295227850149888/",
         "date": "2026-06-07T07:52:35Z"
@@ -82,11 +87,6 @@
         "title": "\"AI agent\" is the most overused word in enterprise tech right now — and the most misunderstood. The real control surface is the harness.",
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7451479616646516737/",
         "date": "2026-04-19T03:59:42Z"
-      },
-      {
-        "title": "Stop tuning prompts. Build the feedback loop. We fixed the architecture instead of the model — 78% became 94%.",
-        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7429374186558603264/",
-        "date": "2026-02-17T04:00:37Z"
       }
     ],
     "x_posts": []

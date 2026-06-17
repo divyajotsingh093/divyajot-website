@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "generated": "2026-06-09T03:40:00.075733+00:00"
+    "generated": "2026-06-17T08:07:01.683543+00:00"
   },
   "posts": [
+    {
+      "slug": "loop-engineering",
+      "title": "Loop Engineering: The Control Structure Under Every Agent",
+      "subtitle": "Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time.",
+      "date": "2026-06-15",
+      "type": "essay",
+      "tags": [
+        "agents",
+        "loop-engineering",
+        "reliability",
+        "harness",
+        "coordination"
+      ],
+      "url": "/writing/loop-engineering",
+      "canonical": ""
+    },
     {
       "slug": "system-of-action",
       "title": "The System of Action: Why \"Close the Books\" Is Harder Than Any Model",
