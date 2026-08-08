@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-01T16:53:30.447571+00:00",
+    "last_updated": "2026-08-08T16:24:37.867689+00:00",
     "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
   },
   "social": {
@@ -12,44 +12,39 @@
   "feeds": {
     "github_commits": [
       {
-        "type": "commit",
-        "repo": "divyajotsingh093/event-driven-architecture-starter",
-        "title": "Initial commit",
-        "url": "https://github.com/divyajotsingh093/event-driven-architecture-starter/commit/4fcb157ffb97ffbb6deec96b4497b4fb5a7d6764",
-        "date": "2026-06-17T01:46:48Z",
-        "sha": "4fcb157"
+        "type": "pr",
+        "repo": "divyajotsingh093/companybrain",
+        "title": "PR closed: ",
+        "url": "",
+        "date": "2026-08-06T16:05:17Z"
       },
       {
-        "type": "commit",
-        "repo": "divyajotsingh093/AgentForgeNew",
-        "title": "Adjust authentication flow and loading states for application access",
-        "url": "https://github.com/divyajotsingh093/AgentForgeNew/commit/ae92bd65003af6e0e5d370823ab6cf4c56086cf8",
-        "date": "2025-10-06T04:21:29Z",
-        "sha": "ae92bd6"
+        "type": "pr",
+        "repo": "divyajotsingh093/companybrain",
+        "title": "PR merged: ",
+        "url": "",
+        "date": "2026-08-04T04:21:45Z"
       },
       {
-        "type": "commit",
-        "repo": "divyajotsingh093/AgentForgeNew",
-        "title": "Fix sign-in and get started links redirecting to a 404 page",
-        "url": "https://github.com/divyajotsingh093/AgentForgeNew/commit/3cd6b9d431c072a4404847ba86947cb7c560d182",
-        "date": "2025-10-06T04:18:18Z",
-        "sha": "3cd6b9d"
+        "type": "pr",
+        "repo": "divyajotsingh093/companybrain",
+        "title": "PR opened: ",
+        "url": "",
+        "date": "2026-08-03T06:40:13Z"
       },
       {
-        "type": "commit",
-        "repo": "divyajotsingh093/AgentStudioOps",
-        "title": "Add option to mark tasks as fully finished within the timeline view",
-        "url": "https://github.com/divyajotsingh093/AgentStudioOps/commit/2496bd203b2f0479cfdf78a812a7199d05ce177f",
-        "date": "2025-05-18T08:36:42Z",
-        "sha": "2496bd2"
+        "type": "pr",
+        "repo": "divyajotsingh093/companybrain",
+        "title": "PR opened: ",
+        "url": "",
+        "date": "2026-08-03T03:57:52Z"
       },
       {
-        "type": "commit",
-        "repo": "divyajotsingh093/AgentStudioOps",
-        "title": "Show completed tasks on the timeline and allow them to be rerun",
-        "url": "https://github.com/divyajotsingh093/AgentStudioOps/commit/a1baa951cc1976d9dd2a993e68e1b61684a122ff",
-        "date": "2025-05-18T08:36:16Z",
-        "sha": "a1baa95"
+        "type": "pr",
+        "repo": "divyajotsingh093/companybrain",
+        "title": "PR merged: ",
+        "url": "",
+        "date": "2026-08-03T03:27:42Z"
       }
     ],
     "substack_posts": [
