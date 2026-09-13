@@ -147,7 +147,7 @@ def post_page(meta, content_html):
     title = html.escape(meta.get("title", "Untitled"))
     subtitle = html.escape(meta.get("subtitle", ""))
     date_disp = format_date(meta.get("date", ""))
-    ptype = html.escape(meta.get("type", "essay")).upper()
+    ptype = html.escape(meta.get("type", "essay").replace("-", " ").title())
     tags = meta.get("tags", [])
     tags_html = "".join(f'<span class="tag">{html.escape(t)}</span>' for t in tags)
     canonical = meta.get("canonical", "")
@@ -169,15 +169,18 @@ def post_page(meta, content_html):
 {f'<link rel="canonical" href="{html.escape(canonical)}" />' if canonical else ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light dark" />
+<script>(function(){{try{{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();</script>
 <link rel="stylesheet" href="assets/post.css" />
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <a class="brand" href="/" aria-label="Divyajot Singh — home"><b aria-hidden="true">·</b><span>Divyajot Singh</span></a>
   <nav>
     <a href="/writing">Writing</a>
     <a href="/#work">Work</a>
+    <a href="/#projects">Projects</a>
     <a href="/#contact">Contact</a>
   </nav>
 </header>
@@ -215,7 +218,7 @@ def index_page(posts):
         <h2><a href="{html.escape(p['url'])}">{html.escape(p['title'])}</a></h2>
         <div class="summary">{html.escape(p.get('subtitle',''))}</div>
       </div>
-      <div class="type" style="text-align:right">→</div>
+      <div class="type">{html.escape(p['type']).replace('-', ' ')}</div>
     </div>"""
     return f"""<!doctype html>
 <html lang="en">
@@ -226,21 +229,24 @@ def index_page(posts):
 <meta name="description" content="Essays and whitepapers on applied AI, agentic systems, and enterprise coordination." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light dark" />
+<script>(function(){{try{{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}}catch(e){{}}}})();</script>
 <link rel="stylesheet" href="assets/post.css" />
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="/">divyajot<b>.</b>singh</a>
+  <a class="brand" href="/" aria-label="Divyajot Singh — home"><b aria-hidden="true">·</b><span>Divyajot Singh</span></a>
   <nav>
     <a href="/#work">Work</a>
+    <a href="/#projects">Projects</a>
     <a href="/#contact">Contact</a>
   </nav>
 </header>
 
 <div class="index-head">
-  <div class="num">04 / Writing</div>
-  <h1>Notes from the <em style="font-style:italic;color:var(--coral-soft)">field</em>.</h1>
+  <div class="num">Writing</div>
+  <h1>Notes from the <em>field</em>.</h1>
 </div>
 <div class="post-list">{rows}
 </div>

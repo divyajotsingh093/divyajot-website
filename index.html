@@ -5,1051 +5,646 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Divyajot Singh — AI Product &amp; Solutions Architect, Singapore</title>
 <meta name="description" content="AI Product &amp; Solutions Architect in Singapore. Designing and shipping governed AI systems, from prototype to production. Global Head of Pre Sales at Neutrinos; building Vortic and Company Brain." />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="Divyajot Singh — AI Product &amp; Solutions Architect" />
 <meta property="og:description" content="Designing and shipping governed AI systems, from prototype to production. Neutrinos · Vortic · Company Brain." />
-<meta property="og:url" content="https://divyajot-website.vercel.app/" />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://divyajot-website.vercel.app/" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Apply a stored theme before first paint so the page never flashes the wrong one.
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+    document.documentElement.classList.add("js");
+  })();
+</script>
 
 <style>
   /* ================= TOKENS ================= */
   :root {
-    --bg: #0a0b0e;
-    --bg-elev: #11131a;
-    --bg-soft: #161922;
-    --border: #1f2333;
-    --border-bright: #2c3148;
+    --bg: #f5f5f4;
+    --surface: #ffffff;
+    --surface-2: #fafaf9;
+    --panel: #0f0f0f;          /* dark thumbnail panels on light ground */
+    --panel-ink: #f5f5f4;
+    --panel-muted: #8a8a8a;
+    --text: #171717;
+    --muted: #6b6b6b;
+    --dim: #a3a3a3;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.16);
+    --ink: #0a0a0a;
+    --on-ink: #ffffff;
+    --signal: #16a34a;        /* the one accent: live / status */
+    --signal-soft: rgba(22, 163, 74, 0.12);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px -16px rgba(0, 0, 0, 0.18);
+    --shadow-nav: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px -12px rgba(0, 0, 0, 0.16);
 
-    --text: #ece9e0;
-    --text-muted: #8b8f9d;
-    --text-dim: #5d6271;
+    --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-    --coral: #ff5a3c;
-    --coral-soft: #ff8a73;
-    --cyan: #6ad6e6;
-    --amber: #f0b264;
-
-    --grad: linear-gradient(135deg, #ff5a3c 0%, #f0b264 50%, #6ad6e6 100%);
-    --grad-soft: linear-gradient(135deg, rgba(255,90,60,.12) 0%, rgba(106,214,230,.08) 100%);
-
-    --font-display: 'Instrument Serif', 'Times New Roman', serif;
-    --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Geist Mono', 'SF Mono', Menlo, monospace;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
     --max: 1180px;
-    --pad-x: clamp(20px, 5vw, 64px);
+    --pad-x: clamp(20px, 5vw, 56px);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #171717;
+      --panel: #1c1c1c;
+      --panel-ink: #f5f5f4;
+      --panel-muted: #8a8a8a;
+      --text: #ededed;
+      --muted: #a1a1a1;
+      --dim: #6b6b6b;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --ink: #f5f5f4;
+      --on-ink: #0a0a0a;
+      --signal: #4ade80;
+      --signal-soft: rgba(74, 222, 128, 0.14);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+      --shadow-nav: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #171717;
+    --panel: #1c1c1c;
+    --panel-ink: #f5f5f4;
+    --panel-muted: #8a8a8a;
+    --text: #ededed;
+    --muted: #a1a1a1;
+    --dim: #6b6b6b;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --ink: #f5f5f4;
+    --on-ink: #0a0a0a;
+    --signal: #4ade80;
+    --signal-soft: rgba(74, 222, 128, 0.14);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+    --shadow-nav: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
   }
 
-  /* ================= RESET / BASE ================= */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ================= BASE ================= */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     background: var(--bg);
     color: var(--text);
-    font-weight: 400;
-    line-height: 1.55;
     font-size: 16px;
-    overflow-x: hidden;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
-
-  /* grain texture overlay */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.035;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  /* aurora gradient blob behind hero */
-  .aurora {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    width: 900px; height: 900px;
-    top: -250px; right: -200px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center,
-      rgba(255,90,60,0.22) 0%,
-      rgba(240,178,100,0.10) 30%,
-      rgba(106,214,230,0.06) 55%,
-      transparent 70%);
-    filter: blur(60px);
-  }
-  .aurora-2 {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    width: 600px; height: 600px;
-    bottom: -100px; left: -150px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center,
-      rgba(106,214,230,0.10) 0%,
-      rgba(255,90,60,0.04) 40%,
-      transparent 70%);
-    filter: blur(80px);
-  }
-
   a { color: inherit; text-decoration: none; }
-  ::selection { background: var(--coral); color: var(--bg); }
+  img, svg { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  ::selection { background: var(--ink); color: var(--on-ink); }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  h1, h2, h3, h4 { text-wrap: balance; font-weight: 600; }
+  p { text-wrap: pretty; }
 
-  /* ================= LAYOUT ================= */
-  .container {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 var(--pad-x);
-    position: relative;
-    z-index: 2;
+  /* type scale: 13 · 15 · 17 · 22 · 40 · 68 */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
-  /* ================= NAV ================= */
-  nav.top {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+  /* ================= NAV (floating capsule) ================= */
+  .nav-wrap {
+    position: sticky;
+    top: 12px;
     z-index: 50;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: rgba(10,11,14,0.72);
-    border-bottom: 1px solid var(--border);
+    padding: 12px var(--pad-x) 0;
+    pointer-events: none;
   }
-  nav.top .inner {
+  .nav {
+    pointer-events: auto;
     max-width: var(--max);
     margin: 0 auto;
-    padding: 14px var(--pad-x);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
+    padding: 8px 8px 8px 16px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
   }
-  nav.top .brand {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: var(--text);
+  .nav.scrolled { box-shadow: var(--shadow-nav); background: color-mix(in srgb, var(--surface) 92%, transparent); }
+  .nav .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+  .nav .brand .mark {
+    width: 24px; height: 24px; border-radius: 7px;
+    background: var(--ink);
+    display: grid; place-items: center;
   }
-  nav.top .brand .dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--coral);
-    border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: 2px;
-    animation: pulse 2.4s ease-in-out infinite;
+  .nav .brand .mark span { width: 8px; height: 8px; border-radius: 2px; background: var(--on-ink); transform: rotate(45deg); }
+  .nav .links { display: flex; gap: 2px; }
+  .nav .links a {
+    padding: 8px 12px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; color: var(--muted);
+    transition: color 0.15s ease, background-color 0.15s ease;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  @media (hover: hover) and (pointer: fine) {
+    .nav .links a:hover { color: var(--text); background: color-mix(in srgb, var(--ink) 6%, transparent); }
   }
-  nav.top .links {
-    display: flex;
-    gap: 28px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
+  .nav .right { display: flex; align-items: center; gap: 6px; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 999px;
+    display: grid; place-items: center; color: var(--muted);
+    transition: color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
   }
-  nav.top .links a {
-    transition: color 0.2s ease;
+  .icon-btn:active { transform: scale(0.96); }
+  @media (hover: hover) and (pointer: fine) {
+    .icon-btn:hover { color: var(--text); background: color-mix(in srgb, var(--ink) 6%, transparent); }
   }
-  nav.top .links a:hover { color: var(--coral); }
-  @media (max-width: 640px) {
-    nav.top .links { display: none; }
+  .icon-btn .sun, .icon-btn .moon { width: 18px; height: 18px; }
+  .icon-btn .sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-btn .sun { display: block; }
+    :root:not([data-theme="light"]) .icon-btn .moon { display: none; }
   }
+  :root[data-theme="dark"] .icon-btn .sun { display: block; }
+  :root[data-theme="dark"] .icon-btn .moon { display: none; }
+  .menu-btn { display: none; }
+  .mobile-menu {
+    display: none;
+    pointer-events: auto;
+    max-width: var(--max);
+    margin: 8px auto 0;
+    padding: 8px;
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-nav);
+  }
+  .mobile-menu a { display: block; padding: 12px 14px; border-radius: 12px; font-weight: 500; }
+  .mobile-menu.open { display: block; }
+  @media (max-width: 820px) {
+    .nav .links { display: none; }
+    .menu-btn { display: grid; }
+    .nav .cta { display: none; }
+  }
+
+  /* ================= BUTTONS ================= */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 44px; padding: 0 20px; border-radius: 999px;
+    font-size: 15px; font-weight: 500; line-height: 1;
+    border: 1px solid transparent;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary { background: var(--ink); color: var(--on-ink); }
+  .btn.ghost { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+  .btn.sm { height: 36px; padding: 0 14px; font-size: 14px; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn.primary:hover { background: color-mix(in srgb, var(--ink) 86%, var(--surface)); }
+    .btn.ghost:hover { border-color: var(--ink); }
+  }
+  .btn .arrow { width: 14px; height: 14px; transition: transform 0.2s var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .btn:hover .arrow { transform: translateX(3px); } }
+
+  /* ================= PILLS / CHIPS ================= */
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 24px; padding: 0 10px; border-radius: 999px;
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--muted); background: var(--surface-2); border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .pill.dark { background: var(--ink); color: var(--on-ink); border-color: transparent; }
+  .pill.live { color: var(--signal); background: var(--signal-soft); border-color: transparent; }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    display: inline-flex; align-items: center;
+    height: 26px; padding: 0 10px; border-radius: 999px;
+    font-size: 13px; color: var(--muted);
+    border: 1px solid var(--border); background: var(--surface);
+  }
+
+  /* ================= SECTIONS ================= */
+  section { padding: 96px 0; }
+  @media (max-width: 720px) { section { padding: 72px 0; } }
+  .section-head { margin-bottom: 40px; max-width: 760px; }
+  .section-head .label { margin-bottom: 14px; }
+  .section-head h2 { font-size: clamp(30px, 4.2vw, 40px); line-height: 1.12; }
+  .section-head p { margin-top: 12px; font-size: 17px; color: var(--muted); max-width: 60ch; }
 
   /* ================= HERO ================= */
-  section.hero {
-    position: relative;
-    min-height: 100vh;
-    padding: 160px 0 100px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hero-eyebrow::before {
-    content: "";
-    width: 24px;
-    height: 1px;
-    background: var(--coral);
-  }
+  .hero { padding: 88px 0 40px; text-align: center; }
+  @media (max-width: 720px) { .hero { padding: 56px 0 24px; } }
+  .hero .eyebrow { display: inline-flex; margin-bottom: 26px; }
   .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 8vw, 104px);
-    line-height: 0.96;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    margin-bottom: 28px;
+    font-size: clamp(40px, 6.4vw, 68px);
+    line-height: 1.04;
+    max-width: 16ch;
+    margin: 0 auto;
   }
-  .hero h1 em {
-    font-style: italic;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .hero .sub {
+    margin: 22px auto 0;
+    max-width: 62ch;
+    font-size: 17px;
+    color: var(--muted);
   }
-  .hero .lede {
-    font-size: clamp(18px, 2vw, 22px);
-    color: var(--text-muted);
-    line-height: 1.5;
-    max-width: 640px;
-    margin-bottom: 48px;
-    font-weight: 300;
-  }
-  .hero .lede strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 22px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    border-radius: 100px;
-    transition: all 0.25s ease;
-    border: 1px solid var(--border-bright);
-  }
-  .btn.primary {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
-  }
-  .btn.primary:hover {
-    background: var(--coral);
-    border-color: var(--coral);
-    transform: translateY(-1px);
-  }
-  .btn.ghost { color: var(--text); }
-  .btn.ghost:hover {
-    border-color: var(--coral);
-    color: var(--coral);
-  }
-  .btn .arrow {
-    transition: transform 0.25s ease;
-  }
-  .btn:hover .arrow { transform: translateX(3px); }
+  .hero .sub strong { color: var(--text); font-weight: 500; }
+  .hero .actions { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
 
-  /* hero status box */
-  .hero-status {
-    margin-top: 80px;
-    padding: 20px 24px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: var(--bg-soft);
-    max-width: 540px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
+  /* fanned cards */
+  .fan {
     position: relative;
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: 0;
+    margin: 64px auto 0;
+    height: 330px;
   }
-  .hero-status .marker {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--coral);
-    margin-top: 7px;
-    flex-shrink: 0;
-    box-shadow: 0 0 0 4px rgba(255,90,60,0.18);
-    animation: pulse 2.4s ease-in-out infinite;
+  .fan .fcard {
+    width: 210px; height: 290px;
+    margin: 0 -3px;
+    border-radius: 18px;
+    background: var(--panel);
+    color: var(--panel-ink);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.45);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 18px;
+    transform: rotate(var(--r)) translateY(var(--y));
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
   }
-  .hero-status .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 4px;
+  .fan .fcard:nth-child(1) { --r: -7deg; --y: 28px; z-index: 1; }
+  .fan .fcard:nth-child(2) { --r: -3.5deg; --y: 9px; z-index: 2; }
+  .fan .fcard:nth-child(3) { --r: 0deg; --y: 0; z-index: 3; }
+  .fan .fcard:nth-child(4) { --r: 3.5deg; --y: 9px; z-index: 2; }
+  .fan .fcard:nth-child(5) { --r: 7deg; --y: 28px; z-index: 1; }
+  @media (hover: hover) and (pointer: fine) {
+    .fan .fcard:hover { transform: rotate(0deg) translateY(-14px); z-index: 5; box-shadow: 0 30px 50px -22px rgba(0, 0, 0, 0.5); }
   }
-  .hero-status .body-text {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--text);
-  }
-  .hero-status .body-text a {
-    color: var(--coral);
-    border-bottom: 1px solid rgba(255,90,60,0.3);
-    transition: border-color 0.2s ease;
-  }
-  .hero-status .body-text a:hover {
-    border-color: var(--coral);
-  }
-
-  /* ================= SECTION GENERIC ================= */
-  section {
-    padding: 100px 0;
-    position: relative;
-    z-index: 2;
-  }
-  .section-head {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-    align-items: baseline;
-  }
-  @media (max-width: 768px) {
-    .section-head {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 40px;
+  .fan .fcard .art { flex: 1; display: grid; place-items: center; }
+  .fan .fcard .art svg { width: 150px; height: 150px; }
+  .fan .fcard .cap { display: flex; flex-direction: column; gap: 2px; }
+  .fan .fcard .cap .name { font-weight: 600; font-size: 14px; }
+  .fan .fcard .cap .kind { font-family: var(--font-mono); font-size: 11px; color: var(--panel-muted); text-transform: uppercase; }
+  .fan .fcard.light { background: var(--surface); color: var(--text); border-color: var(--border); }
+  .fan .fcard.light .cap .kind { color: var(--muted); }
+  @media (max-width: 820px) {
+    .fan {
+      height: auto; margin-top: 44px;
+      justify-content: flex-start; align-items: stretch;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad-x);
+      padding: 10px var(--pad-x) 20px; margin-left: calc(-1 * var(--pad-x)); margin-right: calc(-1 * var(--pad-x));
+      gap: 12px; scrollbar-width: none;
     }
+    .fan::-webkit-scrollbar { display: none; }
+    .fan .fcard { flex: 0 0 190px; height: 250px; margin: 0; transform: none; scroll-snap-align: start; }
   }
-  .section-head .num {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--coral);
-    letter-spacing: 0.1em;
+
+  /* ================= NOW STRIP ================= */
+  .now { padding: 24px 0 0; }
+  .now-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .now-grid { grid-template-columns: 1fr; } .now-card { flex-direction: column; gap: 10px; } }
+  .now-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--shadow-sm);
   }
-  .section-head h2 {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 5vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    font-weight: 400;
+  .now-card .pill { flex-shrink: 0; margin-top: 1px; }
+  .now-card p { font-size: 15px; color: var(--muted); }
+  .now-card p a { color: var(--text); font-weight: 500; border-bottom: 1px solid var(--border-strong); }
+  @media (hover: hover) and (pointer: fine) { .now-card p a:hover { border-color: var(--ink); } }
+
+  /* ================= LATEST ================= */
+  .latest { padding: 56px 0 0; }
+  .latest-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+  .latest-head .updated { font-family: var(--font-mono); font-size: 13px; color: var(--dim); }
+  .latest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 1000px) { .latest-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .latest-grid { grid-template-columns: 1fr; } }
+  .latest-col {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 18px 8px; box-shadow: var(--shadow-sm);
   }
-  .section-head h2 em {
-    font-style: italic;
-    color: var(--coral);
+  .latest-col .col-head { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  .latest-col .col-head .badge { font-family: var(--font-mono); font-size: 12px; color: var(--dim); font-weight: 400; }
+  .latest-col ul { list-style: none; }
+  .latest-col li { padding: 10px 0; border-top: 1px solid var(--border); }
+  .latest-col li a { display: block; font-size: 14px; line-height: 1.45; color: var(--text); }
+  @media (hover: hover) and (pointer: fine) { .latest-col li a:hover { color: var(--muted); } }
+  .latest-col li .meta { display: block; margin-top: 4px; font-family: var(--font-mono); font-size: 12px; color: var(--dim); overflow-wrap: anywhere; }
+  .latest-col .empty { font-size: 14px; color: var(--dim); padding: 10px 0 12px; }
+
+  /* ================= STATS ================= */
+  .stats { padding: 56px 0 0; }
+  .stats-panel {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat { padding: 26px 24px; border-left: 1px solid var(--border); }
+  .stat:first-child { border-left: 0; }
+  .stat .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 34px; font-weight: 500; line-height: 1; }
+  .stat .cap { margin-top: 10px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 820px) {
+    .stats-panel { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--border); }
   }
 
   /* ================= ABOUT ================= */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 60px;
-  }
-  @media (max-width: 768px) {
-    .about-grid { grid-template-columns: 1fr; gap: 20px; }
-  }
-  .about-grid .left { }
-  .about-prose {
-    font-size: 19px;
-    line-height: 1.6;
-    color: var(--text);
-    max-width: 720px;
-  }
-  .about-prose p { margin-bottom: 22px; }
-  .about-prose p:last-child { margin-bottom: 0; }
-  .about-prose .accent {
-    color: var(--coral);
-    font-weight: 500;
-  }
-  .about-prose .mono {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    color: var(--text-muted);
-  }
+  .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; }
+  @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .facts { display: grid; gap: 18px; }
+  .facts .k { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .facts .v { font-size: 15px; }
+  .prose p { font-size: 17px; color: var(--muted); margin-bottom: 20px; max-width: 68ch; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--text); font-weight: 500; }
+  .prose .mono { font-size: 15px; color: var(--text); }
 
-  /* ================= PROJECTS / WORK ================= */
-  .work-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
+  /* ================= WORK CARDS ================= */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 820px) { .work-grid { grid-template-columns: 1fr; } }
+  .wcard {
+    display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow-sm);
+    transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
   }
-  .work-card {
-    background: var(--bg);
-    padding: 36px;
-    transition: background 0.3s ease;
-    display: grid;
-    grid-template-columns: 160px 1fr 200px;
-    gap: 40px;
-    align-items: start;
+  @media (hover: hover) and (pointer: fine) {
+    .wcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
   }
-  .work-card:hover {
-    background: var(--bg-soft);
-  }
-  @media (max-width: 900px) {
-    .work-card {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      padding: 28px 24px;
-    }
-  }
-  .work-card .meta-left {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-  .work-card .meta-left .role {
-    color: var(--text);
-    display: block;
-    margin-bottom: 4px;
-    font-size: 12px;
-  }
-  .work-card .meta-left .date {
-    color: var(--text-dim);
-  }
-  .work-card .body-content h3 {
-    font-family: var(--font-display);
-    font-size: 28px;
-    line-height: 1.15;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
-  }
-  .work-card .body-content h3 .tag {
-    display: inline-block;
-    margin-left: 10px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--coral);
-    padding: 3px 8px;
-    border: 1px solid var(--coral);
-    border-radius: 100px;
-    vertical-align: 4px;
-  }
-  .work-card .body-content p {
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 16px;
-    font-size: 15px;
-  }
-  .work-card .tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
-  }
-  .work-card .tech span {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    color: var(--text-muted);
-    padding: 3px 9px;
-    border: 1px solid var(--border-bright);
-    border-radius: 100px;
-  }
-  .work-card .meta-right {
-    text-align: right;
-  }
-  @media (max-width: 900px) { .work-card .meta-right { text-align: left; } }
-  .work-card .meta-right .stat {
-    font-family: var(--font-display);
-    font-size: 44px;
-    line-height: 1;
-    font-style: italic;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 6px;
-  }
-  .work-card .meta-right .stat-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-  .work-card a.cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--coral);
-    margin-top: 16px;
-    transition: gap 0.2s ease;
-  }
-  .work-card a.cta:hover { gap: 10px; }
-
-  /* ================= GITHUB REPOS ================= */
-  .repos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 18px;
-  }
-  .repo {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px;
-    transition: all 0.25s ease;
-    display: block;
+  .wcard .thumb {
     position: relative;
-    overflow: hidden;
+    background: var(--panel); color: var(--panel-ink);
+    min-height: 190px; padding: 22px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+    background-size: 18px 18px;
   }
-  .repo::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--grad-soft);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-  .repo:hover {
-    border-color: var(--border-bright);
-    transform: translateY(-2px);
-  }
-  .repo:hover::before { opacity: 1; }
-  .repo > * { position: relative; z-index: 2; }
-  .repo .repo-head {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-  .repo .repo-icon {
-    width: 16px; height: 16px;
-    color: var(--text-muted);
-    flex-shrink: 0;
-  }
-  .repo .repo-name {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 500;
-  }
-  .repo .repo-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 20px;
-    min-height: 42px;
-  }
-  .repo .repo-meta {
-    display: flex;
-    gap: 16px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    align-items: center;
-  }
-  .repo .repo-lang {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .repo .lang-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--coral);
-  }
-  .repo .lang-dot.python { background: #3776ab; }
-  .repo .lang-dot.typescript { background: #3178c6; }
-  .repo .lang-dot.javascript { background: #f7df1e; }
-  .repo .lang-dot.go { background: #00add8; }
-  .repo .lang-dot.rust { background: #dea584; }
-  .repo .lang-dot.neutral { background: var(--text-dim); }
+  .wcard .thumb .big { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 44px; font-weight: 500; line-height: 1; }
+  .wcard .thumb .cap { margin-top: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--panel-muted); }
+  .wcard .thumb .corner { position: absolute; top: 16px; left: 18px; display: flex; gap: 6px; }
+  .wcard .thumb .corner .pill { background: rgba(255, 255, 255, 0.08); color: var(--panel-ink); border-color: rgba(255, 255, 255, 0.12); }
+  .wcard .thumb .corner .pill.live { color: #4ade80; background: rgba(74, 222, 128, 0.14); border-color: transparent; }
+  .wcard .thumb .role { position: absolute; top: 16px; right: 18px; font-family: var(--font-mono); font-size: 12px; color: var(--panel-muted); text-align: right; }
+  .wcard .body { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .wcard h3 { font-size: 22px; line-height: 1.2; }
+  .wcard p { font-size: 15px; color: var(--muted); }
+  .wcard .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 6px; }
+  .wcard .link { font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+  .wcard .link .arrow { width: 14px; height: 14px; transition: transform 0.2s var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .wcard .link:hover .arrow { transform: translateX(3px); } }
 
-  .github-cta {
-    margin-top: 36px;
-    text-align: center;
+  /* ================= PROJECTS ================= */
+  .pgroup { margin-top: 36px; }
+  .pgroup:first-of-type { margin-top: 0; }
+  .pgroup-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .pgroup-head h3 { font-size: 17px; }
+  .pgroup-head .count { font-family: var(--font-mono); font-size: 13px; color: var(--dim); }
+  .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 1000px) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .pgrid { grid-template-columns: 1fr; } }
+  .pcard {
+    display: flex; flex-direction: column; gap: 10px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 18px 16px; box-shadow: var(--shadow-sm);
+    transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.2s ease;
   }
-
-  /* ================= SKILLS ================= */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
+  @media (hover: hover) and (pointer: fine) {
+    a.pcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
   }
-  .skill-block {
-    background: var(--bg);
-    padding: 30px 28px;
-    transition: background 0.3s ease;
-  }
-  .skill-block:hover { background: var(--bg-soft); }
-  .skill-block .skill-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--coral);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
-  }
-  .skill-block .skill-items {
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: var(--text);
-  }
-  .skill-block .skill-items span {
-    color: var(--text-muted);
-  }
-
-  .skill-block.full-span {
-    grid-column: 1 / -1;
-  }
-
-  /* ================= LATEST FEED ================= */
-  .latest {
-    padding: 64px 0 24px;
-    position: relative;
-    z-index: 2;
-  }
-  .latest-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .latest-head .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--coral);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .latest-head .label::before {
-    content: "";
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--coral);
-    box-shadow: 0 0 0 3px rgba(255,90,60,0.18);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-  .latest-head .updated {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-  .latest-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  @media (max-width: 900px) {
-    .latest-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 540px) {
-    .latest-grid { grid-template-columns: 1fr; }
-  }
-  .latest-col {
-    background: var(--bg);
-    padding: 22px 22px 18px;
-    min-height: 200px;
-  }
-  .latest-col .col-head {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .latest-col .col-head .badge {
-    font-size: 9.5px;
-    padding: 2px 7px;
-    border-radius: 100px;
-    border: 1px solid var(--border-bright);
-    color: var(--text-dim);
-  }
-  .latest-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .latest-col li {
-    line-height: 1.4;
-  }
-  .latest-col li a {
-    display: block;
-    font-size: 13px;
-    color: var(--text);
-    transition: color 0.2s ease;
-  }
-  .latest-col li a:hover { color: var(--coral); }
-  .latest-col li .meta {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    color: var(--text-dim);
-    margin-top: 4px;
-  }
-  .latest-col .empty {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    font-style: italic;
-  }
+  .pcard .head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .pcard .name { font-family: var(--font-mono); font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
+  .pcard p { font-size: 14px; color: var(--muted); flex: 1; }
+  .pcard .meta { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--dim); flex-wrap: wrap; }
+  .pcard .meta .ext { margin-left: auto; color: var(--muted); }
+  .github-cta { margin-top: 36px; display: flex; justify-content: center; }
 
   /* ================= WRITING ================= */
-  .writing-list {
-    border-top: 1px solid var(--border);
-  }
-  .writing-item {
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 120px 1fr 100px;
-    gap: 40px;
-    align-items: start;
-    transition: padding-left 0.3s ease;
-  }
-  .writing-item:hover {
-    padding-left: 16px;
-  }
-  @media (max-width: 768px) {
-    .writing-item {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-  }
-  .writing-item .date {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-  .writing-item h4 {
-    font-family: var(--font-display);
-    font-size: 22px;
-    line-height: 1.3;
-    font-weight: 400;
-    margin-bottom: 6px;
-  }
-  .writing-item h4 a:hover { color: var(--coral); }
-  .writing-item .summary {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-  .writing-item .platform {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    text-align: right;
-  }
-  @media (max-width: 768px) { .writing-item .platform { text-align: left; } }
-  .writing-more { margin-top: 36px; }
-  .writing-more a {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--coral);
-    border-bottom: 1px solid transparent;
-    transition: border-color .2s ease;
-  }
-  .writing-more a:hover { border-color: var(--coral); }
+  .writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 900px) { .writing-grid { grid-template-columns: 1fr; } }
+  .wlist-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+  .wlist-head h3 { font-size: 17px; }
+  .wlist-head a { font-size: 14px; color: var(--muted); }
+  @media (hover: hover) and (pointer: fine) { .wlist-head a:hover { color: var(--text); } }
+  .wlist { list-style: none; }
+  .wlist li { padding: 18px 0; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; }
+  .wlist li:last-child { border-bottom: 1px solid var(--border); }
+  .wlist h4 { font-size: 17px; line-height: 1.3; font-weight: 600; }
+  @media (hover: hover) and (pointer: fine) { .wlist h4 a:hover { color: var(--muted); } }
+  .wlist .summary { margin-top: 5px; font-size: 14px; color: var(--muted); }
+  .wlist .date { margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--dim); }
+  .wlist .pill { margin-top: 2px; }
 
-  /* ================= STATS BAND ================= */
-  .stats-band {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(255,90,60,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(106,214,230,0.04) 0%, transparent 60%),
-      var(--bg-soft);
+  /* ================= SKILLS ================= */
+  .skills-panel {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+  .skill { padding: 24px; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .skill:nth-child(-n+3) { border-top: 0; }
+  .skill:nth-child(3n+1) { border-left: 0; }
+  .skill h3 { font-size: 15px; margin-bottom: 8px; }
+  .skill p { font-size: 14px; color: var(--muted); }
+  @media (max-width: 900px) {
+    .skills-panel { grid-template-columns: 1fr 1fr; }
+    .skill { border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+    .skill:nth-child(-n+2) { border-top: 0; }
+    .skill:nth-child(odd) { border-left: 0; }
   }
-  @media (max-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  @media (max-width: 560px) {
+    .skills-panel { grid-template-columns: 1fr; }
+    .skill { border-left: 0 !important; border-top: 1px solid var(--border); }
+    .skill:first-child { border-top: 0; }
   }
-  .stat-item .num {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 6vw, 76px);
-    font-style: italic;
-    line-height: 1;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 12px;
-  }
-  .stat-item .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.5;
-  }
-
-  /* ================= INTERESTS ================= */
-  .interests {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
-  }
-  .interests span {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 8px 14px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-  }
-  .interests span:hover {
-    border-color: var(--coral);
-    color: var(--coral);
-  }
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 
   /* ================= CONTACT ================= */
-  section.contact {
-    padding: 120px 0;
-    text-align: center;
-    position: relative;
-  }
-  section.contact::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, rgba(255,90,60,0.08) 0%, transparent 60%);
-  }
-  .contact .label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--coral);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .contact h2 {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 7vw, 84px);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    margin-bottom: 36px;
-  }
-  .contact h2 em {
-    font-style: italic;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .contact .email {
-    font-family: var(--font-mono);
-    font-size: clamp(16px, 2vw, 20px);
-    color: var(--text);
-    display: inline-block;
-    padding: 14px 28px;
-    border: 1px solid var(--border-bright);
-    border-radius: 100px;
-    transition: all 0.25s ease;
-    margin-bottom: 28px;
-  }
-  .contact .email:hover {
-    border-color: var(--coral);
-    color: var(--coral);
-  }
-  .contact .socials {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-  .contact .socials a {
-    transition: color 0.2s ease;
-  }
-  .contact .socials a:hover { color: var(--text); }
+  .contact { text-align: center; padding: 120px 0 80px; }
+  @media (max-width: 720px) { .contact { padding: 80px 0 56px; } }
+  .contact .label { margin-bottom: 18px; }
+  .contact h2 { font-size: clamp(36px, 6.4vw, 68px); line-height: 1.02; }
+  .contact h2 .faded { display: block; color: var(--dim); }
+  .contact .actions { display: flex; justify-content: center; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+  .contact .socials { display: flex; justify-content: center; gap: 22px; margin-top: 28px; flex-wrap: wrap; }
+  .contact .socials a { font-size: 14px; color: var(--muted); }
+  @media (hover: hover) and (pointer: fine) { .contact .socials a:hover { color: var(--text); } }
 
   /* ================= FOOTER ================= */
-  footer {
-    padding: 32px 0 40px;
-    border-top: 1px solid var(--border);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
+  footer { border-top: 1px solid var(--border); padding: 24px 0 calc(24px + env(safe-area-inset-bottom)); }
+  footer .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--dim); }
 
-  /* ================= PROJECTS (grouped cards) ================= */
-  .proj-group { margin-bottom: 44px; }
-  .proj-group:last-of-type { margin-bottom: 0; }
-  .proj-group-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-dim);
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .repo.proj .repo-head { flex-wrap: wrap; row-gap: 6px; }
-  .repo .status {
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 2px 8px;
-    border-radius: 100px;
-    border: 1px solid var(--border-bright);
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-  .repo .status.building { color: var(--coral); border-color: var(--coral); }
-  .repo .status.oss { color: var(--cyan); border-color: rgba(106,214,230,0.5); }
-  .repo .status.shipped { color: var(--amber); border-color: rgba(240,178,100,0.5); }
-  .repo .repo-meta { flex-wrap: wrap; row-gap: 6px; }
-  .repo .repo-meta .ext { margin-left: auto; color: var(--text-dim); }
-  div.repo.proj { cursor: default; }
-  div.repo.proj:hover { transform: none; }
-
-  /* ================= WRITING SUB-HEADINGS ================= */
-  .writing-sub {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-dim);
-    margin-bottom: 14px;
-  }
-  .writing-substack .reveal:nth-child(4) { animation-delay: 0.26s; }
-  .writing-substack .reveal:nth-child(5) { animation-delay: 0.33s; }
-
-  /* ================= HERO "NEXT UP" ================= */
-  .hero-status.hero-now { margin-top: 14px; }
-  .hero-status .marker.amber {
-    background: var(--amber);
-    box-shadow: 0 0 0 4px rgba(240,178,100,0.18);
-  }
-  .work-grid .reveal:nth-child(7) { animation-delay: 0.47s; }
-  .work-grid .reveal:nth-child(8) { animation-delay: 0.54s; }
-
-  /* ================= ENTRANCE ANIMATION (CSS only) ================= */
-  /* Content is visible by default. CSS animations fade-in on load.
-     If JS / animations fail, content still renders normally. */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: none; }
-  }
-  .reveal {
-    animation: fadeUp 0.8s ease both;
-  }
-  /* Stagger via nth-child for cards in groups */
-  .work-grid .reveal:nth-child(1) { animation-delay: 0.05s; }
-  .work-grid .reveal:nth-child(2) { animation-delay: 0.12s; }
-  .work-grid .reveal:nth-child(3) { animation-delay: 0.19s; }
-  .work-grid .reveal:nth-child(4) { animation-delay: 0.26s; }
-  .work-grid .reveal:nth-child(5) { animation-delay: 0.33s; }
-  .work-grid .reveal:nth-child(6) { animation-delay: 0.40s; }
-  .stats-grid .reveal:nth-child(1) { animation-delay: 0.05s; }
-  .stats-grid .reveal:nth-child(2) { animation-delay: 0.12s; }
-  .stats-grid .reveal:nth-child(3) { animation-delay: 0.19s; }
-  .stats-grid .reveal:nth-child(4) { animation-delay: 0.26s; }
-  .writing-list .reveal:nth-child(1) { animation-delay: 0.05s; }
-  .writing-list .reveal:nth-child(2) { animation-delay: 0.12s; }
-  .writing-list .reveal:nth-child(3) { animation-delay: 0.19s; }
+  /* ================= REVEAL (scroll-in) ================= */
+  html.js .reveal { opacity: 0; transform: translateY(12px); }
+  html.js .reveal.in { opacity: 1; transform: none; transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); }
+  html.js .reveal.in:nth-child(2) { transition-delay: 40ms; }
+  html.js .reveal.in:nth-child(3) { transition-delay: 80ms; }
+  html.js .reveal.in:nth-child(4) { transition-delay: 120ms; }
   @media (prefers-reduced-motion: reduce) {
-    .reveal { animation: none; }
+    html.js .reveal { transform: none; }
+    html.js .reveal.in { transition: opacity 0.3s ease; }
+    .fan .fcard, .wcard, .pcard, .btn, .icon-btn { transition: none !important; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
-
 <body>
 
 <!-- NAV -->
-<nav class="top">
-  <div class="inner">
-    <div class="brand"><span class="dot"></span>divyajot.singh</div>
+<div class="nav-wrap">
+  <nav class="nav" id="nav" aria-label="Primary">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true"><span></span></span>Divyajot Singh</a>
     <div class="links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
       <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
     </div>
+    <div class="right">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="#contact" class="btn primary sm cta">Get in touch</a>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#writing">Writing</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Get in touch</a>
   </div>
-</nav>
+</div>
+
+<main id="top">
 
 <!-- HERO -->
 <section class="hero">
-  <div class="aurora"></div>
-  <div class="aurora-2"></div>
   <div class="container">
-    <div class="hero-eyebrow">Singapore · APAC + Middle East · Available for the right role</div>
-
-    <h1>
-      Building applied AI<br/>
-      for places it actually <em>matters</em>.
-    </h1>
-
-    <p class="lede">
-      I run global pre-sales and product for <strong>Neutrinos</strong>' agentic AI platform, sold into tier-one insurers across APAC and the Middle East. On the side I build the infrastructure I keep wishing existed: <strong>Vortic</strong>, a single MCP endpoint for any model, and <strong>Company Brain</strong>, a permission-aware knowledge layer.
+    <span class="pill live eyebrow"><span class="dot" aria-hidden="true"></span>Singapore · Available for the right role</span>
+    <h1>Applied AI for the places it actually matters.</h1>
+    <p class="sub">
+      I run global pre-sales and product for <strong>Neutrinos</strong>' agentic AI platform, sold into tier-one insurers across APAC and the Middle East. On the side I build the infrastructure I keep wishing existed: <strong>Vortic</strong>, one MCP endpoint for any model, and <strong>Company Brain</strong>, a permission-aware knowledge layer.
     </p>
-
-    <div class="hero-actions">
-      <a href="#work" class="btn primary">
-        See the work
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <div class="actions">
+      <a href="#work" class="btn primary">See the work
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#projects" class="btn ghost">All projects</a>
+      <a href="#writing" class="btn ghost">Read the writing</a>
     </div>
 
-    <div class="hero-status">
-      <div class="marker"></div>
-      <div>
-        <div class="label">Currently building</div>
-        <div class="body-text">
-          <a href="https://getvortic.com" target="_blank" rel="noopener">Vortic</a> — the model-agnostic backend for conversation-over-MCP apps. 150+ MCP servers behind one endpoint, your OAuth not ours, human approval on destructive calls. And <a href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">Company Brain</a> — one agent the whole company shares, that never shows anyone a document they can't already read.
+    <div class="fan" aria-label="Selected projects">
+      <a class="fcard" href="https://getvortic.com" target="_blank" rel="noopener">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="75" cy="75" r="9" fill="currentColor" stroke="none"/>
+            <g stroke-opacity="0.55">
+              <path d="M75 75 L28 30M75 75 L122 30M75 75 L20 90M75 75 L130 90M75 75 L50 128M75 75 L100 128M75 75 L75 18"/>
+            </g>
+            <g fill="currentColor" stroke="none"><circle cx="28" cy="30" r="4"/><circle cx="122" cy="30" r="4"/><circle cx="20" cy="90" r="4"/><circle cx="130" cy="90" r="4"/><circle cx="50" cy="128" r="4"/><circle cx="100" cy="128" r="4"/><circle cx="75" cy="18" r="4"/></g>
+          </svg>
         </div>
+        <div class="cap"><span class="name">Vortic</span><span class="kind">MCP backend</span></div>
+      </a>
+      <a class="fcard" href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.4">
+            <rect x="22" y="22" width="106" height="106" rx="14" stroke-opacity="0.35"/>
+            <rect x="40" y="40" width="70" height="70" rx="10" stroke-opacity="0.6"/>
+            <rect x="58" y="58" width="34" height="34" rx="7" fill="currentColor" stroke="none"/>
+            <path d="M22 75H40M110 75h18M75 22v18M75 110v18" stroke-opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="cap"><span class="name">Company Brain</span><span class="kind">Open source</span></div>
+      </a>
+      <a class="fcard light" href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.4">
+            <g stroke-opacity="0.5"><path d="M30 118 L60 70 L90 96 L120 34"/></g>
+            <path d="M30 118H120" stroke-opacity="0.25"/>
+            <g fill="currentColor" stroke="none"><circle cx="30" cy="118" r="4"/><circle cx="60" cy="70" r="4"/><circle cx="90" cy="96" r="4"/><circle cx="120" cy="34" r="5"/></g>
+            <text x="94" y="130" font-family="Geist Mono, monospace" font-size="11" fill="currentColor" stroke="none">−64%</text>
+          </svg>
+        </div>
+        <div class="cap"><span class="name">Agent Graph</span><span class="kind">Underwriting</span></div>
+      </a>
+      <a class="fcard" href="/writing/rlvr-build-playbook">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M75 30a45 45 0 1 1-31.8 13.2" stroke-opacity="0.6"/>
+            <path d="M40 40l3 12 12-3" stroke-opacity="0.6"/>
+            <text x="75" y="82" text-anchor="middle" font-family="Geist Mono, monospace" font-size="18" fill="currentColor" stroke="none">94%</text>
+          </svg>
+        </div>
+        <div class="cap"><span class="name">RLVR</span><span class="kind">78 → 94%</span></div>
+      </a>
+      <a class="fcard" href="#projects">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.4">
+            <g stroke-opacity="0.55">
+              <path d="M36 44h78M36 62h60M36 80h70M36 98h48"/>
+            </g>
+            <rect x="24" y="28" width="102" height="94" rx="12" stroke-opacity="0.35"/>
+            <circle cx="112" cy="100" r="9" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="cap"><span class="name">Claude Brain</span><span class="kind">Daily brief</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NOW -->
+<section class="now">
+  <div class="container">
+    <div class="now-grid">
+      <div class="now-card reveal">
+        <span class="pill live"><span class="dot" aria-hidden="true"></span>Building</span>
+        <p><a href="https://getvortic.com" target="_blank" rel="noopener">Vortic</a> — the model-agnostic backend for conversation-over-MCP apps. 150+ MCP servers behind one endpoint, your OAuth not ours, human approval on destructive calls. And <a href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">Company Brain</a> — one agent the whole company shares, that never shows anyone a document they can't already read.</p>
       </div>
-    </div>
-
-    <div class="hero-status hero-now" data-until="2026-10-02">
-      <div class="marker amber"></div>
-      <div>
-        <div class="label">Next up</div>
-        <div class="body-text">
-          ITC Vegas, Mandalay Bay, <strong>Sept 29 – Oct 1</strong> — with the Neutrinos team at Booth #3018. Come talk agentic stacks on real insurance workflows.
-        </div>
+      <div class="now-card reveal" data-until="2026-10-02">
+        <span class="pill dark">Next up</span>
+        <p>ITC Vegas, Mandalay Bay, <a href="https://www.linkedin.com/feed/update/urn:li:activity:7503302693537349632/" target="_blank" rel="noopener">Sept 29 – Oct 1</a> — with the Neutrinos team at Booth #3018. Come talk agentic stacks on real insurance workflows.</p>
       </div>
     </div>
   </div>
@@ -1068,61 +663,42 @@
   </div>
 </section>
 
-<!-- STATS BAND -->
-<div class="stats-band">
+<!-- STATS -->
+<section class="stats">
   <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="num">3.5M+</div>
-        <div class="label">USD ARR driven<br/>at Neutrinos</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">78→94%</div>
-        <div class="label">Accuracy lift via RLVR<br/>on a regulated workflow</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">5</div>
-        <div class="label">Tier-one insurers<br/>across APAC + MEA</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">11</div>
-        <div class="label">Years in enterprise<br/>product and platforms</div>
-      </div>
+    <div class="stats-panel">
+      <div class="stat reveal"><div class="num">$3.5M+</div><div class="cap">USD ARR driven at Neutrinos</div></div>
+      <div class="stat reveal"><div class="num">78→94%</div><div class="cap">Accuracy lift via RLVR on a regulated workflow</div></div>
+      <div class="stat reveal"><div class="num">5</div><div class="cap">Tier-one insurers across APAC and MEA</div></div>
+      <div class="stat reveal"><div class="num">11</div><div class="cap">Years in enterprise product and platforms</div></div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="section-head">
-      <div class="num">01 / About</div>
-      <h2>Customer-facing AI, with <em>actual</em> production scars.</h2>
+      <div class="label">01 / About</div>
+      <h2>Customer-facing AI, with actual production scars.</h2>
     </div>
     <div class="about-grid">
-      <div class="left">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; line-height: 1.7;">
-          BASED IN<br/>
-          <span style="color: var(--text);">Singapore</span><br/><br/>
-          NOW<br/>
-          <span style="color: var(--text);">Global Head of Pre Sales<br/>Principal PM, Neutrinos</span><br/><br/>
-          FOCUS<br/>
-          <span style="color: var(--text);">Agent harnesses, coordination, governed AI in FSI</span><br/><br/>
-          BEFORE<br/>
-          <span style="color: var(--text);">LexisNexis Risk · IBM · AuthBridge</span><br/><br/>
-          EDUCATION<br/>
-          <span style="color: var(--text);">B.Tech Mechanical, Symbiosis<br/>GMAT 770</span>
-        </div>
+      <div class="facts">
+        <div><div class="k">Based in</div><div class="v">Singapore</div></div>
+        <div><div class="k">Now</div><div class="v">Global Head of Pre Sales · Principal PM, Neutrinos</div></div>
+        <div><div class="k">Focus</div><div class="v">Agent harnesses, coordination, governed AI in FSI</div></div>
+        <div><div class="k">Before</div><div class="v">LexisNexis Risk · IBM · AuthBridge</div></div>
+        <div><div class="k">Education</div><div class="v">B.Tech Mechanical, Symbiosis · GMAT 770</div></div>
       </div>
-      <div class="about-prose">
+      <div class="prose">
         <p>
-          I have spent the last four years taking applied AI from prototype to production inside the kinds of organisations that do not have room for a demo that nearly works. The customers are <span class="accent">Sun Life, Manulife, Prudential, Generali, Al Rajhi Takaful</span>. The work spans agentic claims and underwriting systems with verifiable handoffs, RAG over regulated documents, an RLVR pipeline that took a workflow from 78 to 94 percent accuracy, and on-prem inference on bare-metal A100 for buyers who cannot send data over the wire. Along the way the platform grew to <span class="accent">$3.5M USD ARR</span> and was listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.
+          I have spent the last four years taking applied AI from prototype to production inside the kinds of organisations that do not have room for a demo that nearly works. The customers are <strong>Sun Life, Manulife, Prudential, Generali, Al Rajhi Takaful</strong>. The work spans agentic claims and underwriting systems with verifiable handoffs, RAG over regulated documents, an RLVR pipeline that took a workflow from 78 to 94 percent accuracy, and on-prem inference on bare-metal A100 for buyers who cannot send data over the wire. Along the way the platform grew to <strong>$3.5M USD ARR</strong> and was listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.
         </p>
         <p>
           Before that, eleven years in enterprise product and platforms — first at IBM and AuthBridge, then LexisNexis Risk Solutions running a fraud-and-identity portfolio across APAC, then back to Neutrinos to take a low-code studio from zero to six production customers and build what is now the platform underneath the AI suite. The throughline is the same: I am the person who sits between the customer's hardest problem and the engineering team that has to solve it.
         </p>
         <p>
-          The thing I keep writing and building about is the layer <em>around</em> the model. Models have converged; defensibility moved one layer down, to coordination. The harness that owns shared state, routes across models, verifies before it writes, and knows when to stop — <span class="mono">loop engineering, graph orchestration, eval-driven development, cost-latency-privacy trade-offs</span> — is the conversation I have already been having every week, in front of CIOs and at the keyboard.
+          The thing I keep writing and building about is the layer <strong>around</strong> the model. Models have converged; defensibility moved one layer down, to coordination. The harness that owns shared state, routes across models, verifies before it writes, and knows when to stop — <span class="mono">loop engineering, graph orchestration, eval-driven development, cost-latency-privacy trade-offs</span> — is the conversation I have already been having every week, in front of CIOs and at the keyboard.
         </p>
       </div>
     </div>
@@ -1133,194 +709,145 @@
 <section id="work">
   <div class="container">
     <div class="section-head">
-      <div class="num">02 / Selected Work</div>
-      <h2>Things I built and <em>shipped</em>.</h2>
+      <div class="label">02 / Selected work</div>
+      <h2>Things I built and shipped.</h2>
+      <p>Production systems for regulated insurers, and the two things I'm building on my own time.</p>
     </div>
 
     <div class="work-grid">
 
-      <!-- Vortic -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Founder</span>
-          <span class="date">2025 — Present</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill live"><span class="dot" aria-hidden="true"></span>Building now</span></div>
+          <div class="role">Founder<br/>2025 — present</div>
+          <div class="big">150+</div>
+          <div class="cap">MCP servers, one endpoint</div>
         </div>
-        <div class="body-content">
-          <h3>Vortic <span class="tag">Building Now</span></h3>
-          <p>
-            Every tool, pulled into one endpoint. Vortic is the model-agnostic backend for conversation-over-MCP apps: bundle 150+ MCP servers into a box, point Claude Code, Cursor, Codex or your own app at a single endpoint, and let a conversational runtime discover the right tools per turn instead of exposing hundreds of them to the model. Encrypted OAuth token management, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits, pgvector tool retrieval. Pivoted here from an AI-native underwriting platform after learning the harness was the product.
-          </p>
-          <div class="tech">
-            <span>MCP</span><span>TypeScript</span><span>pgvector</span><span>OAuth</span><span>Claude · GPT · Gemini</span><span>Governance</span>
+        <div class="body">
+          <h3>Vortic</h3>
+          <p>Every tool, pulled into one endpoint. The model-agnostic backend for conversation-over-MCP apps: bundle 150+ MCP servers into a box, point Claude Code, Cursor, Codex or your own app at a single endpoint, and let a conversational runtime discover the right tools per turn instead of exposing hundreds of them to the model. Encrypted OAuth token management, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits, pgvector tool retrieval. Pivoted here from an AI-native underwriting platform after learning the harness was the product.</p>
+          <div class="chips"><span class="chip">MCP</span><span class="chip">TypeScript</span><span class="chip">pgvector</span><span class="chip">OAuth</span><span class="chip">Claude · GPT · Gemini</span><span class="chip">Governance</span></div>
+          <div class="foot">
+            <a class="link" href="https://getvortic.com" target="_blank" rel="noopener">getvortic.com <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <a href="https://getvortic.com" target="_blank" rel="noopener" class="cta">
-            getvortic.com →
-          </a>
         </div>
-        <div class="meta-right">
-          <div class="stat">150+</div>
-          <div class="stat-label">MCP servers,<br/>one endpoint</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- Orb / Neutrinos AI Suite -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Global Head of Pre Sales · Principal PM</span>
-          <span class="date">2023 — Present</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">Platform</span></div>
+          <div class="role">Global Head of Pre Sales<br/>Principal PM · 2023 — present</div>
+          <div class="big">$3.5M</div>
+          <div class="cap">USD ARR, prototype to production</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>Orb · Neutrinos AI Suite</h3>
-          <p>
-            The agentic automation platform Neutrinos sells into tier-one insurers across APAC and the Middle East — AI Hub, Reels rules, Alpha, Data Fabric, BPMN workflow, integration — with Orb as the coordination layer underneath. I own product strategy, architecture direction and the customer-facing motion: architecture reviews, POV design, RFP defence, executive briefings, competitive close. Took the suite from prototype to $3.5M USD ARR, compressed enterprise deployments to under three weeks, and built the pod that ships it. Listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.
-          </p>
-          <div class="tech">
-            <span>Agentic orchestration</span><span>Decisioning</span><span>BPMN</span><span>Data Fabric</span><span>RAG</span><span>MCP</span>
-          </div>
+          <p>The agentic automation platform Neutrinos sells into tier-one insurers across APAC and the Middle East — AI Hub, Reels rules, Alpha, Data Fabric, BPMN workflow, integration — with Orb as the coordination layer underneath. I own product strategy, architecture direction and the customer-facing motion: architecture reviews, POV design, RFP defence, executive briefings, competitive close. Took the suite from prototype to $3.5M USD ARR, compressed enterprise deployments to under three weeks, and built the pod that ships it. Listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.</p>
+          <div class="chips"><span class="chip">Agentic orchestration</span><span class="chip">Decisioning</span><span class="chip">BPMN</span><span class="chip">Data Fabric</span><span class="chip">RAG</span><span class="chip">MCP</span></div>
         </div>
-        <div class="meta-right">
-          <div class="stat">$3.5M</div>
-          <div class="stat-label">USD ARR,<br/>prototype to production</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- Underwriting agent graph -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Architect</span>
-          <span class="date">2026</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">2026</span></div>
+          <div class="role">Architect</div>
+          <div class="big">−64%</div>
+          <div class="cap">tokens per case, 1.15M → 418K</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>Underwriting Agent Graph</h3>
-          <p>
-            A live simplified-underwriting case for a life policy: one master orchestrator, thirteen sub-agents, a harness moving work between them. The first version burned 1,151,139 tokens on a single 12-page, 5-document submission, because a loop has nowhere to put shared state and flattens into a line. Rebuilt as an agent graph — bounded nodes, one shared state each node reads and writes, shapes defined up front. Same case type: 418,209 tokens, latency per call down around 80 percent.
-          </p>
-          <div class="tech">
-            <span>Graph orchestration</span><span>Shared state</span><span>Harness engineering</span><span>Model routing</span><span>Insurance UW</span>
+          <p>A live simplified-underwriting case for a life policy: one master orchestrator, thirteen sub-agents, a harness moving work between them. The first version burned 1,151,139 tokens on a single 12-page, 5-document submission, because a loop has nowhere to put shared state and flattens into a line. Rebuilt as an agent graph — bounded nodes, one shared state each node reads and writes, shapes defined up front. Same case type: 418,209 tokens, latency per call down around 80 percent.</p>
+          <div class="chips"><span class="chip">Graph orchestration</span><span class="chip">Shared state</span><span class="chip">Harness engineering</span><span class="chip">Model routing</span><span class="chip">Insurance UW</span></div>
+          <div class="foot">
+            <a class="link" href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener">Read the post <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <a href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener" class="cta">
-            Read the post →
-          </a>
         </div>
-        <div class="meta-right">
-          <div class="stat">−64%</div>
-          <div class="stat-label">tokens per case,<br/>1.15M → 418K</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- Company Brain -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Founder</span>
-          <span class="date">2026 — Present</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">Open source</span></div>
+          <div class="role">Founder<br/>2026 — present</div>
+          <div class="big">1</div>
+          <div class="cap">agent per company, permissions as schema</div>
         </div>
-        <div class="body-content">
-          <h3>Company Brain <span class="tag">Open Source</span></h3>
-          <p>
-            Everyone in the organisation shares one agent, and that agent knows what the company knows — without ever showing anyone a document they aren't allowed to see. Personal agents don't scale to a company; company-wide agents leak. The rule everything bends around: a chunk is only retrievable by someone the source system would show it to, excluded before ranking rather than filtered after. Built inside a fork of <em>qm</em>, a 117k-line multiplayer agent harness under MIT, with the permission-scoped retrieval layer as the greenfield half. H0 target: one team asking questions in Slack and getting cited answers.
-          </p>
-          <div class="tech">
-            <span>TypeScript</span><span>Fastify</span><span>Postgres · pgvector</span><span>Slack</span><span>ACL-bound chunks</span><span>MIT</span>
+        <div class="body">
+          <h3>Company Brain</h3>
+          <p>Everyone in the organisation shares one agent, and that agent knows what the company knows — without ever showing anyone a document they aren't allowed to see. Personal agents don't scale to a company; company-wide agents leak. The rule everything bends around: a chunk is only retrievable by someone the source system would show it to, excluded before ranking rather than filtered after. Built inside a fork of qm, a 117k-line multiplayer agent harness under MIT, with the permission-scoped retrieval layer as the greenfield half. H0 target: one team asking questions in Slack and getting cited answers.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Fastify</span><span class="chip">Postgres · pgvector</span><span class="chip">Slack</span><span class="chip">ACL-bound chunks</span><span class="chip">MIT</span></div>
+          <div class="foot">
+            <a class="link" href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">GitHub <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <a href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener" class="cta">
-            github.com/divyajotsingh093/companybrain →
-          </a>
         </div>
-        <div class="meta-right">
-          <div class="stat">1</div>
-          <div class="stat-label">agent per company,<br/>permissions as schema</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- Agentic Claims Suite -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Architect</span>
-          <span class="date">2024 — 2025</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">2024 — 2025</span></div>
+          <div class="role">Architect</div>
+          <div class="big">7</div>
+          <div class="cap">agents, auditable end to end</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>Agentic Claims Intelligence Suite</h3>
-          <p>
-            Seven-agent claims processing system: intake, triage, fraud signal detection, medical evidence reasoning, settlement recommendation, audit, routing. I authored the architecture, defined the inter-agent handoff contracts, and specified the verifiable checkpoints that make the system auditable for regulated insurance.
-          </p>
-          <div class="tech">
-            <span>Planner-Executor-Critic</span><span>Verifiable handoffs</span><span>Tool use</span><span>Saga patterns</span>
+          <p>Seven-agent claims processing system: intake, triage, fraud signal detection, medical evidence reasoning, settlement recommendation, audit, routing. I authored the architecture, defined the inter-agent handoff contracts, and specified the verifiable checkpoints that make the system auditable for regulated insurance.</p>
+          <div class="chips"><span class="chip">Planner-Executor-Critic</span><span class="chip">Verifiable handoffs</span><span class="chip">Tool use</span><span class="chip">Saga patterns</span></div>
+          <div class="foot">
+            <a class="link" href="/writing/deterministic-verifier-layer">The verifier layer <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
-        <div class="meta-right">
-          <div class="stat">7</div>
-          <div class="stat-label">agents,<br/>auditable end-to-end</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- RLVR -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Architect</span>
-          <span class="date">2024</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">2024</span></div>
+          <div class="role">Architect</div>
+          <div class="big">78→94</div>
+          <div class="cap">accuracy, regulated workflow</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>RLVR for Regulated Insurance Workflows</h3>
-          <p>
-            Production pipeline using Reinforcement Learning with Verifiable Rewards in place of human preference labels. Lifted accuracy on a regulated insurance workflow from 78 to 94 percent without touching the model. I designed the verifiable check functions over policy-admin outputs, defined the eval harness, made grounded-answer metrics a precondition for release, and shipped the 14-day build playbook now referenced externally by applied-LLM teams.
-          </p>
-          <div class="tech">
-            <span>RLVR</span><span>Eval-driven dev</span><span>Verifiable rewards</span><span>Insurance core</span>
+          <p>Production pipeline using Reinforcement Learning with Verifiable Rewards in place of human preference labels. Lifted accuracy on a regulated insurance workflow from 78 to 94 percent without touching the model. I designed the verifiable check functions over policy-admin outputs, defined the eval harness, made grounded-answer metrics a precondition for release, and shipped the 14-day build playbook now referenced externally by applied-LLM teams.</p>
+          <div class="chips"><span class="chip">RLVR</span><span class="chip">Eval-driven dev</span><span class="chip">Verifiable rewards</span><span class="chip">Insurance core</span></div>
+          <div class="foot">
+            <a class="link" href="/writing/rlvr-build-playbook">The 14-day playbook <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <a href="/writing/rlvr-build-playbook" class="cta">
-            The 14-day playbook →
-          </a>
         </div>
-        <div class="meta-right">
-          <div class="stat">78→94</div>
-          <div class="stat-label">accuracy,<br/>regulated workflow</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- On-Prem / Sovereign Stack -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Architect</span>
-          <span class="date">2024 — 2026</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">2024 — 2026</span></div>
+          <div class="role">Architect</div>
+          <div class="big">3</div>
+          <div class="cap">tiered routes, cost vs capability</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>On-Prem Inference &amp; Semantic Router</h3>
-          <p>
-            QwQ-32B evaluation on bare-metal A100 80GB for privacy-sensitive reasoning workloads. Three-node K3s and Ollama edge cluster for lighter tasks. A FastAPI + sentence-transformer semantic router doing tiered model selection across cost, latency and capability. Extended in 2026 into an in-country sovereign inference offering for the Middle East — inference, storage and execution all in-region — with the GPU unit economics (A100, L40S, AMD Instinct) worked through per request type.
-          </p>
-          <div class="tech">
-            <span>QwQ-32B</span><span>K3s</span><span>Ollama</span><span>A100 · L40S</span><span>Semantic router</span><span>Data residency</span>
+          <p>QwQ-32B evaluation on bare-metal A100 80GB for privacy-sensitive reasoning workloads. Three-node K3s and Ollama edge cluster for lighter tasks. A FastAPI + sentence-transformer semantic router doing tiered model selection across cost, latency and capability. Extended in 2026 into an in-country sovereign inference offering for the Middle East — inference, storage and execution all in-region — with the GPU unit economics (A100, L40S, AMD Instinct) worked through per request type.</p>
+          <div class="chips"><span class="chip">QwQ-32B</span><span class="chip">K3s</span><span class="chip">Ollama</span><span class="chip">A100 · L40S</span><span class="chip">Semantic router</span><span class="chip">Data residency</span></div>
+          <div class="foot">
+            <a class="link" href="/writing/on-prem-inference-stack">Architecture note <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
-        <div class="meta-right">
-          <div class="stat">3</div>
-          <div class="stat-label">tiered routes,<br/>cost vs capability</div>
-        </div>
-      </div>
+      </article>
 
-      <!-- Generali Thailand -->
-      <div class="work-card reveal">
-        <div class="meta-left">
-          <span class="role">Lead</span>
-          <span class="date">2024</span>
+      <article class="wcard reveal">
+        <div class="thumb">
+          <div class="corner"><span class="pill">2024</span></div>
+          <div class="role">Lead</div>
+          <div class="big">94%</div>
+          <div class="cap">extraction accuracy, mixed-language docs</div>
         </div>
-        <div class="body-content">
+        <div class="body">
           <h3>Generali Thailand IDP Pipeline</h3>
-          <p>
-            Production document intelligence pipeline for Attending Physician Statements in mixed Thai-English text, including Buddhist-Era date handling and two completely different document classes (public-hospital OPD bundles and handwritten private-clinic forms). Three iterative prompt versions hardened against real-world OCR noise. Customer signed; the tiered routing pipeline is now a reusable asset in enterprise pitches.
-          </p>
-          <div class="tech">
-            <span>Qwen2.5-VL-72B</span><span>OCR-free</span><span>Multi-lingual</span><span>Insurance UW</span>
+          <p>Production document intelligence pipeline for Attending Physician Statements in mixed Thai-English text, including Buddhist-Era date handling and two completely different document classes (public-hospital OPD bundles and handwritten private-clinic forms). Three iterative prompt versions hardened against real-world OCR noise. Customer signed; the tiered routing pipeline is now a reusable asset in enterprise pitches.</p>
+          <div class="chips"><span class="chip">Qwen2.5-VL-72B</span><span class="chip">OCR-free</span><span class="chip">Multi-lingual</span><span class="chip">Insurance UW</span></div>
+          <div class="foot">
+            <a class="link" href="/writing/ocr-free-idp-thai">Case study <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <a href="/writing/ocr-free-idp-thai" class="cta">
-            Case study →
-          </a>
         </div>
-        <div class="meta-right">
-          <div class="stat">94%</div>
-          <div class="stat-label">extraction accuracy,<br/>mixed-language docs</div>
-        </div>
-      </div>
+      </article>
 
     </div>
   </div>
@@ -1330,273 +857,127 @@
 <section id="projects">
   <div class="container">
     <div class="section-head">
-      <div class="num">03 / Projects</div>
-      <h2>Everything on the <em>bench</em>.</h2>
+      <div class="label">03 / Projects</div>
+      <h2>Everything on the bench.</h2>
+      <p>What's being built now, what shipped at work, and the side builds that keep the evenings interesting.</p>
     </div>
 
-    <div class="proj-group">
-      <div class="proj-group-label">Building now</div>
-      <div class="repos">
-
-        <a class="repo proj" href="https://getvortic.com" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <span class="repo-name">vortic-contextlayer</span>
-            <span class="status building">Building</span>
-          </div>
-          <div class="repo-desc">Model-agnostic backend for conversation-over-MCP apps. One endpoint in front of 150+ MCP servers, encrypted OAuth vault, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot typescript"></span> TypeScript</div>
-            <div>2025 — now</div>
-            <div class="ext">getvortic.com ↗</div>
-          </div>
+    <div class="pgroup">
+      <div class="pgroup-head"><h3>Building now</h3><span class="count">4</span></div>
+      <div class="pgrid">
+        <a class="pcard reveal" href="https://getvortic.com" target="_blank" rel="noopener">
+          <div class="head"><span class="name">vortic-contextlayer</span><span class="pill live"><span class="dot" aria-hidden="true"></span>Building</span></div>
+          <p>Model-agnostic backend for conversation-over-MCP apps. One endpoint in front of 150+ MCP servers, encrypted OAuth vault, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits.</p>
+          <div class="meta"><span>TypeScript</span><span>2025 — now</span><span class="ext">getvortic.com ↗</span></div>
         </a>
-
-        <a class="repo proj" href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-            <span class="repo-name">companybrain</span>
-            <span class="status oss">Open source</span>
-          </div>
-          <div class="repo-desc">Permission-aware knowledge service: every chunk stays bound to the ACL of the system it came from, resolved against the asker on every query, excluded before ranking. Forked from qm, a 117k-line MIT agent harness.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot typescript"></span> TypeScript</div>
-            <div>2026</div>
-            <div class="ext">GitHub ↗</div>
-          </div>
+        <a class="pcard reveal" href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">
+          <div class="head"><span class="name">companybrain</span><span class="pill">Open source</span></div>
+          <p>Permission-aware knowledge service: every chunk stays bound to the ACL of the system it came from, resolved against the asker on every query, excluded before ranking. Forked from qm, a 117k-line MIT agent harness.</p>
+          <div class="meta"><span>TypeScript</span><span>2026</span><span class="ext">GitHub ↗</span></div>
         </a>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">claude-brain</span>
-            <span class="status personal">Personal</span>
-          </div>
-          <div class="repo-desc">A local markdown "super brain" kept current by a daily dream-weaver agent that reads session transcripts, files, mail and calendar, updates project and insight files, and writes the morning brief: stalled work resurfaced, trend radar, one growth lever.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Claude Code · Markdown</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">claude-brain</span><span class="pill">Personal</span></div>
+          <p>A local markdown "super brain" kept current by a daily dream-weaver agent that reads session transcripts, files, mail and calendar, updates project and insight files, and writes the morning brief: stalled work resurfaced, trend radar, one growth lever.</p>
+          <div class="meta"><span>Claude Code · Markdown</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">vlm-router</span>
-            <span class="status research">Research</span>
-          </div>
-          <div class="repo-desc">Natural-language router over four specialist VLMs — dots.ocr, GOT-OCR 2.0, Qwen3-VL-8B, GLM-4.1V-9B — scored on an 8-axis capability profile, with a Thompson-sampling bandit learning the routing from outcomes. Philippine government IDs, real scans, 4-bit on Colab.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">vlm-router</span><span class="pill">Research</span></div>
+          <p>Natural-language router over four specialist VLMs — dots.ocr, GOT-OCR 2.0, Qwen3-VL-8B, GLM-4.1V-9B — scored on an 8-axis capability profile, with a Thompson-sampling bandit learning the routing from outcomes. Philippine government IDs, real scans, 4-bit on Colab.</p>
+          <div class="meta"><span>Python</span><span>2026</span></div>
         </div>
-
       </div>
     </div>
 
-    <div class="proj-group">
-      <div class="proj-group-label">Shipped and prototyped at Neutrinos</div>
-      <div class="repos">
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">mcp-reference-integrations</span>
-            <span class="status shipped">Shipped</span>
-          </div>
-          <div class="repo-desc">Jira + Confluence MCP behind a travel-claims intake agent: full CRUD across seven tools, payable amounts, limits and exclusions computed from a schedule-of-benefits knowledge base. A second MCP for flight tracking. Surfaced four platform gaps straight into the backlog.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot python"></span> Docker · FastMCP</div>
-            <div>2026</div>
-          </div>
+    <div class="pgroup">
+      <div class="pgroup-head"><h3>Shipped and prototyped at Neutrinos</h3><span class="count">9</span></div>
+      <div class="pgrid">
+        <div class="pcard reveal">
+          <div class="head"><span class="name">mcp-reference-integrations</span><span class="pill dark">Shipped</span></div>
+          <p>Jira + Confluence MCP behind a travel-claims intake agent: full CRUD across seven tools, payable amounts, limits and exclusions computed from a schedule-of-benefits knowledge base. A second MCP for flight tracking. Surfaced four platform gaps straight into the backlog.</p>
+          <div class="meta"><span>Docker · FastMCP</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">asha-voice-claims</span>
-            <span class="status poc">POC</span>
-          </div>
-          <div class="repo-desc">Inbound call pipeline for claims: PSTN → STT → intent and policy-context retrieval → action → TTS. A relay WebSocket service on Twilio ConversationRelay, barge-in and VAD tuning, DPDP-aware handling of call data. Five-week phased build.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Twilio · WebSockets</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">asha-voice-claims</span><span class="pill">POC</span></div>
+          <p>Inbound call pipeline for claims: PSTN → STT → intent and policy-context retrieval → action → TTS. A relay WebSocket service on Twilio ConversationRelay, barge-in and VAD tuning, DPDP-aware handling of call data. Five-week phased build.</p>
+          <div class="meta"><span>Twilio · WebSockets</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">uw-agent-demo</span>
-            <span class="status demo">Demo</span>
-          </div>
-          <div class="repo-desc">Full new-business underwriting flow as a live pre-sales asset: a master orchestrator and eleven specialist agents, Supabase backend, Slack and Airtable human-in-the-loop referral, a synthetic product with realistic test cases and a prompt library.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Supabase · Slack · Airtable</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">uw-agent-demo</span><span class="pill">Demo</span></div>
+          <p>Full new-business underwriting flow as a live pre-sales asset: a master orchestrator and eleven specialist agents, Supabase backend, Slack and Airtable human-in-the-loop referral, a synthetic product with realistic test cases and a prompt library.</p>
+          <div class="meta"><span>Supabase · Slack · Airtable</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">uw-referral-pipeline</span>
-            <span class="status shipped">Shipped</span>
-          </div>
-          <div class="repo-desc">End to end, no glue: agent extraction → rules decision → case creation over the platform API, with a Postman collection that lets a technical audience trigger the whole thing live and a runbook covering objects, rules, workflow, agent call and the case run.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Rules · BPMN · Postman</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">uw-referral-pipeline</span><span class="pill dark">Shipped</span></div>
+          <p>End to end, no glue: agent extraction → rules decision → case creation over the platform API, with a Postman collection that lets a technical audience trigger the whole thing live and a runbook covering objects, rules, workflow, agent call and the case run.</p>
+          <div class="meta"><span>Rules · BPMN · Postman</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">responsible-ai-studio</span>
-            <span class="status poc">Prototype</span>
-          </div>
-          <div class="repo-desc">Whitelabel agent studio on a Flowise base with a Responsible AI tab: policy library, guardrail templates with one-click canvas insertion, and a compliance dashboard mapping every guardrail to EU AI Act, ISO 42001 and NIST AI RMF.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot typescript"></span> Flowise · React</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">responsible-ai-studio</span><span class="pill">Prototype</span></div>
+          <p>Whitelabel agent studio on a Flowise base with a Responsible AI tab: policy library, guardrail templates with one-click canvas insertion, and a compliance dashboard mapping every guardrail to EU AI Act, ISO 42001 and NIST AI RMF.</p>
+          <div class="meta"><span>Flowise · React</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">sovereign-inference</span>
-            <span class="status shipped">Offering</span>
-          </div>
-          <div class="repo-desc">In-country inference for the Middle East: model, storage and execution all in-region, a domain-specific model mix routed per request type through the harness, and the GPU unit economics — A100, L40S, AMD Instinct — worked through to a rate card.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Ollama · K3s · Data residency</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">sovereign-inference</span><span class="pill dark">Offering</span></div>
+          <p>In-country inference for the Middle East: model, storage and execution all in-region, a domain-specific model mix routed per request type through the harness, and the GPU unit economics — A100, L40S, AMD Instinct — worked through to a rate card.</p>
+          <div class="meta"><span>Ollama · K3s · Data residency</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">rules-engine-eval</span>
-            <span class="status research">Evaluation</span>
-          </div>
-          <div class="repo-desc">Whether an in-house, AI-assisted underwriting rules engine can replace or supplement a third-party engine, measured on straight-through processing for life applications.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Underwriting · STP</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">rules-engine-eval</span><span class="pill">Evaluation</span></div>
+          <p>Whether an in-house, AI-assisted underwriting rules engine can replace or supplement a third-party engine, measured on straight-through processing for life applications.</p>
+          <div class="meta"><span>Underwriting · STP</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">orion-presales-agent</span>
-            <span class="status shipped">Internal</span>
-          </div>
-          <div class="repo-desc">Live agentic pre-sales assistant with a Telegram front-end, later redeployed on OpenClaw. Built by the intern cohort I onboarded, with the training materials and sprint plans written for it.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot python"></span> Python · Telegram</div>
-            <div>2025</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">orion-presales-agent</span><span class="pill">Internal</span></div>
+          <p>Live agentic pre-sales assistant with a Telegram front-end, later redeployed on OpenClaw. Built by the intern cohort I onboarded, with the training materials and sprint plans written for it.</p>
+          <div class="meta"><span>Python · Telegram</span><span>2025</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">doc-authenticity-agents</span>
-            <span class="status shipped">Shipped</span>
-          </div>
-          <div class="repo-desc">LLM-based document authenticity and tamper-detection agents for the AI platform, plus an email triage and classification workflow for insurance claims.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> IDP · n8n</div>
-            <div>2025</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">doc-authenticity-agents</span><span class="pill dark">Shipped</span></div>
+          <p>LLM-based document authenticity and tamper-detection agents for the AI platform, plus an email triage and classification workflow for insurance claims.</p>
+          <div class="meta"><span>IDP · n8n</span><span>2025</span></div>
         </div>
-
       </div>
     </div>
 
-    <div class="proj-group">
-      <div class="proj-group-label">Side builds</div>
-      <div class="repos">
-
-        <a class="repo proj" href="https://github.com/divyajotsingh093/calorietracker" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-            <span class="repo-name">nourish</span>
-            <span class="status oss">Open source</span>
-          </div>
-          <div class="repo-desc">Two-week meal planner, calorie tracker, recipe book and grocery list for a household of two. Material 3, self-hosted variable fonts, five accent palettes. Everything lives in the browser — no account, no server, no data leaving the device.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot javascript"></span> JavaScript · PWA</div>
-            <div>2026</div>
-            <div class="ext">GitHub ↗</div>
-          </div>
+    <div class="pgroup">
+      <div class="pgroup-head"><h3>Side builds</h3><span class="count">6</span></div>
+      <div class="pgrid">
+        <a class="pcard reveal" href="https://github.com/divyajotsingh093/calorietracker" target="_blank" rel="noopener">
+          <div class="head"><span class="name">nourish</span><span class="pill">Open source</span></div>
+          <p>Two-week meal planner, calorie tracker, recipe book and grocery list for a household of two. Material 3, self-hosted variable fonts, five accent palettes. Everything lives in the browser — no account, no server, no data leaving the device.</p>
+          <div class="meta"><span>JavaScript · PWA</span><span>2026</span><span class="ext">GitHub ↗</span></div>
         </a>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">13f-research-dashboard</span>
-            <span class="status personal">Side</span>
-          </div>
-          <div class="repo-desc">Multi-fund investment research dashboard tracking 13F filings for Situational Awareness, Altimeter, Coatue and Light Street, with live news and a Monday / Wednesday / Friday review routine.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot typescript"></span> React</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">13f-research-dashboard</span><span class="pill">Side</span></div>
+          <p>Multi-fund investment research dashboard tracking 13F filings for Situational Awareness, Altimeter, Coatue and Light Street, with live news and a Monday / Wednesday / Friday review routine.</p>
+          <div class="meta"><span>React</span><span>2026</span></div>
         </div>
-
-        <div class="repo proj">
-          <div class="repo-head">
-            <span class="repo-name">iridium-earth</span>
-            <span class="status personal">Side</span>
-          </div>
-          <div class="repo-desc">A Three.js Earth with the Iridium NEXT constellation overhead — real TLEs, propagated with SGP4, rendered live.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot javascript"></span> Three.js</div>
-            <div>2026</div>
-          </div>
+        <div class="pcard reveal">
+          <div class="head"><span class="name">iridium-earth</span><span class="pill">Side</span></div>
+          <p>A Three.js Earth with the Iridium NEXT constellation overhead — real TLEs, propagated with SGP4, rendered live.</p>
+          <div class="meta"><span>Three.js</span><span>2026</span></div>
         </div>
-
-        <a class="repo proj" href="https://everycorner.in" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <span class="repo-name">everycorner.in</span>
-            <span class="status personal">Venture</span>
-          </div>
-          <div class="repo-desc">D2C Shopify store bringing HOTO-brand tools to India under Dash Impex — SEO, Google and Meta ads, Merchant Center compliance, the whole funnel run on evenings.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Shopify</div>
-            <div>2025 — now</div>
-            <div class="ext">everycorner.in ↗</div>
-          </div>
+        <a class="pcard reveal" href="https://everycorner.in" target="_blank" rel="noopener">
+          <div class="head"><span class="name">everycorner.in</span><span class="pill">Venture</span></div>
+          <p>D2C Shopify store bringing HOTO-brand tools to India under Dash Impex — SEO, Google and Meta ads, Merchant Center compliance, the whole funnel run on evenings.</p>
+          <div class="meta"><span>Shopify</span><span>2025 — now</span><span class="ext">everycorner.in ↗</span></div>
         </a>
-
-        <a class="repo proj" href="https://github.com/divyajotsingh093/divyajot-website" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-            <span class="repo-name">divyajot-website</span>
-            <span class="status oss">Open source</span>
-          </div>
-          <div class="repo-desc">This site. Static HTML with weekly auto-refreshed GitHub, Substack, LinkedIn and X feeds via GitHub Actions, an on-site essay builder with zero dependencies, and a weekly draft-post generator that never auto-publishes.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot python"></span> Python · HTML</div>
-            <div>2026</div>
-            <div class="ext">GitHub ↗</div>
-          </div>
+        <a class="pcard reveal" href="https://github.com/divyajotsingh093/divyajot-website" target="_blank" rel="noopener">
+          <div class="head"><span class="name">divyajot-website</span><span class="pill">Open source</span></div>
+          <p>This site. Static HTML with weekly auto-refreshed GitHub, Substack, LinkedIn and X feeds via GitHub Actions, an on-site essay builder with zero dependencies, and a weekly draft-post generator that never auto-publishes.</p>
+          <div class="meta"><span>Python · HTML</span><span>2026</span><span class="ext">GitHub ↗</span></div>
         </a>
-
-        <a class="repo proj" href="https://github.com/divyajotsingh093/presales-documents" target="_blank" rel="noopener">
-          <div class="repo-head">
-            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-            <span class="repo-name">presales-documents</span>
-            <span class="status oss">Open source</span>
-          </div>
-          <div class="repo-desc">A structured home for presales collateral: fill-in-the-blank templates for proposals, RFP responses, case studies, pricing, decks and discovery notes, with naming conventions that survive a team.</div>
-          <div class="repo-meta">
-            <div class="repo-lang"><span class="lang-dot neutral"></span> Markdown</div>
-            <div>2026</div>
-            <div class="ext">GitHub ↗</div>
-          </div>
+        <a class="pcard reveal" href="https://github.com/divyajotsingh093/presales-documents" target="_blank" rel="noopener">
+          <div class="head"><span class="name">presales-documents</span><span class="pill">Open source</span></div>
+          <p>A structured home for presales collateral: fill-in-the-blank templates for proposals, RFP responses, case studies, pricing, decks and discovery notes, with naming conventions that survive a team.</p>
+          <div class="meta"><span>Markdown</span><span>2026</span><span class="ext">GitHub ↗</span></div>
         </a>
-
       </div>
     </div>
 
     <div class="github-cta">
-      <a href="https://github.com/divyajotsingh093" target="_blank" rel="noopener" class="btn ghost">
-        View all on GitHub
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <a href="https://github.com/divyajotsingh093" target="_blank" rel="noopener" class="btn ghost">View all on GitHub
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
@@ -1606,72 +987,72 @@
 <section id="writing">
   <div class="container">
     <div class="section-head">
-      <div class="num">04 / Writing</div>
-      <h2>Notes from the <em>field</em>.</h2>
+      <div class="label">04 / Writing</div>
+      <h2>Notes from the field.</h2>
+      <p>Long-form on harnesses, coordination and what it takes to sell AI to a regulated buyer.</p>
     </div>
 
-    <div class="writing-sub">On Substack</div>
-    <div class="writing-list writing-substack">
-      <div class="writing-item reveal">
-        <div class="date">Aug 2026</div>
-        <div>
-          <h4><a href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener">1,151,139 tokens for one policy. Then we rebuilt the orchestration as a graph.</a></h4>
-          <div class="summary">One orchestrator, fifteen sub-agents, a harness moving work between them — and three things went wrong that turned out to be the same thing wearing different clothes.</div>
-        </div>
-        <div class="platform">Substack</div>
+    <div class="writing-grid">
+      <div>
+        <div class="wlist-head"><h3>On Substack</h3><a href="https://divyajot.substack.com" target="_blank" rel="noopener">Subscribe →</a></div>
+        <ul class="wlist">
+          <li class="reveal">
+            <div>
+              <h4><a href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener">1,151,139 tokens for one policy. Then we rebuilt the orchestration as a graph.</a></h4>
+              <div class="summary">One orchestrator, fifteen sub-agents, a harness moving work between them — and three things went wrong that turned out to be the same thing wearing different clothes.</div>
+              <div class="date">Aug 2026</div>
+            </div>
+            <span class="pill">Substack</span>
+          </li>
+          <li class="reveal">
+            <div>
+              <h4><a href="https://divyajot.substack.com/p/coordination-blindness" target="_blank" rel="noopener">Coordination Blindness</a></h4>
+              <div class="summary">Why partitioning context is the quiet killer of multi-agent systems — and why your evals won't catch it.</div>
+              <div class="date">Jun 2026</div>
+            </div>
+            <span class="pill">Substack</span>
+          </li>
+          <li class="reveal">
+            <div>
+              <h4><a href="https://divyajot.substack.com/p/the-system-of-action-why-close-the" target="_blank" rel="noopener">The System of Action: Why "Close the Books" Is Harder Than Any Model</a></h4>
+              <div class="summary">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.</div>
+              <div class="date">Jun 2026</div>
+            </div>
+            <span class="pill">Substack</span>
+          </li>
+          <li class="reveal">
+            <div>
+              <h4><a href="https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback" target="_blank" rel="noopener">Stop Tuning Prompts. Build the Feedback Loop.</a></h4>
+              <div class="summary">How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run.</div>
+              <div class="date">Feb 2026</div>
+            </div>
+            <span class="pill">Substack</span>
+          </li>
+          <li class="reveal">
+            <div>
+              <h4><a href="https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think" target="_blank" rel="noopener">Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.</a></h4>
+              <div class="summary">Six weeks of prompt rewrites moved nothing. Three weeks of fixing everything around the model took accuracy from 78 to 94 percent.</div>
+              <div class="date">Feb 2026</div>
+            </div>
+            <span class="pill">Substack</span>
+          </li>
+        </ul>
       </div>
-      <div class="writing-item reveal">
-        <div class="date">Jun 2026</div>
-        <div>
-          <h4><a href="https://divyajot.substack.com/p/coordination-blindness" target="_blank" rel="noopener">Coordination Blindness</a></h4>
-          <div class="summary">Why partitioning context is the quiet killer of multi-agent systems — and why your evals won't catch it.</div>
-        </div>
-        <div class="platform">Substack</div>
-      </div>
-      <div class="writing-item reveal">
-        <div class="date">Jun 2026</div>
-        <div>
-          <h4><a href="https://divyajot.substack.com/p/the-system-of-action-why-close-the" target="_blank" rel="noopener">The System of Action: Why "Close the Books" Is Harder Than Any Model</a></h4>
-          <div class="summary">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.</div>
-        </div>
-        <div class="platform">Substack</div>
-      </div>
-      <div class="writing-item reveal">
-        <div class="date">Feb 2026</div>
-        <div>
-          <h4><a href="https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback" target="_blank" rel="noopener">Stop Tuning Prompts. Build the Feedback Loop.</a></h4>
-          <div class="summary">How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run.</div>
-        </div>
-        <div class="platform">Substack</div>
-      </div>
-      <div class="writing-item reveal">
-        <div class="date">Feb 2026</div>
-        <div>
-          <h4><a href="https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think" target="_blank" rel="noopener">Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.</a></h4>
-          <div class="summary">Six weeks of prompt rewrites moved nothing. Three weeks of fixing everything around the model took accuracy from 78 to 94 percent.</div>
-        </div>
-        <div class="platform">Substack</div>
-      </div>
-    </div>
-    <div class="writing-more">
-      <a href="https://divyajot.substack.com" target="_blank" rel="noopener">Subscribe on Substack →</a>
-    </div>
 
-    <div class="writing-sub" style="margin-top: 48px;">Essays, whitepapers and case studies on this site</div>
-    <div class="writing-list" id="writing-list">
-      <!-- Populated from posts.json by the script below. Fallback shown if it fails to load. -->
-      <div class="writing-item reveal">
-        <div class="date">Jun 2026</div>
-        <div>
-          <h4><a href="/writing/loop-engineering">Loop Engineering: The Control Structure Under Every Agent</a></h4>
-          <div class="summary">Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time.</div>
-        </div>
-        <div class="platform">Essay</div>
+      <div>
+        <div class="wlist-head"><h3>Essays, whitepapers and case studies</h3><a href="/writing">All fourteen →</a></div>
+        <ul class="wlist" id="writing-list">
+          <!-- Populated from posts.json by the script below. Fallback shown if it fails to load. -->
+          <li class="reveal">
+            <div>
+              <h4><a href="/writing/loop-engineering">Loop Engineering: The Control Structure Under Every Agent</a></h4>
+              <div class="summary">Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time.</div>
+              <div class="date">Jun 2026</div>
+            </div>
+            <span class="pill">Essay</span>
+          </li>
+        </ul>
       </div>
-    </div>
-
-    <div class="writing-more">
-      <a href="/writing">All fourteen →</a>
     </div>
   </div>
 </section>
@@ -1680,87 +1061,58 @@
 <section id="skills">
   <div class="container">
     <div class="section-head">
-      <div class="num">05 / Skills</div>
-      <h2>What I bring to <em>the room</em>.</h2>
+      <div class="label">05 / Skills</div>
+      <h2>What I bring to the room.</h2>
     </div>
 
-    <div class="skills-grid">
-      <div class="skill-block">
-        <div class="skill-label">Agents · Harnesses</div>
-        <div class="skill-items">
-          Multi-agent orchestration, agent graphs with shared state, loop engineering, harness engineering, planner-executor-critic, verifiable handoffs, MCP servers and clients, tool use, RAG, RLVR, eval-driven development, structured generation, guardrails, HITL patterns
-        </div>
+    <div class="skills-panel">
+      <div class="skill reveal">
+        <h3>Agents · Harnesses</h3>
+        <p>Multi-agent orchestration, agent graphs with shared state, loop engineering, harness engineering, planner-executor-critic, verifiable handoffs, MCP servers and clients, tool use, RAG, RLVR, eval-driven development, structured generation, guardrails, HITL patterns</p>
       </div>
+      <div class="skill reveal">
+        <h3>Models</h3>
+        <p>Claude, GPT, Gemini, Qwen2.5 / Qwen3-VL, QwQ-32B, GLM, Kimi, open-weight routing, semantic routers, fine-tuning trade-offs, token economics, self-host vs API math</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Document &amp; Vision AI</h3>
+        <p>IDP, Qwen2.5-VL-72B, dots.ocr, GOT-OCR 2.0, Donut, OCR-free extraction, multi-lingual and handwritten pipelines, locale handling (Buddhist-Era, Thai-English mixed), authenticity and tamper signals</p>
+      </div>
+      <div class="skill reveal">
+        <h3>AI Infrastructure</h3>
+        <p>On-prem and in-country LLM, Ollama, OpenRouter, K3s, Docker, Traefik, bare-metal A100 / L40S, sentence-transformer routers, pgvector, vector DBs, Twilio ConversationRelay, cost-latency-privacy trade-offs</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Product · Pre-Sales</h3>
+        <p>0→1 launches, technical discovery, POV design, value-based selling, RFP/RFI defence, competitive displacement (Guidewire, Duck Creek, Pega, Appian, Mendix), analyst relations, C-level engagement, GTM playbooks</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Engineering</h3>
+        <p>Python, TypeScript, SQL, FastAPI, Fastify, REST + GraphQL, Supabase, Postgres, microservices, BPMN, saga / compensation patterns, n8n, Playwright, GitHub Actions</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Cloud · Data</h3>
+        <p>AWS (Solutions Architect cert), Azure (Data Scientist DP-100), GCP (Associate Cloud Engineer), Redshift, Cosmos DB, Vertex AI, Apache Spark, Informatica, Tableau (Desktop Qualified Associate)</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Governance · Compliance</h3>
+        <p>Responsible AI, EU AI Act, ISO 42001, NIST AI RMF, data residency and inference sovereignty, MAS / IRDAI awareness, DPDP, audit trails</p>
+      </div>
+      <div class="skill reveal">
+        <h3>Domain</h3>
+        <p>Insurance (underwriting, claims, endorsements, policy admin, takaful), eBaoLI, eBaoGI, BIX, SingPass, fraud + identity resolution, retail banking, AML</p>
+      </div>
+    </div>
 
-      <div class="skill-block">
-        <div class="skill-label">Models</div>
-        <div class="skill-items">
-          Claude, GPT, Gemini, Qwen2.5 / Qwen3-VL, QwQ-32B, GLM, Kimi, open-weight routing, semantic routers, fine-tuning trade-offs, token economics, self-host vs API math
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">Document & Vision AI</div>
-        <div class="skill-items">
-          IDP, Qwen2.5-VL-72B, dots.ocr, GOT-OCR 2.0, Donut, OCR-free extraction, multi-lingual and handwritten pipelines, locale handling (Buddhist-Era, Thai-English mixed), authenticity and tamper signals
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">AI Infrastructure</div>
-        <div class="skill-items">
-          On-prem and in-country LLM, Ollama, OpenRouter, K3s, Docker, Traefik, bare-metal A100 / L40S, sentence-transformer routers, pgvector, vector DBs, Twilio ConversationRelay, cost-latency-privacy trade-offs
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">Product · Pre-Sales</div>
-        <div class="skill-items">
-          0→1 launches, technical discovery, POV design, value-based selling, RFP/RFI defence, competitive displacement (Guidewire, Duck Creek, Pega, Appian, Mendix), analyst relations, C-level engagement, GTM playbooks
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">Engineering</div>
-        <div class="skill-items">
-          Python, TypeScript, SQL, FastAPI, Fastify, REST + GraphQL, Supabase, Postgres, microservices, BPMN, saga / compensation patterns, n8n, Playwright, GitHub Actions
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">Cloud · Data</div>
-        <div class="skill-items">
-          AWS (Solutions Architect cert), Azure (Data Scientist DP-100), GCP (Associate Cloud Engineer), Redshift, Cosmos DB, Vertex AI, Apache Spark, Informatica, Tableau (Desktop Qualified Associate)
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="skill-label">Governance · Compliance</div>
-        <div class="skill-items">
-          Responsible AI, EU AI Act, ISO 42001, NIST AI RMF, data residency and inference sovereignty, MAS / IRDAI awareness, DPDP, audit trails
-        </div>
-      </div>
-
-      <div class="skill-block full-span">
-        <div class="skill-label">Domain</div>
-        <div class="skill-items">
-          Insurance (underwriting, claims, endorsements, policy admin, takaful), eBaoLI, eBaoGI, BIX, SingPass, fraud + identity resolution, retail banking, AML
-        </div>
-      </div>
-
-      <div class="skill-block full-span">
-        <div class="skill-label">Interests</div>
-        <div class="interests">
-          <span>Eval design</span>
-          <span>Harness engineering</span>
-          <span>Coordination substrates</span>
-          <span>Open-weight models</span>
-          <span>Insurance economics</span>
-          <span>Hyrox</span>
-          <span>Equity markets · 13Fs</span>
-          <span>Long-form writing</span>
-        </div>
-      </div>
+    <div class="interests" aria-label="Interests">
+      <span class="chip">Eval design</span>
+      <span class="chip">Harness engineering</span>
+      <span class="chip">Coordination substrates</span>
+      <span class="chip">Open-weight models</span>
+      <span class="chip">Insurance economics</span>
+      <span class="chip">Hyrox</span>
+      <span class="chip">Equity markets · 13Fs</span>
+      <span class="chip">Long-form writing</span>
     </div>
   </div>
 </section>
@@ -1769,42 +1121,77 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="label">Let's talk</div>
-    <h2>
-      Have a <em>hard</em> problem<br/>
-      sitting on your desk?
-    </h2>
-    <a href="mailto:divyajotsingh093@gmail.com" class="email">divyajotsingh093@gmail.com</a>
+    <h2>Have a hard problem<span class="faded">sitting on your desk?</span></h2>
+    <div class="actions">
+      <a href="mailto:divyajotsingh093@gmail.com" class="btn primary">divyajotsingh093@gmail.com</a>
+      <a href="https://linkedin.com/in/divyajot-singh-06b78559" target="_blank" rel="noopener" class="btn ghost" data-channel="linkedin">Connect on LinkedIn</a>
+    </div>
     <div class="socials" id="contact-socials">
-      <a href="https://linkedin.com/in/divyajot-singh-06b78559" target="_blank" rel="noopener" data-channel="linkedin">LinkedIn</a>
-      <span>·</span>
       <a href="https://github.com/divyajotsingh093" target="_blank" rel="noopener" data-channel="github">GitHub</a>
-      <span>·</span>
       <a href="https://x.com/divyjotsingh" target="_blank" rel="noopener" data-channel="x">X</a>
-      <span>·</span>
       <a href="https://divyajot.substack.com" target="_blank" rel="noopener" data-channel="substack">Substack</a>
-      <span>·</span>
       <a href="https://getvortic.com" target="_blank" rel="noopener">Vortic</a>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
-  <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+  <div class="container row">
     <div>Divyajot Singh · Singapore · 2026</div>
     <div>Built carefully · No tracking · No nonsense</div>
   </div>
 </footer>
 
 <script>
-  // Hide any time-boxed notice once its data-until date has passed.
-  document.querySelectorAll('[data-until]').forEach(function (el) {
-    var until = new Date(el.getAttribute('data-until'));
+  // ---- Nav: shadow on scroll, mobile menu, theme toggle ----
+  (function () {
+    var nav = document.getElementById("nav");
+    var onScroll = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+    var btn = document.getElementById("menu-btn");
+    var menu = document.getElementById("mobile-menu");
+    function setMenu(open) {
+      menu.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+    btn.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
+    menu.addEventListener("click", function (e) { if (e.target.tagName === "A") setMenu(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.classList.contains("open")) { setMenu(false); btn.focus(); } });
+
+    var toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", function () {
+      var root = document.documentElement;
+      var explicit = root.getAttribute("data-theme");
+      var systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var isDark = explicit ? explicit === "dark" : systemDark;
+      var next = isDark ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  })();
+
+  // ---- Hide any time-boxed notice once its data-until date has passed ----
+  document.querySelectorAll("[data-until]").forEach(function (el) {
+    var until = new Date(el.getAttribute("data-until"));
     if (!isNaN(until) && Date.now() > until.getTime()) el.remove();
   });
 
-  // Load dynamic data and populate the Latest section + social URL overrides.
-  // Fails gracefully if data.json is missing or invalid — the site still works.
+  // ---- Scroll-in reveal (opacity + transform only; content visible without JS) ----
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // ---- Latest activity from data.json (fails gracefully) ----
   (async function () {
     function relativeTime(isoOrRfc) {
       if (!isoOrRfc) return "";
@@ -1820,13 +1207,11 @@
       if (days < 365) return Math.floor(days / 30) + "mo ago";
       return Math.floor(days / 365) + "y ago";
     }
-
     function escape(s) {
       return String(s || "").replace(/[&<>"']/g, function (c) {
         return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
       });
     }
-
     // Truncate at a word boundary so feed titles never end mid-word.
     function clip(s, n) {
       s = String(s || "").trim();
@@ -1836,7 +1221,6 @@
       if (sp > n * 0.6) cut = cut.slice(0, sp);
       return cut.replace(/[\s,.;:—–-]+$/, "") + "…";
     }
-
     function renderColumn(title, items, opts = {}) {
       const { badge, limit = 4, fields } = opts;
       const safe = (items || []).slice(0, limit);
@@ -1844,94 +1228,49 @@
         ? `<ul>${safe.map((it) => fields(it)).join("")}</ul>`
         : `<div class="empty">No recent activity</div>`;
       const badgeHtml = badge ? `<span class="badge">${escape(badge)}</span>` : "";
-      return `
-        <div class="latest-col">
-          <div class="col-head">${escape(title)} ${badgeHtml}</div>
-          ${inner}
-        </div>`;
+      return `<div class="latest-col"><div class="col-head">${escape(title)} ${badgeHtml}</div>${inner}</div>`;
     }
-
     try {
       const res = await fetch("data.json", { cache: "no-cache" });
       if (!res.ok) throw new Error("data.json not ok");
       const data = await res.json();
-
-      // Update social URLs if present
       if (data.social) {
-        document.querySelectorAll('[data-channel]').forEach(a => {
-          const ch = a.getAttribute('data-channel');
-          if (data.social[ch]) a.setAttribute('href', data.social[ch]);
+        document.querySelectorAll("[data-channel]").forEach((a) => {
+          const ch = a.getAttribute("data-channel");
+          if (data.social[ch]) a.setAttribute("href", data.social[ch]);
         });
       }
-
-      // Last updated badge
       const updated = data._meta && data._meta.last_updated;
-      const updatedEl = document.getElementById('latest-updated');
-      if (updatedEl) {
-        if (updated) {
-          updatedEl.textContent = "Refreshed " + relativeTime(updated);
-        } else {
-          updatedEl.textContent = "";
-        }
-      }
-
-      // Render the four columns
-      const grid = document.getElementById('latest-grid');
+      const updatedEl = document.getElementById("latest-updated");
+      if (updatedEl) updatedEl.textContent = updated ? "Refreshed " + relativeTime(updated) : "";
+      const grid = document.getElementById("latest-grid");
       if (!grid) return;
-
       const f = data.feeds || {};
-
       const ghHtml = renderColumn("GitHub", f.github_commits, {
-        badge: "commits + PRs",
-        limit: 4,
-        fields: (c) => `
-          <li>
-            <a href="${escape(c.url)}" target="_blank" rel="noopener">${escape(c.title)}</a>
-            <span class="meta">${escape(c.repo || "")} ${c.sha ? "· " + escape(c.sha) : ""} ${c.date ? "· " + relativeTime(c.date) : ""}</span>
-          </li>`,
+        badge: "commits", limit: 4,
+        fields: (c) => `<li><a href="${escape(c.url)}" target="_blank" rel="noopener">${escape(clip(c.title, 90))}</a><span class="meta">${escape((c.repo || "").replace("divyajotsingh093/", ""))}${c.date ? " · " + relativeTime(c.date) : ""}</span></li>`,
       });
-
       const suHtml = renderColumn("Substack", f.substack_posts, {
-        badge: "posts",
-        limit: 3,
-        fields: (p) => `
-          <li>
-            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(p.title)}</a>
-            <span class="meta">${p.date ? relativeTime(p.date) : ""}</span>
-          </li>`,
+        badge: "posts", limit: 3,
+        fields: (p) => `<li><a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 90))}</a><span class="meta">${p.date ? relativeTime(p.date) : ""}</span></li>`,
       });
-
       const liHtml = renderColumn("LinkedIn", f.linkedin_posts, {
-        badge: "posts",
-        limit: 4,
-        fields: (p) => `
-          <li>
-            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 120))}</a>
-            <span class="meta">${p.date ? relativeTime(p.date) : ""}</span>
-          </li>`,
+        badge: "posts", limit: 4,
+        fields: (p) => `<li><a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 110))}</a><span class="meta">${p.date ? relativeTime(p.date) : ""}</span></li>`,
       });
-
       const xHtml = renderColumn("X", f.x_posts, {
-        badge: "posts",
-        limit: 4,
-        fields: (p) => `
-          <li>
-            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 120))}</a>
-            <span class="meta">${p.date ? relativeTime(p.date) : ""}</span>
-          </li>`,
+        badge: "posts", limit: 4,
+        fields: (p) => `<li><a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 110))}</a><span class="meta">${p.date ? relativeTime(p.date) : ""}</span></li>`,
       });
-
       grid.innerHTML = ghHtml + suHtml + liHtml + xHtml;
     } catch (err) {
-      // Hide the section entirely if data.json fails — site remains clean.
-      const section = document.querySelector('.latest');
-      if (section) section.style.display = 'none';
+      const section = document.querySelector(".latest");
+      if (section) section.style.display = "none";
       console.warn("Latest activity failed to load:", err);
     }
   })();
 
-  // Populate the Writing section from posts.json (on-site essays/whitepapers).
-  // Leaves the hardcoded fallback in place if the index can't be loaded.
+  // ---- Writing list from posts.json (on-site essays) ----
   (async function () {
     function esc(s) {
       return String(s || "").replace(/[&<>"']/g, function (c) {
@@ -1943,25 +1282,28 @@
       const d = new Date(v);
       return isNaN(d) ? esc(v) : d.toLocaleString("en-US", { month: "short", year: "numeric" });
     }
+    function typeLabel(t) {
+      t = (t || "essay").replace(/-/g, " ");
+      return t.charAt(0).toUpperCase() + t.slice(1);
+    }
     try {
       const res = await fetch("posts.json", { cache: "no-cache" });
       if (!res.ok) throw new Error("posts.json not ok");
       const data = await res.json();
-      const posts = (data.posts || []).slice(0, 6);
+      const posts = (data.posts || []).slice(0, 5);
       if (!posts.length) return;
       const list = document.getElementById("writing-list");
       if (!list) return;
       list.innerHTML = posts.map((p) => `
-        <div class="writing-item reveal">
-          <div class="date">${fmtDate(p.date)}</div>
+        <li class="reveal in">
           <div>
             <h4><a href="${esc(p.url)}">${esc(p.title)}</a></h4>
             <div class="summary">${esc(p.subtitle || "")}</div>
+            <div class="date">${fmtDate(p.date)}</div>
           </div>
-          <div class="platform">${esc((p.type || "essay").charAt(0).toUpperCase() + (p.type || "essay").slice(1))}</div>
-        </div>`).join("");
+          <span class="pill">${esc(typeLabel(p.type))}</span>
+        </li>`).join("");
     } catch (err) {
-      // Keep the static fallback already in the markup.
       console.warn("Writing list failed to load:", err);
     }
   })();
