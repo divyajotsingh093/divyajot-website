@@ -88,6 +88,50 @@ Once everything is configured, trigger each workflow manually to make sure they 
 
 If anything fails, the run log shows exactly what went wrong (missing variable, RSS feed unreachable, API key issue, etc).
 
+## Posting to LinkedIn → site updates itself
+
+LinkedIn has no public API or webhook for personal posts, so the site can't *see* a new post on its own.
+Instead there is a one-tap path: hand it the post's URL and everything else is automatic — the
+workflow reads the post's public page for the opening lines, dates it from the activity id, merges it
+into `data.json` (newest first, deduplicated, capped at 10), commits, and Vercel redeploys within about
+a minute. Nothing is invented: if the text can't be read, the entry gets a placeholder title you can fix.
+
+Three ways to trigger it — pick whichever is closest to hand:
+
+**1. GitHub app or website (no setup).** Repo → Actions → *Add LinkedIn post* → *Run workflow* →
+paste the URL → Run. Works from the GitHub mobile app.
+
+**2. Share-sheet Shortcut (iPhone / Mac, one tap).** Build once in the Shortcuts app:
+
+1. Create a fine-grained personal access token at GitHub → Settings → Developer settings →
+   Fine-grained tokens. Repository access: *Only select repositories* → `divyajot-website`.
+   Permissions: *Contents → Read and write* (that is all `repository_dispatch` needs). Copy it once.
+2. New Shortcut named **Add to site**. Enable *Show in Share Sheet*, accept **URLs**.
+3. Action **Get Contents of URL**:
+   - URL: `https://api.github.com/repos/divyajotsingh093/divyajot-website/dispatches`
+   - Method: `POST`
+   - Headers: `Authorization: Bearer <your token>` · `Accept: application/vnd.github+json` ·
+     `X-GitHub-Api-Version: 2022-11-28`
+   - Request Body (JSON): `event_type` = `linkedin-post`; `client_payload` = dictionary with
+     `post_url` = *Shortcut Input*
+4. Action **Show Notification**: "Sent to site".
+
+Then, on any LinkedIn post: Share → *Add to site*. (Only your own posts make sense here — the entry
+is written under your name.)
+
+**3. Terminal on the Mac:**
+
+```bash
+gh workflow run add-linkedin-post.yml -f post_url="https://www.linkedin.com/posts/…"
+# optional one-line summary instead of the post's opening lines:
+gh workflow run add-linkedin-post.yml -f post_url="…" -f title="Loop engineering: …"
+```
+
+Locally the same script runs without committing: `python3 scripts/add_linkedin_post.py --url … --dry-run`.
+
+Accepted URL shapes: `linkedin.com/posts/…-activity-<id>-…` (what the app shares),
+`linkedin.com/feed/update/urn:li:activity:<id>/`, `urn:li:share:` / `urn:li:ugcPost:` ids, and `lnkd.in` short links.
+
 ## Schedule
 
 Both workflows run weekly on **Sunday 00:00 Singapore time (Saturday 16:00 UTC)**:
@@ -161,11 +205,13 @@ Total: under $1/month.
 ├── drafts/                             # LLM-generated drafts (review before publishing)
 │   └── .gitkeep
 ├── scripts/
-│   ├── refresh_feeds.py                # pulls GH + Substack + LinkedIn + X
+│   ├── refresh_feeds.py                # pulls GH + Substack + LinkedIn + X (merges, never overwrites)
+│   ├── add_linkedin_post.py            # one LinkedIn post URL → data.json entry
 │   └── generate_draft.py               # generates a weekly draft
 └── .github/
     └── workflows/
         ├── refresh-feed.yml            # cron: weekly feed refresh
+        ├── add-linkedin-post.yml       # on demand: add one LinkedIn post (Shortcut / app / gh)
         └── draft-post.yml              # cron: weekly draft generation
 ```
 

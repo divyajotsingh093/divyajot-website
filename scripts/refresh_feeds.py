@@ -349,13 +349,13 @@ def main():
     # Union by URL, newest first, capped at a sensible size per feed.
     feeds = data.setdefault("feeds", {})
     if gh:
-        feeds["github_commits"] = merge_items(feeds.get("github_commits"), gh, cap=max(gh_limit, 8))
+        feeds["github_commits"] = merge_items(feeds.get("github_commits"), gh, cap=max(gh_limit, 10))
     if su:
-        feeds["substack_posts"] = merge_items(feeds.get("substack_posts"), su, cap=max(su_limit, 8))
+        feeds["substack_posts"] = merge_items(feeds.get("substack_posts"), su, cap=max(su_limit, 10))
     if li:
-        feeds["linkedin_posts"] = merge_items(feeds.get("linkedin_posts"), li, cap=max(li_limit, 8))
+        feeds["linkedin_posts"] = merge_items(feeds.get("linkedin_posts"), li, cap=max(li_limit, 10))
     if xs:
-        feeds["x_posts"] = merge_items(feeds.get("x_posts"), xs, cap=max(x_limit, 8))
+        feeds["x_posts"] = merge_items(feeds.get("x_posts"), xs, cap=max(x_limit, 10))
 
     f = data["feeds"]
     print(f"  pulled: gh={len(gh)} substack={len(su)} linkedin={len(li)} x={len(xs)} "

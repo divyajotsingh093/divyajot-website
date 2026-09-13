@@ -11,6 +11,11 @@ on:
 permissions:
   contents: write
 
+# Share a lock with the "Add LinkedIn post" workflow so data.json commits never race.
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest

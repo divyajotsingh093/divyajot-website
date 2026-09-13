@@ -1,0 +1,74 @@
+name: Add LinkedIn post
+
+# Instant "I just posted on LinkedIn" → site update.
+# Trigger it any of three ways (see README → "Posting to LinkedIn"):
+#   • GitHub app / website: Actions → "Add LinkedIn post" → Run workflow → paste the URL
+#   • iOS/macOS Shortcut from the share sheet (repository_dispatch with a fine-grained token)
+#   • Terminal:  gh workflow run add-linkedin-post.yml -f post_url="https://…"
+# The script reads the post's public page for the text, dates it from the activity id,
+# merges it into data.json, and the commit below makes Vercel redeploy within ~1 minute.
+on:
+  workflow_dispatch:
+    inputs:
+      post_url:
+        description: "LinkedIn post URL (any shape: linkedin.com/posts/…, feed/update/urn:li:activity:…, lnkd.in/…)"
+        required: true
+        type: string
+      title:
+        description: "Optional one-line summary (leave blank to use the post's own opening lines)"
+        required: false
+        type: string
+        default: ""
+  repository_dispatch:
+    types: [linkedin-post]
+
+permissions:
+  contents: write
+
+# Never let two site-data commits race each other (this, the weekly refresh, the posts build).
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Add the post to data.json
+        id: add
+        env:
+          POST_URL: ${{ github.event.inputs.post_url || github.event.client_payload.post_url }}
+          POST_TITLE: ${{ github.event.inputs.title || github.event.client_payload.title }}
+        run: |
+          set +e
+          python scripts/add_linkedin_post.py --url "$POST_URL" --title "$POST_TITLE"
+          code=$?
+          set -e
+          if [[ $code -eq 3 ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Post already listed — nothing to commit."
+          elif [[ $code -ne 0 ]]; then
+            exit $code
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push
+        if: steps.add.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git commit -m "feeds: add LinkedIn post $(date -u +%Y-%m-%d)"
+          # Retry once on a race with another push.
+          git push || (git pull --rebase origin main && git push)
+          echo "Committed. Vercel will redeploy from main."
