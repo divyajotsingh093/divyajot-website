@@ -1,7 +1,7 @@
 {
   "_meta": {
     "last_updated": "2026-09-12T18:00:33.461095+00:00",
-    "note": "Auto-regenerated weekly by .github/workflows/refresh-feed.yml. Edit `social` and `pinned_work` directly — those are not overwritten."
+    "note": "Feeds auto-regenerated weekly by .github/workflows/refresh-feed.yml (merged with existing items, deduped by URL). Edit `social` and `pinned_work` directly — those are never overwritten."
   },
   "social": {
     "x": "https://x.com/divyjotsingh",
@@ -63,30 +63,67 @@
         "title": "Coordination Blindness",
         "url": "https://divyajot.substack.com/p/coordination-blindness",
         "date": "Mon, 22 Jun 2026 16:58:31 GMT",
-        "summary": "Why partitioning context is the quiet killer of multi-agent systems &#8212; and why your evals won't catch it."
+        "summary": "Why partitioning context is the quiet killer of multi-agent systems — and why your evals won't catch it."
       },
       {
         "title": "The System of Action: Why \"Close the Books\" Is Harder Than Any Model",
         "url": "https://divyajot.substack.com/p/the-system-of-action-why-close-the",
         "date": "Sun, 07 Jun 2026 07:16:51 GMT",
-        "summary": "An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between &#8212; and the demo where the right answer was to stop."
+        "summary": "An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop."
+      },
+      {
+        "title": "Stop Tuning Prompts. Build the Feedback Loop.",
+        "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
+        "date": "Mon, 16 Feb 2026 19:39:53 GMT",
+        "summary": "How RLVR turns static agent pipelines into systems that get better on every run."
+      },
+      {
+        "title": "Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.",
+        "url": "https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think",
+        "date": "Sat, 14 Feb 2026 10:38:09 GMT",
+        "summary": "The architecture nobody talks about behind LLMs that actually work in production."
       }
     ],
     "linkedin_posts": [
       {
+        "title": "ITC Vegas, Sept 29 – Oct 1, Booth #3018 — happy to talk through the agentic stack we've been running on real insurance workflows at Neutrinos.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7503302693537349632/",
+        "date": "2026-09-09T04:06:06Z"
+      },
+      {
+        "title": "The Self-Harness paper: mine failure signatures, propose minimal harness edits, validate on held-out splits. Once an agent can rewrite its own scaffolding, permission scope becomes architecture.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7503135698288562176/",
+        "date": "2026-09-08T17:02:31Z"
+      },
+      {
+        "title": "On the METR/Redwood report: 1,200 agents coordinating through a shared package-manager cache. None of it needed a smarter model — it needed a shared cache and a scorer worth gaming.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7500972971889704960/",
+        "date": "2026-09-02T17:48:37Z"
+      },
+      {
+        "title": "13 sub-agents, 1.2M+ tokens for one underwriting case. Rebuilt as an agent graph with one shared state: 418,209 tokens and ~80% lower latency per call. The harness is most of the story.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7491385241207496704/",
+        "date": "2026-08-07T06:50:24Z"
+      },
+      {
+        "title": "The OpenAI ExploitGym incident: models treated a sandbox limit as a puzzle, chained into Hugging Face production — and the forensics had to run on GLM 5.2 because commercial guardrails refused.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7485920459666898944/",
+        "date": "2026-07-23T04:55:19Z"
+      },
+      {
+        "title": "Kimi K3 and the self-hosting math: \"open weights are free\" is the most expensive sentence in enterprise AI. You don't commit to a model anymore — you commit to the layer that routes between them.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7484879664243531777/",
+        "date": "2026-07-20T07:59:34Z"
+      },
+      {
+        "title": "Coordination blindness: every agent passes its eval and the system still ships the wrong answer. At 95% fidelity per handoff, five hops leaves you around 77%.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7474857756609363968/",
+        "date": "2026-06-22T16:16:05Z"
+      },
+      {
         "title": "Loop engineering: at 95% success per step, a 20-step task finishes correctly only ~36% of the time. Every point you claw back lives in the loop.",
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7472137920653578242/",
         "date": "2026-06-15T04:08:25Z"
-      },
-      {
-        "title": "The models have converged. Intelligence is becoming a utility — defensibility has moved one layer down, to coordination.",
-        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7469295227850149888/",
-        "date": "2026-06-07T07:52:35Z"
-      },
-      {
-        "title": "\"AI agent\" is the most overused word in enterprise tech right now — and the most misunderstood. The real control surface is the harness.",
-        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7451479616646516737/",
-        "date": "2026-04-19T03:59:42Z"
       }
     ],
     "x_posts": [
@@ -109,10 +146,16 @@
   },
   "pinned_work": [
     {
+      "title": "1,151,139 tokens for one policy. Then we rebuilt the orchestration as a graph.",
+      "url": "https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then",
+      "platform": "Substack",
+      "date": "2026-08-07"
+    },
+    {
       "title": "Stop Tuning Prompts. Build the Feedback Loop.",
       "url": "https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback",
       "platform": "Substack",
-      "date": "2026"
+      "date": "2026-02-16"
     }
   ]
 }

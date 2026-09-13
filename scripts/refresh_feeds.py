@@ -281,6 +281,35 @@ def pull_rss(url, limit):
     return parse_rss(raw, limit)
 
 
+def _item_ts(item):
+    """Best-effort timestamp for sorting. Accepts ISO 8601 or RFC 2822 dates."""
+    raw = (item or {}).get("date") or ""
+    if not raw:
+        return 0.0
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00")).timestamp()
+    except ValueError:
+        pass
+    try:
+        from email.utils import parsedate_to_datetime
+        return parsedate_to_datetime(raw).timestamp()
+    except (TypeError, ValueError, IndexError):
+        return 0.0
+
+
+def merge_items(existing, fresh, cap=8):
+    """Union of existing + fresh items, deduped by URL (fresh wins), newest first."""
+    by_url = {}
+    for it in (existing or []):
+        if it and it.get("url"):
+            by_url[it["url"]] = it
+    for it in (fresh or []):
+        if it and it.get("url"):
+            by_url[it["url"]] = it
+    merged = sorted(by_url.values(), key=_item_ts, reverse=True)
+    return merged[:cap]
+
+
 def main():
     print(f"[refresh] starting at {datetime.now(timezone.utc).isoformat()}")
 
@@ -315,14 +344,18 @@ def main():
     li = pull_rss(li_rss, li_limit) if li_rss else []
     xs = pull_rss(x_rss, x_limit) if x_rss else []
 
+    # Merge rather than replace: a feed that lags (RSS.app can sit on stale
+    # LinkedIn items for weeks) must not overwrite newer, hand-curated entries.
+    # Union by URL, newest first, capped at a sensible size per feed.
+    feeds = data.setdefault("feeds", {})
     if gh:
-        data["feeds"]["github_commits"] = gh
+        feeds["github_commits"] = merge_items(feeds.get("github_commits"), gh, cap=max(gh_limit, 8))
     if su:
-        data["feeds"]["substack_posts"] = su
+        feeds["substack_posts"] = merge_items(feeds.get("substack_posts"), su, cap=max(su_limit, 8))
     if li:
-        data["feeds"]["linkedin_posts"] = li
+        feeds["linkedin_posts"] = merge_items(feeds.get("linkedin_posts"), li, cap=max(li_limit, 8))
     if xs:
-        data["feeds"]["x_posts"] = xs
+        feeds["x_posts"] = merge_items(feeds.get("x_posts"), xs, cap=max(x_limit, 8))
 
     f = data["feeds"]
     print(f"  pulled: gh={len(gh)} substack={len(su)} linkedin={len(li)} x={len(xs)} "

@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Divyajot Singh — Applied AI, Agentic Systems, APAC</title>
-<meta name="description" content="Customer-facing AI and platform leader in Singapore. Building Vortic. Currently Head of Product, AI Platform at Neutrinos." />
+<title>Divyajot Singh — AI Product &amp; Solutions Architect, Singapore</title>
+<meta name="description" content="AI Product &amp; Solutions Architect in Singapore. Designing and shipping governed AI systems, from prototype to production. Global Head of Pre Sales at Neutrinos; building Vortic and Company Brain." />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Divyajot Singh — Applied AI, Agentic Systems" />
-<meta property="og:description" content="Customer-facing AI and platform leader in Singapore. Building Vortic." />
+<meta property="og:title" content="Divyajot Singh — AI Product &amp; Solutions Architect" />
+<meta property="og:description" content="Designing and shipping governed AI systems, from prototype to production. Neutrinos · Vortic · Company Brain." />
+<meta property="og:url" content="https://divyajot-website.vercel.app/" />
 <meta property="og:type" content="website" />
 
 <!-- Fonts -->
@@ -561,6 +562,7 @@
   .repo .lang-dot.javascript { background: #f7df1e; }
   .repo .lang-dot.go { background: #00add8; }
   .repo .lang-dot.rust { background: #dea584; }
+  .repo .lang-dot.neutral { background: var(--text-dim); }
 
   .github-cta {
     margin-top: 36px;
@@ -905,6 +907,61 @@
     gap: 16px;
   }
 
+  /* ================= PROJECTS (grouped cards) ================= */
+  .proj-group { margin-bottom: 44px; }
+  .proj-group:last-of-type { margin-bottom: 0; }
+  .proj-group-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .repo.proj .repo-head { flex-wrap: wrap; row-gap: 6px; }
+  .repo .status {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    border: 1px solid var(--border-bright);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .repo .status.building { color: var(--coral); border-color: var(--coral); }
+  .repo .status.oss { color: var(--cyan); border-color: rgba(106,214,230,0.5); }
+  .repo .status.shipped { color: var(--amber); border-color: rgba(240,178,100,0.5); }
+  .repo .repo-meta { flex-wrap: wrap; row-gap: 6px; }
+  .repo .repo-meta .ext { margin-left: auto; color: var(--text-dim); }
+  div.repo.proj { cursor: default; }
+  div.repo.proj:hover { transform: none; }
+
+  /* ================= WRITING SUB-HEADINGS ================= */
+  .writing-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .writing-substack .reveal:nth-child(4) { animation-delay: 0.26s; }
+  .writing-substack .reveal:nth-child(5) { animation-delay: 0.33s; }
+
+  /* ================= HERO "NEXT UP" ================= */
+  .hero-status.hero-now { margin-top: 14px; }
+  .hero-status .marker.amber {
+    background: var(--amber);
+    box-shadow: 0 0 0 4px rgba(240,178,100,0.18);
+  }
+  .work-grid .reveal:nth-child(7) { animation-delay: 0.47s; }
+  .work-grid .reveal:nth-child(8) { animation-delay: 0.54s; }
+
   /* ================= ENTRANCE ANIMATION (CSS only) ================= */
   /* Content is visible by default. CSS animations fade-in on load.
      If JS / animations fail, content still renders normally. */
@@ -942,6 +999,7 @@
   <div class="inner">
     <div class="brand"><span class="dot"></span>divyajot.singh</div>
     <div class="links">
+      <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
@@ -956,7 +1014,7 @@
   <div class="aurora"></div>
   <div class="aurora-2"></div>
   <div class="container">
-    <div class="hero-eyebrow">Singapore · APAC · Available for the right role</div>
+    <div class="hero-eyebrow">Singapore · APAC + Middle East · Available for the right role</div>
 
     <h1>
       Building applied AI<br/>
@@ -964,7 +1022,7 @@
     </h1>
 
     <p class="lede">
-      I lead product and customer-facing engagements for an AI-native platform sold into tier-one insurers across APAC and the Middle East. Day job at <strong>Neutrinos</strong>. Building <strong>Vortic</strong> in parallel.
+      I run global pre-sales and product for <strong>Neutrinos</strong>' agentic AI platform, sold into tier-one insurers across APAC and the Middle East. On the side I build the infrastructure I keep wishing existed: <strong>Vortic</strong>, a single MCP endpoint for any model, and <strong>Company Brain</strong>, a permission-aware knowledge layer.
     </p>
 
     <div class="hero-actions">
@@ -972,7 +1030,7 @@
         See the work
         <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#contact" class="btn ghost">Get in touch</a>
+      <a href="#projects" class="btn ghost">All projects</a>
     </div>
 
     <div class="hero-status">
@@ -980,7 +1038,17 @@
       <div>
         <div class="label">Currently building</div>
         <div class="body-text">
-          <a href="https://getvortic.com" target="_blank" rel="noopener">Vortic</a> — an AI-native underwriting platform for MGAs, brokers, and Lloyd's syndicates. Nine specialist agents, audit-ready memos in under 30 seconds. In pilot with design partners.
+          <a href="https://getvortic.com" target="_blank" rel="noopener">Vortic</a> — the model-agnostic backend for conversation-over-MCP apps. 150+ MCP servers behind one endpoint, your OAuth not ours, human approval on destructive calls. And <a href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">Company Brain</a> — one agent the whole company shares, that never shows anyone a document they can't already read.
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-status hero-now" data-until="2026-10-02">
+      <div class="marker amber"></div>
+      <div>
+        <div class="label">Next up</div>
+        <div class="body-text">
+          ITC Vegas, Mandalay Bay, <strong>Sept 29 – Oct 1</strong> — with the Neutrinos team at Booth #3018. Come talk agentic stacks on real insurance workflows.
         </div>
       </div>
     </div>
@@ -1033,22 +1101,28 @@
     </div>
     <div class="about-grid">
       <div class="left">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em;">
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; line-height: 1.7;">
           BASED IN<br/>
           <span style="color: var(--text);">Singapore</span><br/><br/>
+          NOW<br/>
+          <span style="color: var(--text);">Global Head of Pre Sales<br/>Principal PM, Neutrinos</span><br/><br/>
           FOCUS<br/>
-          <span style="color: var(--text);">Applied LLMs, agentic systems, FSI</span>
+          <span style="color: var(--text);">Agent harnesses, coordination, governed AI in FSI</span><br/><br/>
+          BEFORE<br/>
+          <span style="color: var(--text);">LexisNexis Risk · IBM · AuthBridge</span><br/><br/>
+          EDUCATION<br/>
+          <span style="color: var(--text);">B.Tech Mechanical, Symbiosis<br/>GMAT 770</span>
         </div>
       </div>
       <div class="about-prose">
         <p>
-          I have spent the last four years taking applied AI from prototype to production inside the kinds of organisations that do not have room for a demo that nearly works. The customers are <span class="accent">Sun Life, Manulife, Prudential, Generali, Al Rajhi Takaful</span>. The work spans agentic claims systems with verifiable handoffs, RAG over regulated documents, RLVR pipelines that took a workflow from 78 to 94 percent accuracy, and on-prem inference on bare-metal A100 for buyers who cannot send data over the wire.
+          I have spent the last four years taking applied AI from prototype to production inside the kinds of organisations that do not have room for a demo that nearly works. The customers are <span class="accent">Sun Life, Manulife, Prudential, Generali, Al Rajhi Takaful</span>. The work spans agentic claims and underwriting systems with verifiable handoffs, RAG over regulated documents, an RLVR pipeline that took a workflow from 78 to 94 percent accuracy, and on-prem inference on bare-metal A100 for buyers who cannot send data over the wire. Along the way the platform grew to <span class="accent">$3.5M USD ARR</span> and was listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.
         </p>
         <p>
-          Before that, eleven years in enterprise product and platforms — first at IBM and AuthBridge, then LexisNexis Risk Solutions, then back to Neutrinos to build what is now the platform underneath the AI suite. The throughline is the same: I am the person who sits between the customer's hardest problem and the engineering team that has to solve it.
+          Before that, eleven years in enterprise product and platforms — first at IBM and AuthBridge, then LexisNexis Risk Solutions running a fraud-and-identity portfolio across APAC, then back to Neutrinos to take a low-code studio from zero to six production customers and build what is now the platform underneath the AI suite. The throughline is the same: I am the person who sits between the customer's hardest problem and the engineering team that has to solve it.
         </p>
         <p>
-          Comfortable in front of CIOs and CTOs. Comfortable in the architecture room. Comfortable at the keyboard. <span class="mono">cost-latency-privacy trade-offs, model selection, eval design, agentic orchestration patterns.</span> All of it is the conversation I have already been having every week.
+          The thing I keep writing and building about is the layer <em>around</em> the model. Models have converged; defensibility moved one layer down, to coordination. The harness that owns shared state, routes across models, verifies before it writes, and knows when to stop — <span class="mono">loop engineering, graph orchestration, eval-driven development, cost-latency-privacy trade-offs</span> — is the conversation I have already been having every week, in front of CIOs and at the keyboard.
         </p>
       </div>
     </div>
@@ -1074,39 +1148,87 @@
         <div class="body-content">
           <h3>Vortic <span class="tag">Building Now</span></h3>
           <p>
-            AI-native underwriting platform for MGAs, brokers, and Lloyd's syndicates. Nine specialist agents process insurance submissions in parallel into audit-ready decision memos in under 30 seconds. Architecture centred on a verifiable agent harness, deterministic verifier layer, and a conversational copilot called Hermes. In pilot with design partners.
+            Every tool, pulled into one endpoint. Vortic is the model-agnostic backend for conversation-over-MCP apps: bundle 150+ MCP servers into a box, point Claude Code, Cursor, Codex or your own app at a single endpoint, and let a conversational runtime discover the right tools per turn instead of exposing hundreds of them to the model. Encrypted OAuth token management, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits, pgvector tool retrieval. Pivoted here from an AI-native underwriting platform after learning the harness was the product.
           </p>
           <div class="tech">
-            <span>Multi-agent</span><span>Verifier harness</span><span>RAG</span><span>FastAPI</span><span>Python</span><span>Stripe</span>
+            <span>MCP</span><span>TypeScript</span><span>pgvector</span><span>OAuth</span><span>Claude · GPT · Gemini</span><span>Governance</span>
           </div>
           <a href="https://getvortic.com" target="_blank" rel="noopener" class="cta">
             getvortic.com →
           </a>
         </div>
         <div class="meta-right">
-          <div class="stat">9</div>
-          <div class="stat-label">specialist agents,<br/>verifiable handoffs</div>
+          <div class="stat">150+</div>
+          <div class="stat-label">MCP servers,<br/>one endpoint</div>
         </div>
       </div>
 
       <!-- Orb / Neutrinos AI Suite -->
       <div class="work-card reveal">
         <div class="meta-left">
-          <span class="role">Head of Product</span>
-          <span class="date">2025 — Present</span>
+          <span class="role">Global Head of Pre Sales · Principal PM</span>
+          <span class="date">2023 — Present</span>
         </div>
         <div class="body-content">
           <h3>Orb · Neutrinos AI Suite</h3>
           <p>
-            The AI-native automation platform Neutrinos sells into tier-one insurers across APAC and the Middle East. Six modules: Data Fabric, AI Hub, Reels, Alpha, Integration, Rules Engine. I own the platform strategy, architecture across the modules, and the GTM motion that placed Orb inside Sun Life, Manulife, Prudential, and Al Rajhi Takaful.
+            The agentic automation platform Neutrinos sells into tier-one insurers across APAC and the Middle East — AI Hub, Reels rules, Alpha, Data Fabric, BPMN workflow, integration — with Orb as the coordination layer underneath. I own product strategy, architecture direction and the customer-facing motion: architecture reviews, POV design, RFP defence, executive briefings, competitive close. Took the suite from prototype to $3.5M USD ARR, compressed enterprise deployments to under three weeks, and built the pod that ships it. Listed in Forrester's Adaptive Process Orchestration Software Landscape, Q2 2026.
           </p>
           <div class="tech">
-            <span>Agentic orchestration</span><span>Decisioning</span><span>BPMN</span><span>Data Fabric</span><span>RAG</span>
+            <span>Agentic orchestration</span><span>Decisioning</span><span>BPMN</span><span>Data Fabric</span><span>RAG</span><span>MCP</span>
           </div>
         </div>
         <div class="meta-right">
-          <div class="stat">5</div>
-          <div class="stat-label">tier-one insurance<br/>customers</div>
+          <div class="stat">$3.5M</div>
+          <div class="stat-label">USD ARR,<br/>prototype to production</div>
+        </div>
+      </div>
+
+      <!-- Underwriting agent graph -->
+      <div class="work-card reveal">
+        <div class="meta-left">
+          <span class="role">Architect</span>
+          <span class="date">2026</span>
+        </div>
+        <div class="body-content">
+          <h3>Underwriting Agent Graph</h3>
+          <p>
+            A live simplified-underwriting case for a life policy: one master orchestrator, thirteen sub-agents, a harness moving work between them. The first version burned 1,151,139 tokens on a single 12-page, 5-document submission, because a loop has nowhere to put shared state and flattens into a line. Rebuilt as an agent graph — bounded nodes, one shared state each node reads and writes, shapes defined up front. Same case type: 418,209 tokens, latency per call down around 80 percent.
+          </p>
+          <div class="tech">
+            <span>Graph orchestration</span><span>Shared state</span><span>Harness engineering</span><span>Model routing</span><span>Insurance UW</span>
+          </div>
+          <a href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener" class="cta">
+            Read the post →
+          </a>
+        </div>
+        <div class="meta-right">
+          <div class="stat">−64%</div>
+          <div class="stat-label">tokens per case,<br/>1.15M → 418K</div>
+        </div>
+      </div>
+
+      <!-- Company Brain -->
+      <div class="work-card reveal">
+        <div class="meta-left">
+          <span class="role">Founder</span>
+          <span class="date">2026 — Present</span>
+        </div>
+        <div class="body-content">
+          <h3>Company Brain <span class="tag">Open Source</span></h3>
+          <p>
+            Everyone in the organisation shares one agent, and that agent knows what the company knows — without ever showing anyone a document they aren't allowed to see. Personal agents don't scale to a company; company-wide agents leak. The rule everything bends around: a chunk is only retrievable by someone the source system would show it to, excluded before ranking rather than filtered after. Built inside a fork of <em>qm</em>, a 117k-line multiplayer agent harness under MIT, with the permission-scoped retrieval layer as the greenfield half. H0 target: one team asking questions in Slack and getting cited answers.
+          </p>
+          <div class="tech">
+            <span>TypeScript</span><span>Fastify</span><span>Postgres · pgvector</span><span>Slack</span><span>ACL-bound chunks</span><span>MIT</span>
+          </div>
+          <a href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener" class="cta">
+            github.com/divyajotsingh093/companybrain →
+          </a>
+        </div>
+        <div class="meta-right">
+          <div class="stat">1</div>
+          <div class="stat-label">agent per company,<br/>permissions as schema</div>
         </div>
       </div>
 
@@ -1140,11 +1262,14 @@
         <div class="body-content">
           <h3>RLVR for Regulated Insurance Workflows</h3>
           <p>
-            Production pipeline using Reinforcement Learning with Verifiable Rewards in place of human preference labels. Lifted accuracy on a regulated insurance workflow from 78 to 94 percent. I designed the verifiable check functions over policy-admin outputs, defined the eval harness, and shipped the 14-day build playbook now published externally as a reference for applied-LLM teams.
+            Production pipeline using Reinforcement Learning with Verifiable Rewards in place of human preference labels. Lifted accuracy on a regulated insurance workflow from 78 to 94 percent without touching the model. I designed the verifiable check functions over policy-admin outputs, defined the eval harness, made grounded-answer metrics a precondition for release, and shipped the 14-day build playbook now referenced externally by applied-LLM teams.
           </p>
           <div class="tech">
             <span>RLVR</span><span>Eval-driven dev</span><span>Verifiable rewards</span><span>Insurance core</span>
           </div>
+          <a href="/writing/rlvr-build-playbook" class="cta">
+            The 14-day playbook →
+          </a>
         </div>
         <div class="meta-right">
           <div class="stat">78→94</div>
@@ -1152,19 +1277,19 @@
         </div>
       </div>
 
-      <!-- On-Prem Stack -->
+      <!-- On-Prem / Sovereign Stack -->
       <div class="work-card reveal">
         <div class="meta-left">
           <span class="role">Architect</span>
-          <span class="date">2024 — 2025</span>
+          <span class="date">2024 — 2026</span>
         </div>
         <div class="body-content">
-          <h3>On-Prem Inference Stack</h3>
+          <h3>On-Prem Inference &amp; Semantic Router</h3>
           <p>
-            QwQ-32B evaluation on bare-metal A100 80GB for privacy-sensitive reasoning workloads. Three-node K3s and Ollama edge cluster running phi-3-mini and Qwen2.5-VL-3B for lighter tasks. Sentence-transformer semantic router for tiered model selection across cost, latency, and capability. Built for buyers in regulated industries who cannot send data over the wire.
+            QwQ-32B evaluation on bare-metal A100 80GB for privacy-sensitive reasoning workloads. Three-node K3s and Ollama edge cluster for lighter tasks. A FastAPI + sentence-transformer semantic router doing tiered model selection across cost, latency and capability. Extended in 2026 into an in-country sovereign inference offering for the Middle East — inference, storage and execution all in-region — with the GPU unit economics (A100, L40S, AMD Instinct) worked through per request type.
           </p>
           <div class="tech">
-            <span>QwQ-32B</span><span>K3s</span><span>Ollama</span><span>A100</span><span>Semantic router</span>
+            <span>QwQ-32B</span><span>K3s</span><span>Ollama</span><span>A100 · L40S</span><span>Semantic router</span><span>Data residency</span>
           </div>
         </div>
         <div class="meta-right">
@@ -1182,11 +1307,14 @@
         <div class="body-content">
           <h3>Generali Thailand IDP Pipeline</h3>
           <p>
-            Production document intelligence pipeline for Attending Physician Statements in mixed Thai-English text, including Buddhist-Era date handling and two completely different document classes (public-hospital OPD bundles and handwritten private-clinic forms). Three iterative prompt versions hardened against real-world OCR noise. Customer signed.
+            Production document intelligence pipeline for Attending Physician Statements in mixed Thai-English text, including Buddhist-Era date handling and two completely different document classes (public-hospital OPD bundles and handwritten private-clinic forms). Three iterative prompt versions hardened against real-world OCR noise. Customer signed; the tiered routing pipeline is now a reusable asset in enterprise pitches.
           </p>
           <div class="tech">
             <span>Qwen2.5-VL-72B</span><span>OCR-free</span><span>Multi-lingual</span><span>Insurance UW</span>
           </div>
+          <a href="/writing/ocr-free-idp-thai" class="cta">
+            Case study →
+          </a>
         </div>
         <div class="meta-right">
           <div class="stat">94%</div>
@@ -1198,86 +1326,275 @@
   </div>
 </section>
 
-<!-- GITHUB REPOS -->
+<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-head">
-      <div class="num">03 / Open Source</div>
-      <h2>From the <em>repos</em>.</h2>
+      <div class="num">03 / Projects</div>
+      <h2>Everything on the <em>bench</em>.</h2>
     </div>
 
-    <div class="repos" id="repo-list">
-      <!-- Placeholder repos — swap with your real ones -->
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">agent-harness</span>
-        </div>
-        <div class="repo-desc">Verifiable multi-agent harness with deterministic verifier layer. Reference implementation for the Vortic architecture.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
-        </div>
-      </a>
+    <div class="proj-group">
+      <div class="proj-group-label">Building now</div>
+      <div class="repos">
 
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">rlvr-playbook</span>
-        </div>
-        <div class="repo-desc">14-day build playbook for Reinforcement Learning with Verifiable Rewards on regulated workflows. Architecture, eval harness, code.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
-        </div>
-      </a>
+        <a class="repo proj" href="https://getvortic.com" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <span class="repo-name">vortic-contextlayer</span>
+            <span class="status building">Building</span>
+          </div>
+          <div class="repo-desc">Model-agnostic backend for conversation-over-MCP apps. One endpoint in front of 150+ MCP servers, encrypted OAuth vault, execution traces, HITL approval on destructive calls, PII redaction, per-key rate limits.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot typescript"></span> TypeScript</div>
+            <div>2025 — now</div>
+            <div class="ext">getvortic.com ↗</div>
+          </div>
+        </a>
 
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">idp-multilingual</span>
-        </div>
-        <div class="repo-desc">Document intelligence pipeline for mixed-language insurance documents. Qwen2.5-VL based, OCR-free extraction with risk-signal emission.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
-        </div>
-      </a>
+        <a class="repo proj" href="https://github.com/divyajotsingh093/companybrain" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+            <span class="repo-name">companybrain</span>
+            <span class="status oss">Open source</span>
+          </div>
+          <div class="repo-desc">Permission-aware knowledge service: every chunk stays bound to the ACL of the system it came from, resolved against the asker on every query, excluded before ranking. Forked from qm, a 117k-line MIT agent harness.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot typescript"></span> TypeScript</div>
+            <div>2026</div>
+            <div class="ext">GitHub ↗</div>
+          </div>
+        </a>
 
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">k3s-llm-edge</span>
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">claude-brain</span>
+            <span class="status personal">Personal</span>
+          </div>
+          <div class="repo-desc">A local markdown "super brain" kept current by a daily dream-weaver agent that reads session transcripts, files, mail and calendar, updates project and insight files, and writes the morning brief: stalled work resurfaced, trend radar, one growth lever.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Claude Code · Markdown</div>
+            <div>2026</div>
+          </div>
         </div>
-        <div class="repo-desc">Three-node K3s + Ollama edge cluster for tiered LLM inference. phi-3-mini and Qwen2.5-VL-3B with sentence-transformer routing.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot"></span> Shell + YAML</div>
-        </div>
-      </a>
 
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">orion-presales</span>
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">vlm-router</span>
+            <span class="status research">Research</span>
+          </div>
+          <div class="repo-desc">Natural-language router over four specialist VLMs — dots.ocr, GOT-OCR 2.0, Qwen3-VL-8B, GLM-4.1V-9B — scored on an 8-axis capability profile, with a Thompson-sampling bandit learning the routing from outcomes. Philippine government IDs, real scans, 4-bit on Colab.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
+            <div>2026</div>
+          </div>
         </div>
-        <div class="repo-desc">Live pre-sales AI agent. Telegram bot front-end, Notion-backed deal store, Traefik on VPS. Used in Neutrinos customer demos.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot typescript"></span> TypeScript</div>
-        </div>
-      </a>
 
-      <a class="repo" href="#" target="_blank" rel="noopener">
-        <div class="repo-head">
-          <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
-          <span class="repo-name">neuswarm-research</span>
-        </div>
-        <div class="repo-desc">Research direction on goal-decomposer meta-agents and prompt-driven swarm assembly. Hackathon paper plus reference primitives.</div>
-        <div class="repo-meta">
-          <div class="repo-lang"><span class="lang-dot python"></span> Python</div>
-        </div>
-      </a>
+      </div>
+    </div>
 
+    <div class="proj-group">
+      <div class="proj-group-label">Shipped and prototyped at Neutrinos</div>
+      <div class="repos">
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">mcp-reference-integrations</span>
+            <span class="status shipped">Shipped</span>
+          </div>
+          <div class="repo-desc">Jira + Confluence MCP behind a travel-claims intake agent: full CRUD across seven tools, payable amounts, limits and exclusions computed from a schedule-of-benefits knowledge base. A second MCP for flight tracking. Surfaced four platform gaps straight into the backlog.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot python"></span> Docker · FastMCP</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">asha-voice-claims</span>
+            <span class="status poc">POC</span>
+          </div>
+          <div class="repo-desc">Inbound call pipeline for claims: PSTN → STT → intent and policy-context retrieval → action → TTS. A relay WebSocket service on Twilio ConversationRelay, barge-in and VAD tuning, DPDP-aware handling of call data. Five-week phased build.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Twilio · WebSockets</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">uw-agent-demo</span>
+            <span class="status demo">Demo</span>
+          </div>
+          <div class="repo-desc">Full new-business underwriting flow as a live pre-sales asset: a master orchestrator and eleven specialist agents, Supabase backend, Slack and Airtable human-in-the-loop referral, a synthetic product with realistic test cases and a prompt library.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Supabase · Slack · Airtable</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">uw-referral-pipeline</span>
+            <span class="status shipped">Shipped</span>
+          </div>
+          <div class="repo-desc">End to end, no glue: agent extraction → rules decision → case creation over the platform API, with a Postman collection that lets a technical audience trigger the whole thing live and a runbook covering objects, rules, workflow, agent call and the case run.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Rules · BPMN · Postman</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">responsible-ai-studio</span>
+            <span class="status poc">Prototype</span>
+          </div>
+          <div class="repo-desc">Whitelabel agent studio on a Flowise base with a Responsible AI tab: policy library, guardrail templates with one-click canvas insertion, and a compliance dashboard mapping every guardrail to EU AI Act, ISO 42001 and NIST AI RMF.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot typescript"></span> Flowise · React</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">sovereign-inference</span>
+            <span class="status shipped">Offering</span>
+          </div>
+          <div class="repo-desc">In-country inference for the Middle East: model, storage and execution all in-region, a domain-specific model mix routed per request type through the harness, and the GPU unit economics — A100, L40S, AMD Instinct — worked through to a rate card.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Ollama · K3s · Data residency</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">rules-engine-eval</span>
+            <span class="status research">Evaluation</span>
+          </div>
+          <div class="repo-desc">Whether an in-house, AI-assisted underwriting rules engine can replace or supplement a third-party engine, measured on straight-through processing for life applications.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Underwriting · STP</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">orion-presales-agent</span>
+            <span class="status shipped">Internal</span>
+          </div>
+          <div class="repo-desc">Live agentic pre-sales assistant with a Telegram front-end, later redeployed on OpenClaw. Built by the intern cohort I onboarded, with the training materials and sprint plans written for it.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot python"></span> Python · Telegram</div>
+            <div>2025</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">doc-authenticity-agents</span>
+            <span class="status shipped">Shipped</span>
+          </div>
+          <div class="repo-desc">LLM-based document authenticity and tamper-detection agents for the AI platform, plus an email triage and classification workflow for insurance claims.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> IDP · n8n</div>
+            <div>2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="proj-group">
+      <div class="proj-group-label">Side builds</div>
+      <div class="repos">
+
+        <a class="repo proj" href="https://github.com/divyajotsingh093/calorietracker" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+            <span class="repo-name">nourish</span>
+            <span class="status oss">Open source</span>
+          </div>
+          <div class="repo-desc">Two-week meal planner, calorie tracker, recipe book and grocery list for a household of two. Material 3, self-hosted variable fonts, five accent palettes. Everything lives in the browser — no account, no server, no data leaving the device.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot javascript"></span> JavaScript · PWA</div>
+            <div>2026</div>
+            <div class="ext">GitHub ↗</div>
+          </div>
+        </a>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">13f-research-dashboard</span>
+            <span class="status personal">Side</span>
+          </div>
+          <div class="repo-desc">Multi-fund investment research dashboard tracking 13F filings for Situational Awareness, Altimeter, Coatue and Light Street, with live news and a Monday / Wednesday / Friday review routine.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot typescript"></span> React</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <div class="repo proj">
+          <div class="repo-head">
+            <span class="repo-name">iridium-earth</span>
+            <span class="status personal">Side</span>
+          </div>
+          <div class="repo-desc">A Three.js Earth with the Iridium NEXT constellation overhead — real TLEs, propagated with SGP4, rendered live.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot javascript"></span> Three.js</div>
+            <div>2026</div>
+          </div>
+        </div>
+
+        <a class="repo proj" href="https://everycorner.in" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <span class="repo-name">everycorner.in</span>
+            <span class="status personal">Venture</span>
+          </div>
+          <div class="repo-desc">D2C Shopify store bringing HOTO-brand tools to India under Dash Impex — SEO, Google and Meta ads, Merchant Center compliance, the whole funnel run on evenings.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Shopify</div>
+            <div>2025 — now</div>
+            <div class="ext">everycorner.in ↗</div>
+          </div>
+        </a>
+
+        <a class="repo proj" href="https://github.com/divyajotsingh093/divyajot-website" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+            <span class="repo-name">divyajot-website</span>
+            <span class="status oss">Open source</span>
+          </div>
+          <div class="repo-desc">This site. Static HTML with weekly auto-refreshed GitHub, Substack, LinkedIn and X feeds via GitHub Actions, an on-site essay builder with zero dependencies, and a weekly draft-post generator that never auto-publishes.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot python"></span> Python · HTML</div>
+            <div>2026</div>
+            <div class="ext">GitHub ↗</div>
+          </div>
+        </a>
+
+        <a class="repo proj" href="https://github.com/divyajotsingh093/presales-documents" target="_blank" rel="noopener">
+          <div class="repo-head">
+            <svg class="repo-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+            <span class="repo-name">presales-documents</span>
+            <span class="status oss">Open source</span>
+          </div>
+          <div class="repo-desc">A structured home for presales collateral: fill-in-the-blank templates for proposals, RFP responses, case studies, pricing, decks and discovery notes, with naming conventions that survive a team.</div>
+          <div class="repo-meta">
+            <div class="repo-lang"><span class="lang-dot neutral"></span> Markdown</div>
+            <div>2026</div>
+            <div class="ext">GitHub ↗</div>
+          </div>
+        </a>
+
+      </div>
     </div>
 
     <div class="github-cta">
-      <a href="https://github.com/" target="_blank" rel="noopener" class="btn ghost">
+      <a href="https://github.com/divyajotsingh093" target="_blank" rel="noopener" class="btn ghost">
         View all on GitHub
         <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -1293,20 +1610,68 @@
       <h2>Notes from the <em>field</em>.</h2>
     </div>
 
+    <div class="writing-sub">On Substack</div>
+    <div class="writing-list writing-substack">
+      <div class="writing-item reveal">
+        <div class="date">Aug 2026</div>
+        <div>
+          <h4><a href="https://divyajot.substack.com/p/1151139-tokens-for-one-policy-then" target="_blank" rel="noopener">1,151,139 tokens for one policy. Then we rebuilt the orchestration as a graph.</a></h4>
+          <div class="summary">One orchestrator, fifteen sub-agents, a harness moving work between them — and three things went wrong that turned out to be the same thing wearing different clothes.</div>
+        </div>
+        <div class="platform">Substack</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="date">Jun 2026</div>
+        <div>
+          <h4><a href="https://divyajot.substack.com/p/coordination-blindness" target="_blank" rel="noopener">Coordination Blindness</a></h4>
+          <div class="summary">Why partitioning context is the quiet killer of multi-agent systems — and why your evals won't catch it.</div>
+        </div>
+        <div class="platform">Substack</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="date">Jun 2026</div>
+        <div>
+          <h4><a href="https://divyajot.substack.com/p/the-system-of-action-why-close-the" target="_blank" rel="noopener">The System of Action: Why "Close the Books" Is Harder Than Any Model</a></h4>
+          <div class="summary">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.</div>
+        </div>
+        <div class="platform">Substack</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="date">Feb 2026</div>
+        <div>
+          <h4><a href="https://divyajot.substack.com/p/stop-tuning-prompts-build-the-feedback" target="_blank" rel="noopener">Stop Tuning Prompts. Build the Feedback Loop.</a></h4>
+          <div class="summary">How RLVR (Reinforcement Learning with Verifiable Rewards) turns static agent pipelines into systems that get better on every run.</div>
+        </div>
+        <div class="platform">Substack</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="date">Feb 2026</div>
+        <div>
+          <h4><a href="https://divyajot.substack.com/p/your-llm-is-smarter-than-you-think" target="_blank" rel="noopener">Your LLM Is Smarter Than You Think. Your Architecture Is Holding It Back.</a></h4>
+          <div class="summary">Six weeks of prompt rewrites moved nothing. Three weeks of fixing everything around the model took accuracy from 78 to 94 percent.</div>
+        </div>
+        <div class="platform">Substack</div>
+      </div>
+    </div>
+    <div class="writing-more">
+      <a href="https://divyajot.substack.com" target="_blank" rel="noopener">Subscribe on Substack →</a>
+    </div>
+
+    <div class="writing-sub" style="margin-top: 48px;">Essays, whitepapers and case studies on this site</div>
     <div class="writing-list" id="writing-list">
       <!-- Populated from posts.json by the script below. Fallback shown if it fails to load. -->
       <div class="writing-item reveal">
         <div class="date">Jun 2026</div>
         <div>
-          <h4><a href="/writing/system-of-action">The System of Action: Why "Close the Books" Is Harder Than Any Model</a></h4>
-          <div class="summary">An operator speaks in business verbs. Six enterprise systems speak in incompatible APIs. Here's the layer in between — and the demo where the right answer was to stop.</div>
+          <h4><a href="/writing/loop-engineering">Loop Engineering: The Control Structure Under Every Agent</a></h4>
+          <div class="summary">Prompts get you the first 60%. Managing the loop gets you the part that ships — because at 95% per step, a 20-step task succeeds only a third of the time.</div>
         </div>
         <div class="platform">Essay</div>
       </div>
     </div>
 
     <div class="writing-more">
-      <a href="/writing">All writing →</a>
+      <a href="/writing">All fourteen →</a>
     </div>
   </div>
 </section>
@@ -1321,51 +1686,65 @@
 
     <div class="skills-grid">
       <div class="skill-block">
-        <div class="skill-label">AI · LLMs</div>
+        <div class="skill-label">Agents · Harnesses</div>
         <div class="skill-items">
-          GPT-4, Claude, Gemini, Qwen2.5, QwQ-32B, agentic orchestration, multi-agent systems, planner-executor-critic, tool use, RAG, RLVR, eval-driven development, prompt programs, structured generation, guardrails
+          Multi-agent orchestration, agent graphs with shared state, loop engineering, harness engineering, planner-executor-critic, verifiable handoffs, MCP servers and clients, tool use, RAG, RLVR, eval-driven development, structured generation, guardrails, HITL patterns
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">Models</div>
+        <div class="skill-items">
+          Claude, GPT, Gemini, Qwen2.5 / Qwen3-VL, QwQ-32B, GLM, Kimi, open-weight routing, semantic routers, fine-tuning trade-offs, token economics, self-host vs API math
         </div>
       </div>
 
       <div class="skill-block">
         <div class="skill-label">Document & Vision AI</div>
         <div class="skill-items">
-          IDP, Qwen2.5-VL-72B, Donut, OCR-free extraction, multi-lingual + handwritten pipelines, locale-specific handling (Buddhist-Era, Thai-English mixed), risk-signal emission
+          IDP, Qwen2.5-VL-72B, dots.ocr, GOT-OCR 2.0, Donut, OCR-free extraction, multi-lingual and handwritten pipelines, locale handling (Buddhist-Era, Thai-English mixed), authenticity and tamper signals
         </div>
       </div>
 
       <div class="skill-block">
         <div class="skill-label">AI Infrastructure</div>
         <div class="skill-items">
-          On-prem LLM, Ollama, OpenRouter, K3s, Docker, Traefik, bare-metal A100, sentence-transformer routers, vector DBs, cost-latency-privacy trade-offs
+          On-prem and in-country LLM, Ollama, OpenRouter, K3s, Docker, Traefik, bare-metal A100 / L40S, sentence-transformer routers, pgvector, vector DBs, Twilio ConversationRelay, cost-latency-privacy trade-offs
         </div>
       </div>
 
       <div class="skill-block">
         <div class="skill-label">Product · Pre-Sales</div>
         <div class="skill-items">
-          0→1 launches, technical discovery, value-based selling, RFP/RFI response, competitive displacement (Guidewire, Duck Creek, Pega, Appian, Mendix), C-level engagement, GTM
+          0→1 launches, technical discovery, POV design, value-based selling, RFP/RFI defence, competitive displacement (Guidewire, Duck Creek, Pega, Appian, Mendix), analyst relations, C-level engagement, GTM playbooks
         </div>
       </div>
 
       <div class="skill-block">
         <div class="skill-label">Engineering</div>
         <div class="skill-items">
-          Python, SQL, JavaScript, FastAPI, REST + GraphQL, microservices, distributed systems, saga / compensation patterns, BPMN vs. emergent runtime
+          Python, TypeScript, SQL, FastAPI, Fastify, REST + GraphQL, Supabase, Postgres, microservices, BPMN, saga / compensation patterns, n8n, Playwright, GitHub Actions
         </div>
       </div>
 
       <div class="skill-block">
         <div class="skill-label">Cloud · Data</div>
         <div class="skill-items">
-          AWS (Solutions Architect cert), Azure (Data Scientist DP-100), GCP (Associate Cloud Engineer), Redshift, Cosmos DB, Vertex AI, Apache Spark, Informatica
+          AWS (Solutions Architect cert), Azure (Data Scientist DP-100), GCP (Associate Cloud Engineer), Redshift, Cosmos DB, Vertex AI, Apache Spark, Informatica, Tableau (Desktop Qualified Associate)
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">Governance · Compliance</div>
+        <div class="skill-items">
+          Responsible AI, EU AI Act, ISO 42001, NIST AI RMF, data residency and inference sovereignty, MAS / IRDAI awareness, DPDP, audit trails
         </div>
       </div>
 
       <div class="skill-block full-span">
         <div class="skill-label">Domain</div>
         <div class="skill-items">
-          Insurance (UW, claims, endorsements, policy admin), eBaoLI, eBaoGI, BIX, SingPass, MAS / IRDAI awareness, fraud + identity, retail banking
+          Insurance (underwriting, claims, endorsements, policy admin, takaful), eBaoLI, eBaoGI, BIX, SingPass, fraud + identity resolution, retail banking, AML
         </div>
       </div>
 
@@ -1374,10 +1753,11 @@
         <div class="interests">
           <span>Eval design</span>
           <span>Harness engineering</span>
+          <span>Coordination substrates</span>
           <span>Open-weight models</span>
           <span>Insurance economics</span>
           <span>Hyrox</span>
-          <span>Equity markets</span>
+          <span>Equity markets · 13Fs</span>
           <span>Long-form writing</span>
         </div>
       </div>
@@ -1397,7 +1777,7 @@
     <div class="socials" id="contact-socials">
       <a href="https://linkedin.com/in/divyajot-singh-06b78559" target="_blank" rel="noopener" data-channel="linkedin">LinkedIn</a>
       <span>·</span>
-      <a href="https://github.com/" target="_blank" rel="noopener" data-channel="github">GitHub</a>
+      <a href="https://github.com/divyajotsingh093" target="_blank" rel="noopener" data-channel="github">GitHub</a>
       <span>·</span>
       <a href="https://x.com/divyjotsingh" target="_blank" rel="noopener" data-channel="x">X</a>
       <span>·</span>
@@ -1417,6 +1797,12 @@
 </footer>
 
 <script>
+  // Hide any time-boxed notice once its data-until date has passed.
+  document.querySelectorAll('[data-until]').forEach(function (el) {
+    var until = new Date(el.getAttribute('data-until'));
+    if (!isNaN(until) && Date.now() > until.getTime()) el.remove();
+  });
+
   // Load dynamic data and populate the Latest section + social URL overrides.
   // Fails gracefully if data.json is missing or invalid — the site still works.
   (async function () {
@@ -1439,6 +1825,16 @@
       return String(s || "").replace(/[&<>"']/g, function (c) {
         return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
       });
+    }
+
+    // Truncate at a word boundary so feed titles never end mid-word.
+    function clip(s, n) {
+      s = String(s || "").trim();
+      if (s.length <= n) return s;
+      var cut = s.slice(0, n);
+      var sp = cut.lastIndexOf(" ");
+      if (sp > n * 0.6) cut = cut.slice(0, sp);
+      return cut.replace(/[\s,.;:—–-]+$/, "") + "…";
     }
 
     function renderColumn(title, items, opts = {}) {
@@ -1507,10 +1903,10 @@
 
       const liHtml = renderColumn("LinkedIn", f.linkedin_posts, {
         badge: "posts",
-        limit: 3,
+        limit: 4,
         fields: (p) => `
           <li>
-            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape((p.title || "").slice(0, 110))}</a>
+            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 120))}</a>
             <span class="meta">${p.date ? relativeTime(p.date) : ""}</span>
           </li>`,
       });
@@ -1520,7 +1916,7 @@
         limit: 4,
         fields: (p) => `
           <li>
-            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape((p.title || "").slice(0, 110))}</a>
+            <a href="${escape(p.url)}" target="_blank" rel="noopener">${escape(clip(p.title, 120))}</a>
             <span class="meta">${p.date ? relativeTime(p.date) : ""}</span>
           </li>`,
       });
