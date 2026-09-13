@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-12T18:00:33.461095+00:00",
+    "last_updated": "2026-09-13T09:07:28.515357+00:00",
     "note": "Feeds auto-regenerated weekly by .github/workflows/refresh-feed.yml (merged with existing items, deduped by URL). Edit `social` and `pinned_work` directly — those are never overwritten."
   },
   "social": {
@@ -124,6 +124,11 @@
         "title": "Loop engineering: at 95% success per step, a 20-step task finishes correctly only ~36% of the time. Every point you claw back lives in the loop.",
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7472137920653578242/",
         "date": "2026-06-15T04:08:25Z"
+      },
+      {
+        "title": "The models have definitely converged. Everyone serious rents the same two or three frontier labs, and the gap narrows every quarter.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7469295227850149888/",
+        "date": "2026-06-07T07:52:35Z"
       }
     ],
     "x_posts": [
