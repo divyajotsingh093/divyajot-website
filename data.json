@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-13T09:07:28.515357+00:00",
+    "last_updated": "2026-09-19T10:59:06.306629+00:00",
     "note": "Feeds auto-regenerated weekly by .github/workflows/refresh-feed.yml (merged with existing items, deduped by URL). Edit `social` and `pinned_work` directly — those are never overwritten."
   },
   "social": {
@@ -85,6 +85,11 @@
       }
     ],
     "linkedin_posts": [
+      {
+        "title": "24 hours on Jev: it writes nothing. Give it program state and questions, get typed answers with probabilities.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7507026186473123840/",
+        "date": "2026-09-19T10:41:56Z"
+      },
       {
         "title": "ITC Vegas, Sept 29 – Oct 1, Booth #3018 — happy to talk through the agentic stack we've been running on real insurance workflows at Neutrinos.",
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7503302693537349632/",
