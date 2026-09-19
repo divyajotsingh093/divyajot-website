@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-19T10:59:06.306629+00:00",
+    "last_updated": "2026-09-19T18:19:57.725802+00:00",
     "note": "Feeds auto-regenerated weekly by .github/workflows/refresh-feed.yml (merged with existing items, deduped by URL). Edit `social` and `pinned_work` directly — those are never overwritten."
   },
   "social": {
