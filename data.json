@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-11-07T19:46:15.970268+00:00",
+    "last_updated": "2026-11-14T20:16:42.877460+00:00",
     "note": "Feeds auto-regenerated weekly by .github/workflows/refresh-feed.yml (merged with existing items, deduped by URL). Edit `social` and `pinned_work` directly — those are never overwritten."
   },
   "social": {
@@ -11,6 +11,30 @@
   },
   "feeds": {
     "github_commits": [
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/divyajot-website",
+        "title": "Update site: live smart claims agent, Vortic context layer, AMM, Kamios, certs",
+        "url": "https://github.com/divyajotsingh093/divyajot-website/commit/e97c928e278b2950750e164d0ee546b95449932b",
+        "date": "2026-11-10T04:10:55Z",
+        "sha": "e97c928"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/contact-center",
+        "title": "Redesign CCMS UI along enterprise service-workspace lines",
+        "url": "https://github.com/divyajotsingh093/contact-center/commit/ee6d32bb0f4e9a4ffa8c3bc704385c9b74f003ad",
+        "date": "2026-10-13T06:50:45Z",
+        "sha": "ee6d32b"
+      },
+      {
+        "type": "commit",
+        "repo": "divyajotsingh093/contact-center",
+        "title": "Add CCMS POC foundation: case model, intake pipeline and core screens",
+        "url": "https://github.com/divyajotsingh093/contact-center/commit/a608e2e74b52ac81c77d7694c122aa97bb96892d",
+        "date": "2026-10-13T06:26:48Z",
+        "sha": "a608e2e"
+      },
       {
         "type": "commit",
         "repo": "divyajotsingh093/calorietracker",
