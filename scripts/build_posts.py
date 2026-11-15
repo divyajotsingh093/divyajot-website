@@ -10,7 +10,8 @@ Writes:  writing/<slug>.html   one styled page per post
 
 No third-party dependencies — a small, purpose-built markdown converter handles
 the subset of markdown used by the posts (headings, bold, italic, inline code,
-links, ordered/unordered lists, blockquotes, rules, and [[diagram:n]] refs).
+links, ordered/unordered lists, blockquotes, rules, fenced code blocks, and
+[[diagram:n]] refs).
 """
 
 import os
@@ -88,11 +89,24 @@ def render_inline(text):
 
 def render_markdown(body, diagrams):
     """Convert a markdown body into HTML. `diagrams` maps index->svg filename."""
+    # fenced code blocks: stash them before splitting on blank lines
+    fences = []
+
+    def _stash_fence(m):
+        fences.append(m.group(1))
+        return f"\n\n[[fence:{len(fences) - 1}]]\n\n"
+
+    body = re.sub(r"^```[^\n]*\n(.*?)\n```[ \t]*$", _stash_fence, body.strip(), flags=re.S | re.M)
     blocks = re.split(r"\n\s*\n", body.strip())
     out = []
     for block in blocks:
         block = block.strip("\n")
         if not block.strip():
+            continue
+
+        m = re.fullmatch(r"\[\[fence:(\d+)\]\]", block.strip())
+        if m:
+            out.append(f"<pre><code>{html.escape(fences[int(m.group(1))], quote=False)}</code></pre>")
             continue
 
         # diagram placeholder, e.g. [[diagram:1]]

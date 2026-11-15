@@ -1,8 +1,24 @@
 {
   "_meta": {
-    "generated": "2026-11-15T07:34:45.702653+00:00"
+    "generated": "2026-11-15T08:25:30.315537+00:00"
   },
   "posts": [
+    {
+      "slug": "the-harness-has-to-learn",
+      "title": "The harness has to learn",
+      "subtitle": "How we built a self-learning loop for insurance agents, with the formulas and the logs",
+      "date": "2026-11-15",
+      "type": "essay",
+      "tags": [
+        "harness",
+        "evals",
+        "self-learning",
+        "insurance",
+        "agents"
+      ],
+      "url": "/writing/the-harness-has-to-learn",
+      "canonical": "https://divyajot.substack.com/p/the-harness-has-to-learn"
+    },
     {
       "slug": "loop-engineering",
       "title": "Loop Engineering: The Control Structure Under Every Agent",
